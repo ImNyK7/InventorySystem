@@ -5,6 +5,7 @@
     --second-bg-color: #d1edf2;
 }
 
+
 .primary-text {
     color: var(--main-text-color);
 }
@@ -22,7 +23,6 @@
 }
 
 #wrapper {
-    overflow-x: hidden;
     background-image: linear-gradient(to left,
             #d4d4d4,
             #dedede,
@@ -60,6 +60,7 @@
 }
 
 .wrapper .btn {
+    width: 200px;
     height: 50px;
     background: #18C4FA;
     margin-top: 20px;
@@ -81,6 +82,7 @@
 }
 
 .wrapper .btn2 {
+    width: 200px;
     height: 50px;
     background: #EE801B;
     margin-top: 20px;

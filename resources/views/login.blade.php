@@ -17,17 +17,17 @@
     <div class="wrapper-wrapper">
         <h1>SELAMAT DATANG <br>SILAHKAN LOGIN</h1>
         <div class="wrapper">
-            <form action="">
+            <form action="/">
                 <table>
                     <tr>
                         <td><label for="username" class="form-label">Username/ID</label></td>
-                        <td><input type="text" id="username" name="username" class="form-control" required></td>
+                        <td><input type="text" id="username" class="form-control" required></td>
                         <td><i class="fas fa-user me-2"></i></td>
                     </tr>
                     <tr>
                         <td><label for="password" class="form-label">Password</label></td>
-                        <td><input type="password" id="password" name="password" class="form-control" required></td>
-                        <td><i class="fa-solid fa-lock"></i></td>
+                        <td><input type="password" id="password" class="form-control" required></td>
+                        <td><i class="fa-solid fa-lock me-2"></i></td>
                     </tr>
                 </table>
                 <button type="submit" class="btn">Login</button>

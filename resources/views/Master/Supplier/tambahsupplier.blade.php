@@ -22,7 +22,7 @@
             <div class="sidebar-heading text-center py-4 primary-text fs-2 fw-bold text-uppercase border-bottom">
                 <i></i>SI SUPRAS
             </div>
-            <div class="list-group list-group-flush my-2">
+            <div class="list-group list-group-flush">
                 <a href="/"
                     class="list-group-item list-group-item-action bg-transparent second-text dashboard-button fw-bold"
                     style="text-decoration: none; color: gray;">
@@ -55,8 +55,7 @@
                     <ul class="list-group list-group-flush my-1" style="margin-left: 15px;">
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="stokbarang
-                            "
+                            <a href="stokbarang"
                                 style="text-decoration: none; color: gray;">Lihat Stok Barang</a>
                         </li>
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
@@ -71,53 +70,51 @@
                 </div>
             </div>
         </div>
-</body>
-
-<!-- Content -->
-
-<body>
-    <div class=wrapper-wrapper>
-        <div id="page-content-wrapper">
-            <form>
-                <div class="wrapper">
-                    <h1>Form Tambah Supplier</h1>
-                    <form action="">
-                        <table>
-                            <tr>
-                                <td><label for="KodeSupplier" class="form-label">Kode</label></td>
-                                <td><input type="text" id="KodeSupplier" class="form-control" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="PerusahaanSupplier" class="form-label">Perusahaan</label></td>
-                                <td><input type="text" id="PerusahaanSupplier" class="form-control" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="KontakSupplier" class="form-label">Kontak</label></td>
-                                <td><input type="text" id="KontakSupplier" class="form-control" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="KotaSupplier" class="form-label">Kota</label></td>
-                                <td><input type="text" id="KotaSupplier" class="form-control" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="AlamatSupplier" class="form-label">Alamat</label></td>
-                                <td><input type="text" id="KontakSupplier" class="form-control" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="NomorSupplier" class="form-label">No Tlp</label></td>
-                                <td><input type="text" id="NomorSupplier" class="form-control" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="TermSupplier" class="form-label">Term</label></td>
-                                <td><input type="text" id="TermSupplier" class="form-control" required></td>
-                                <td>Hari</td>
-                            </tr>
-                        </table>
-                        <button type="button" class="btncancel">Cancel</button>
-                        <button type="submit" class="btnsubmit">Submit</button>
-                    </form>
-                </div>
-            </form>
+        <!-- Content -->
+        <div class="wrapper-wrapper">
+            <div id="page-content-wrapper">
+                <form>
+                    <div class="wrapper">
+                        <h1>Form Tambah Supplier</h1>
+                        <form action="">
+                            <table>
+                                <tr>
+                                    <td><label for="KodeSupplier" class="form-label">Kode</label></td>
+                                    <td><input type="text" id="KodeSupplier" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="PerusahaanSupplier" class="form-label">Perusahaan</label></td>
+                                    <td><input type="text" id="PerusahaanSupplier" class="form-control" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="KontakSupplier" class="form-label">Kontak</label></td>
+                                    <td><input type="text" id="KontakSupplier" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="KotaSupplier" class="form-label">Kota</label></td>
+                                    <td><input type="text" id="KotaSupplier" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="AlamatSupplier" class="form-label">Alamat</label></td>
+                                    <td><input type="text" id="KontakSupplier" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="NomorSupplier" class="form-label">No Tlp</label></td>
+                                    <td><input type="text" id="NomorSupplier" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="TermSupplier" class="form-label">Term</label></td>
+                                    <td><input type="text" id="TermSupplier" class="form-control" required></td>
+                                    <td>Hari</td>
+                                </tr>
+                            </table>
+                            <a href="/mastersupplier"><button type="button" class="btncancel">Cancel</button></a>
+                            <button type="submit" class="btnsubmit">Submit</button>
+                        </form>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

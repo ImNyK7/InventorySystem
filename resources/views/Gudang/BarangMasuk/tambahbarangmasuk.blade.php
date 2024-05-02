@@ -21,17 +21,18 @@
             <div class="sidebar-heading text-center py-4 primary-text fs-2 fw-bold text-uppercase border-bottom">
                 <i></i>SI SUPRAS
             </div>
-            <div class="list-group list-group-flush my-2">
+            <div class="list-group list-group-flush">
                 <a href="/"
                     class="list-group-item list-group-item-action bg-transparent second-text dashboard-button fw-bold"
                     style="text-decoration: none; color: gray;">
                     <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                 </a>
                 <div class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <a href="mastercustomer" style="text-decoration: none; color: gray;">
+                    <a href="mastercustomer" style="text-decoration: none; color: gray;" id="masterLink">
                         <i class="fas fa-user-circle me-2"></i>Master
                     </a>
-                    <ul class="list-group list-group-flush my-1" style="margin-left: 15px;">
+                    <ul class="list-group list-group-flush my-1" style="margin-left: 15px; display: none;"
+                        id="masterSubMenu">
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
                             <a href="mastercustomer" style="text-decoration: none; color: gray;">Master Customer</a>
@@ -67,7 +68,7 @@
                 </div>
             </div>
         </div>
-        
+
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
@@ -75,8 +76,24 @@
 </body>
 
 <!-- Content -->
+
 <body>
     <h1>Tambah Barang Masuk</h1>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var masterLink = document.getElementById('masterLink');
+            var masterSubMenu = document.getElementById('masterSubMenu');
+    
+            masterLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                if (masterSubMenu.style.display === 'none') {
+                    masterSubMenu.style.display = 'block';
+                } else {
+                    masterSubMenu.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
-</html>
 
+</html>

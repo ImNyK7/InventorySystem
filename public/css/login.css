@@ -19,7 +19,8 @@ h1 {
   text-align: center;
   color: #1570EF;
   font-weight: 650;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+  margin-top: -40px;
 }
 
 .wrapper {
@@ -51,11 +52,11 @@ h1 {
   background: #629FF4;
   border: none;
   outline: none;
-  border-radius: 40px;
+  border-radius: 20px;
   margin-top: 40px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .1);
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
   color: white;
   font-weight: 600;
 }

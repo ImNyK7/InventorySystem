@@ -10,6 +10,7 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/forms.css') }}">
     <title>Si Supras | Tambah Customer</title>
 </head>
 
@@ -79,46 +80,47 @@
 <body>
     <div id="page-content-formwrapper">
         <form>
-            <div class="formwrapper">
-                <h1>Form Tambah Customer</h1>
+            <div class="wrapper" style="height: 530px; margin-top: 15px">
+                <h1 style="margin-top: -10px">Form Tambah Customer</h1>
                 <form action="">
-                    <table>
+                    <table style="margin-top: -10px">
                         <tr>
-                            <td><label for="KodeCustomer" class="form-kode">Kode</label></td>
+                            <td><label for="KodeCustomer" class="form-label">Kode</label></td>
                             <td><input type="text" id="KodeCustomer" class="form-control" required></td>
                         </tr>
                         <tr>
-                            <td><label for="PerusahaanCustomer" class="form-perusahaan">Perusahaan</label></td>
-                            <td><input type="text" id="PerusahaanCustomer" class="form-control" required></td>
+                            <td><label for="PerusahaanCustomer" class="form-label">Perusahaan</label></td>
+                            <td><input type="text" id="PerusahaanCustomer" class="form-control" required>
+                            </td>
                         </tr>
                         <tr>
-                            <td><label for="KontakCustomer" class="form-kontak">Kontak</label></td>
+                            <td><label for="KontakCustomer" class="form-label">Kontak</label></td>
                             <td><input type="text" id="KontakCustomer" class="form-control" required></td>
                         </tr>
                         <tr>
-                            <td><label for="KotaCustomer" class="form-kota">Kota</label></td>
+                            <td><label for="KotaCustomer" class="form-label">Kota</label></td>
                             <td><input type="text" id="KotaCustomer" class="form-control" required></td>
                         </tr>
                         <tr>
-                            <td><label for="AlamatCustomer" class="form-alamat">Alamat</label></td>
+                            <td><label for="AlamatCustomer" class="form-label">Alamat</label></td>
                             <td><input type="text" id="KontakCustomer" class="form-control" required></td>
                         </tr>
                         <tr>
-                            <td><label for="NomorCustomer" class="form-tlp">No Tlp</label></td>
+                            <td><label for="NomorCustomer" class="form-label">No Tlp</label></td>
                             <td><input type="text" id="NomorCustomer" class="form-control" required></td>
                         </tr>
                         <tr>
-                            <td><label for="TermCustomer" class="form-term">Term</label></td>
+                            <td><label for="TermCustomer" class="form-label">Term</label></td>
                             <td><input type="text" id="TermCustomer" class="form-control" required></td>
                             <td>Hari</td>
                         </tr>
                         <tr>
-                            <td><label for="LimitCustomer" class="form-limit">Limit</label></td>
+                            <td><label for="LimitCustomer" class="form-label">Limit</label></td>
                             <td><input type="text" id="LimitCustomer" class="form-control" required></td>
                         </tr>
                     </table>
-                    <button type="button" class="btnsubmit">Cancel</button>
-                    <button type="submit" class="btncancel">Submit</button>
+                    <a href="/masterCustomer"><button type="button" class="btncancel">Cancel</button></a>
+                    <button type="submit" class="btnsubmit">Submit</button>
                 </form>
             </div>
         </form>

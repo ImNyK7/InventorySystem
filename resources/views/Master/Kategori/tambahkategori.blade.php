@@ -10,6 +10,7 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/forms.css') }}">
     <title>Si Supras | Tambah Kategori</title>
 </head>
 
@@ -79,21 +80,22 @@
 <body>
     <div id="page-content-formwrapper">
         <form>
-            <div class="formwrapper">
+            <div class="wrapper">
                 <h1>Form Tambah Kategori</h1>
                 <form action="">
                     <table>
                         <tr>
-                            <td><label for="KodeSupplier" class="form-label">Kode</label></td>
-                            <td><input type="text" id="KodeSupplier" class="form-control" required></td>
+                            <td><label for="KodeKategori" class="form-label">Kode</label></td>
+                            <td><input type="text" id="KodeKategori" class="form-control" required></td>
                         </tr>
                         <tr>
-                            <td><label for="Kategori" class="form-label">Kategori</label></td>
-                            <td><input type="text" id="Kategori" class="form-control" required></td>
+                            <td><label for="Kategori" class="form-label">kategori</label></td>
+                            <td><input type="text" id="Kategori" class="form-control" required>
+                            </td>
                         </tr>
                     </table>
-                    <button type="button" class="btnsubmit">Cancel</button>
-                    <button type="submit" class="btncancel">Submit</button>
+                    <a href="/mastersupplier"><button type="button" class="btncancel">Cancel</button></a>
+                    <button type="submit" class="btnsubmit">Submit</button>
                 </form>
             </div>
         </form>

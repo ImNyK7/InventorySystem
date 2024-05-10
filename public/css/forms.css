@@ -11,17 +11,17 @@ body {
   overflow: hidden;
 }
 
-.wrapper {
+.form-wrapper {
   width: 400px;
   height: fit-content;
   background: whitesmoke;
-  align-items: center;
   color: fff;
   border-radius: 20px;
   padding: 35px 20px;
   width: auto;
   margin-left: 300px;
-  margin-top: 20px;
+  margin-top: 50px;
+  
 }
 
 h1 {
@@ -30,17 +30,18 @@ h1 {
     color: #1570EF;
     font-weight: 600;
     padding-bottom: 20px;
+    margin-top: -10px;
   }  
 
-.wrapper table {
+.form-wrapper table {
   width: 100%;
 }
 
-.wrapper td {
+.form-wrapper td {
   padding: 5px;
 }
 
-.wrapper .btnsubmit {
+.form-wrapper .btnsubmit {
   width: 25%;
   height: 30px;
   background: #629FF4;
@@ -55,7 +56,7 @@ h1 {
   font-weight: 600;
 }
 
-.wrapper .btncancel {
+.form-wrapper .btncancel {
     width: 25%;
     height: 30px;
     background: #E70404;

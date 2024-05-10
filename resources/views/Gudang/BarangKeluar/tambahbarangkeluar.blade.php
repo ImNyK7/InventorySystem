@@ -10,7 +10,8 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
-    <title>Si Supras | Tambah Barang Keluar</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/forms.css') }}">
+    <title>Si Supras | Tambah Barang Masuk</title>
 </head>
 
 <body>
@@ -68,32 +69,95 @@
                 </div>
             </div>
         </div>
-        
+
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
-</body>
 
-<!-- Content -->
-<body>
-    <h1>Tambah Barang keluar</h1>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var masterLink = document.getElementById('masterLink');
-            var masterSubMenu = document.getElementById('masterSubMenu');
-    
-            masterLink.addEventListener('click', function(event) {
-                event.preventDefault();
-                if (masterSubMenu.style.display === 'none') {
-                    masterSubMenu.style.display = 'block';
-                } else {
-                    masterSubMenu.style.display = 'none';
-                }
+        <!-- Content -->
+
+        <div class="wrapper-wrapper">
+            <div id="page-content-wrapper">
+                <form>
+                    <div class="form-wrapper">
+                        <h1>Form<br>Barang Keluar</h1>
+                        <form action="">
+                            <table>
+                                <tr>
+                                    <td><label>Kode</label></td>
+                                    <td><input type="text" name="KodeBrgKlr" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Tanggal</label></td>
+                                    <td><input type="date" name="TgglBrgMask" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Jumlah Barang</label></td>
+                                    <td><input type="number" name="JmlhBrgKlr" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label> Nama Barang</label></td>
+                                    <td><input type="text" name="NamaBrg" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Kategori</label></td>
+                                    <td>
+                                        <select name="KatBrg">
+                                            <option value="Laptop">Laptop</option>
+                                            <option value="Printer">Printer</option>
+                                            <option value="CCTV">CCTV</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Nomor Seri</label></td>
+                                    <td><input type="text" name="No Seri"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">
+                                        <button id="addButton" type="button" style="font-size: 10px; margin-left:-12px"
+                                            class="btn btn-link">
+                                            + Tambah Nomor Seri</button>
+                                    </td>
+                                </tr>
+                            </table>
+                            <a href="/mastersupplier"><button type="button" class="btncancel">Cancel</button></a>
+                            <button type="submit" class="btnsubmit">Submit</button>
+                        </form>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var masterLink = document.getElementById('masterLink');
+                var masterSubMenu = document.getElementById('masterSubMenu');
+
+                masterLink.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    if (masterSubMenu.style.display === 'none') {
+                        masterSubMenu.style.display = 'block';
+                    } else {
+                        masterSubMenu.style.display = 'none';
+                    }
+                });
             });
-        });
-    </script>
+        </script>
+        <script>
+            document.getElementById("addButton").addEventListener("click", function() {
+                var buttonRow = this.parentNode.parentNode; // Get the row containing the button
+                var newRow = buttonRow.parentNode.insertRow(buttonRow.rowIndex +
+                1); // Insert the new row just below the button row
+                var newCell1 = newRow.insertCell(0);
+                var newCell2 = newRow.insertCell(1);
+                newCell1.innerHTML = '<input type="text" name="additionalInput">';
+                newCell2.innerHTML = '<input type="text" name="additionalInput">';
+            });
+        </script>
+
+
+
 </body>
 
 </html>
-

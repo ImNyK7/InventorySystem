@@ -10,6 +10,7 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/forms.css') }}">
     <title>Si Supras | Tambah Barang Masuk</title>
 </head>
 
@@ -77,8 +78,49 @@
 
 <!-- Content -->
 
-<body>
-    <h1>Tambah Barang Masuk</h1>
+<div class="wrapper-wrapper">
+    <div id="page-content-wrapper">
+        <form>
+            <div class="form-wrapper">
+                <h1>Form<br>Barang Masuk</h1>
+                <form action="">
+                    <table>
+                        <tr>
+                            <td><label>Kode</label></td>
+                            <td><input type="text" name="KodeBrgMsk"required></td>
+                        </tr>
+                        <tr>
+                            <td><label>Tanggal</label></td>
+                            <td><input type="date" name="TgglBrgMask"required></td>
+                        </tr>
+                        <tr>
+                            <td><label>Jumlah Barang</label></td>
+                            <td><input type="number" name="JmlhBrgMsk"required></td>
+                        </tr>
+                        <tr>
+                            <td><label> Nama Barang</label></td>
+                            <td><input type="text" name="NamaBrg"required></td>
+                        </tr>
+                        <tr>
+                            <td><label>Kategori</label></td>
+                            <td><select name="KatBrg">
+                                <option value="Laptop">Laptop</option>
+                                <option value="Printer">Printer</option>
+                                <option value="CCTV">CCTV</option>
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td><label>Supplier</label></td>
+                            <td><input type="text" name="PerusahaanSupplier"required></td>
+                        </tr>
+                    </table>
+                    <a href="/mastersupplier"><button type="button" class="btncancel">Cancel</button></a>
+                    <button type="submit" class="btnsubmit">Submit</button>
+                </form>
+            </div>
+        </form>
+    </div>
+</div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var masterLink = document.getElementById('masterLink');

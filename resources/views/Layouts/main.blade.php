@@ -10,8 +10,8 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/forms.css') }}">
-    <title>Si Supras | Tambah Kategori</title>
+    <title>SI SUPRAS | {{ $title }}</title>
+
 </head>
 
 <body>
@@ -29,29 +29,31 @@
                     <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                 </a>
                 <div class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <a href="mastercustomer" style="text-decoration: none; color: gray;">
+                    <a href="mastercustomer" style="text-decoration: none; color: gray;" id="masterLink">
                         <i class="fas fa-user-circle me-2"></i>Master
                     </a>
-                    <ul class="list-group list-group-flush my-1" style="margin-left: 15px;">
+                    <ul class="list-group list-group-flush my-1" style="margin-left: 15px; display: none;"
+                        id="masterSubMenu">
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="mastercustomer" style="text-decoration: none; color: gray;">Master Customer</a>
+                            <a href="/mastercustomer" style="text-decoration: none; color: gray;">Master Customer</a>
                         </li>
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="mastersupplier" style="text-decoration: none; color: gray;">Master Supplier</a>
+                            <a href="/mastersupplier" style="text-decoration: none; color: gray;">Master Supplier</a>
                         </li>
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="masterkategori" style="text-decoration: none; color: gray;">Master Kategori</a>
+                            <a href="/masterkategori" style="text-decoration: none; color: gray;">Master Kategori</a>
                         </li>
                     </ul>
                 </div>
                 <div class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <a href="stokbarang" style="text-decoration: none; color: gray;">
+                    <a href="stokbarang" style="text-decoration: none; color: gray;" id="gudangLink">
                         <i class="fas fa-box me-2"></i>Gudang
                     </a>
-                    <ul class="list-group list-group-flush my-1" style="margin-left: 15px;">
+                    <ul class="list-group list-group-flush my-1" style="margin-left: 15px; display: none;"
+                        id="gudangSubMenu">
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
                             <a href="stokbarang" style="text-decoration: none; color: gray;">Lihat Stok Barang</a>
@@ -69,33 +71,18 @@
             </div>
         </div>
 
-        <!-- Content -->
-        <div class="wrapper-wrapper">
-            <div id="page-content-wrapper">
-                <form>
-                    <div class="form-wrapper">
-                        <h1>Form<br>Tambah kategori</h1>
-                        <form action="">
-                            <table>
-                                <tr>
-                                    <td><label>Kode</label></td>
-                                    <td><input type="text" name="KodeKategori"required></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Kategori</label></td>
-                                    <td><input type="text" name="NamaKategori"required></td>
-                                </tr>
-                            </table>
-                            <a href="/masterkategori"><button type="button" class="btncancel">Cancel</button></a>
-                            <button type="submit" class="btnsubmit">Submit</button>
-                        </form>
-                    </div>
-                </form>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            @include('Partials.navbar')
+            <div class="container-fluid px-4">
+                <!-- Content area -->
+                @yield('content')
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-        </script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

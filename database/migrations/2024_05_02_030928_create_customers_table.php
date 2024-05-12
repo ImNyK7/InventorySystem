@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->string('kode')->unique();
+            $table->string('perusahaan');
+            $table->string('kontak');
+            $table->string('kota');
+            $table->string('alamat');
+            $table->char('notelpon');
+            $table->integer('term');
+            $table->char('limit');
+            $table->text('desc')->nullable();
             $table->timestamps();
         });
     }

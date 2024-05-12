@@ -10,6 +10,7 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/forms.css') }}">
     <title>SI SUPRAS | {{ $title }}</title>
 
 </head>
@@ -20,7 +21,7 @@
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-2 fw-bold text-uppercase border-bottom">
-                <i></i>SI SUPRAS
+                SI SUPRAS 
             </div>
             <div class="list-group list-group-flush">
                 <a href="/"
@@ -29,22 +30,25 @@
                     <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                 </a>
                 <div class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <a href="mastercustomer" style="text-decoration: none; color: gray;" id="masterLink">
+                    <a href="" style="text-decoration: none; color: gray;" id="masterLink">
                         <i class="fas fa-user-circle me-2"></i>Master
                     </a>
                     <ul class="list-group list-group-flush my-1" style="margin-left: 15px; display: none;"
                         id="masterSubMenu">
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="/mastercustomer" style="text-decoration: none; color: gray;">Master Customer</a>
+                            <a href="/customer/mastercustomer" {{ $title === 'Master Customer' ? 'active' : '' }}
+                                style="text-decoration: none; color: gray;">Master Customer</a>
                         </li>
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="/mastersupplier" style="text-decoration: none; color: gray;">Master Supplier</a>
+                            <a href="/supplier/mastersupplier" {{ $title === 'Master Supplier' ? 'active' : '' }}
+                                style="text-decoration: none; color: gray;">Master Supplier</a>
                         </li>
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="/masterkategori" style="text-decoration: none; color: gray;">Master Kategori</a>
+                            <a href="/kategori/masterkategori" {{ $title === 'Master Kategori' ? 'active' : '' }}
+                                style="text-decoration: none; color: gray;">Master Kategori</a>
                         </li>
                     </ul>
                 </div>
@@ -56,15 +60,17 @@
                         id="gudangSubMenu">
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="stokbarang" style="text-decoration: none; color: gray;">Lihat Stok Barang</a>
+                            <a href="/stokbarang" style="text-decoration: none; color: gray;">Lihat Stok Barang</a>
                         </li>
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="barangmasuk" style="text-decoration: none; color: gray;">List Barang Masuk</a>
+                            <a href="/barangmasuk/listbarangmasuk" style="text-decoration: none; color: gray;">List
+                                Barang Masuk</a>
                         </li>
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="barangkeluar" style="text-decoration: none; color: gray;">List Barang Keluar</a>
+                            <a href="/barangkeluar/listbarangkeluar" style="text-decoration: none; color: gray;">List
+                                Barang Keluar</a>
                         </li>
                     </ul>
                 </div>
@@ -83,6 +89,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var gudangLink = document.getElementById('gudangLink');
+            var gudangSubMenu = document.getElementById('gudangSubMenu');
+
+            gudangLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                if (gudangSubMenu.style.display === 'none') {
+                    gudangSubMenu.style.display = 'block';
+                } else {
+                    gudangSubMenu.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var masterLink = document.getElementById('masterLink');
+            var masterSubMenu = document.getElementById('masterSubMenu');
+
+            masterLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                if (masterSubMenu.style.display === 'none') {
+                    masterSubMenu.style.display = 'block';
+                } else {
+                    masterSubMenu.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>

@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MasterCustomer;
+use App\Http\Controllers\CustomerController;
 
 Route::get('/login', function () {
     return view('login');
@@ -15,85 +18,30 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/mastercustomer', function () {
-    return view('Master/Customer/mcustomer', [
-        "title" => "Master Customer", 
-        "role" => "Admin"
-    ]);
-});
+Route::get('/customer/mastercustomer', [RouteController::class, 'mcustomer']);
 
-Route::get('/tambahcustomer', function () {
-    return view('Master/Customer/tambahcustomer', [
-        "title" => "Tambah Customer", 
-        "role" => "Admin"
-    ]);
-});
+Route::get('/customer/tambahcustomer', [RouteController::class, 'tambahcustomer']);
 
 
-Route::get('/mastersupplier', function () {
-    return view('Master/Supplier/msupplier', [
-        "title" => "Master Supplier", 
-        "role" => "Admin"
-    ]);
-});
+Route::get('/supplier/mastersupplier', [RouteController::class, 'msupplier']);
 
-Route::get('/tambahsupplier', function () {
-    return view('Master/Supplier/tambahsupplier', [
-        "title" => "Tambah Supplier", 
-        "role" => "Admin"
-    ]);
-});
+Route::get('/supplier/tambahsupplier',[RouteController::class, 'tambahsupplier']);
 
 
-Route::get('/masterkategori', function () {
-    return view('Master/Kategori/mkategori', [
-        "title" => "Master Kategori", 
-        "role" => "Admin"
-    ]);
-});
+Route::get('/kategori/masterkategori', [RouteController::class, 'mkategori']);
 
-Route::get('/tambahkategori', function () {
-    return view('Master/Kategori/tambahkategori', [
-        "title" => "Tambah Kategori", 
-        "role" => "Admin"
-    ]);
-});
+Route::get('/kategori/tambahkategori', [RouteController::class, 'tambahkategori']);
 
-Route::get('/stokbarang', function () {
-    return view('Gudang/stokbarang', [
-        "title" => "Stok Barang", 
-        "role" => "Admin"
-    ]);
-});
+Route::get('/stokbarang', [RouteController::class, 'stokbarang']);
 
 
-Route::get('/barangmasuk', function () {
-    return view('Gudang/BarangMasuk/barangmasuk', [
-        "title" => "Barang Masuk", 
-        "role" => "Admin"
-    ]);
-});
+Route::get('/barangmasuk/listbarangmasuk', [RouteController::class, 'barangmasuk']);
 
-Route::get('/tambahbarangmasuk', function () {
-    return view('Gudang/BarangMasuk/tambahbarangmasuk', [
-        "title" => "Tambah Barang Masuk", 
-        "role" => "Admin"
-    ]);
-});
+Route::get('/barangmasuk/tambahbarangmasuk', [RouteController::class, 'tambahbarangmasuk']);
 
-Route::get('/barangkeluar', function () {
-    return view('Gudang/BarangKeluar/barangkeluar', [
-        "title" => "Barang Keluar", 
-        "role" => "Admin"
-    ]);
-});
+Route::get('/barangkeluar/listbarangkeluar', [RouteController::class, 'barangkeluar']);
 
-Route::get('/tambahbarangkeluar', function () {
-    return view('Gudang/BarangKeluar/tambahbarangkeluar', [
-        "title" => "Tambah Barang Keluar", 
-        "role" => "Admin"
-    ]);
-});
+Route::get('/barangkeluar/tambahbarangkeluar', [RouteController::class, 'tambahbarangkeluar']);
 
 // Route::get('/coba', function () {
 //     return view('coba');

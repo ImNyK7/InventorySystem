@@ -38,36 +38,4 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var gudangLink = document.getElementById('gudangLink');
-        var gudangSubMenu = document.getElementById('gudangSubMenu');
-
-        gudangLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            if (gudangSubMenu.style.display === 'none') {
-                gudangSubMenu.style.display = 'block';
-            } else {
-                gudangSubMenu.style.display = 'none';
-            }
-        });
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var masterLink = document.getElementById('masterLink');
-        var masterSubMenu = document.getElementById('masterSubMenu');
-
-        masterLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            if (masterSubMenu.style.display === 'none') {
-                masterSubMenu.style.display = 'block';
-            } else {
-                masterSubMenu.style.display = 'none';
-            }
-        });
-    });
-</script>
 @endsection

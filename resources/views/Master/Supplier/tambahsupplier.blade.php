@@ -5,7 +5,7 @@
     <div id="page-content-wrapper">
         <form>
             <div class="form-wrapper">
-                <h1 class="judulform">Form<br>Tambah Supplier</h1>
+                <h1>Form<br>Tambah Supplier</h1>
                 <form action="">
                     <table>
                         <tr>
@@ -38,7 +38,7 @@
                             <td>Hari</td>
                         </tr>
                     </table>
-                    <a href="/mastersupplier"><button type="button" class="btncancel">Cancel</button></a>
+                    <a href="/supplier/mastersupplier"><button type="button" class="btncancel">Cancel</button></a>
                     <button type="submit" class="btnsubmit">Submit</button>
                 </form>
             </div>

@@ -1,46 +1,39 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  background-image: linear-gradient(to left, #d4d4d4, #dedede, #ececec, #f5f5f5);
-  overflow: hidden;
-}
-
-.wrapper {
+.form-wrapper {
   width: 400px;
-  height: fit-content;
+  min-height: 200px;
+  max-height: 80vh;
   background: whitesmoke;
-  align-items: center;
   color: fff;
   border-radius: 20px;
   padding: 35px 20px;
-  width: auto;
-  margin-left: 300px;
-  margin-top: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-25%, -50%);
+  overflow-y: auto;
+  margin: 20px;
 }
+
+
 
 h1 {
     font-size: 30px;
     text-align: center;
     color: #1570EF;
-    font-weight: 600;
+    font-weight: 650;
     padding-bottom: 20px;
+    margin-top: -10px;
   }  
 
-.wrapper table {
+.form-wrapper table {
   width: 100%;
 }
 
-.wrapper td {
+.form-wrapper td {
   padding: 5px;
 }
 
-.wrapper .btnsubmit {
+.form-wrapper .btnsubmit {
   width: 25%;
   height: 30px;
   background: #629FF4;
@@ -55,7 +48,7 @@ h1 {
   font-weight: 600;
 }
 
-.wrapper .btncancel {
+.form-wrapper .btncancel {
     width: 25%;
     height: 30px;
     background: #E70404;

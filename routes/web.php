@@ -1,61 +1,48 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MasterCustomer;
+use App\Http\Controllers\CustomerController;
 
 Route::get('/login', function () {
     return view('login');
 });
 
-// Route::get('/login', [AuthController::class, 'login'])->name('login');
-// Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+        "title" => "Home", 
+        "role" => "Admin"
+    ]);
 });
 
-Route::get('/mastercustomer', function () {
-    return view('Master/Customer/mcustomer');
-});
+Route::get('/customer/mastercustomer', [RouteController::class, 'mcustomer']);
 
-Route::get('/tambahcustomer', function () {
-    return view('Master/Customer/tambahcustomer');
-});
+Route::get('/customer/tambahcustomer', [RouteController::class, 'tambahcustomer']);
 
 
-Route::get('/mastersupplier', function () {
-    return view('Master/Supplier/msupplier');
-});
+Route::get('/supplier/mastersupplier', [RouteController::class, 'msupplier']);
 
-Route::get('/tambahsupplier', function () {
-    return view('Master/Supplier/tambahsupplier');
-});
+Route::get('/supplier/tambahsupplier',[RouteController::class, 'tambahsupplier']);
 
 
-Route::get('/masterkategori', function () {
-    return view('Master/Kategori/mkategori');
-});
+Route::get('/kategori/masterkategori', [RouteController::class, 'mkategori']);
 
-Route::get('/tambahkategori', function () {
-    return view('Master/Kategori/tambahkategori');
-});
+Route::get('/kategori/tambahkategori', [RouteController::class, 'tambahkategori']);
 
-Route::get('/stokbarang', function () {
-    return view('Gudang/stokbarang');
-});
+Route::get('/stokbarang', [RouteController::class, 'stokbarang']);
 
-Route::get('/barangmasuk', function () {
-    return view('Gudang/BarangMasuk/barangmasuk');
-});
 
-Route::get('/tambahbarangmasuk', function () {
-    return view('Gudang/BarangMasuk/tambahbarangmasuk');
-});
+Route::get('/barangmasuk/listbarangmasuk', [RouteController::class, 'barangmasuk']);
 
-Route::get('/barangkeluar', function () {
-    return view('Gudang/BarangKeluar/barangkeluar');
-});
+Route::get('/barangmasuk/tambahbarangmasuk', [RouteController::class, 'tambahbarangmasuk']);
 
-Route::get('/tambahbarangkeluar', function () {
-    return view('Gudang/BarangKeluar/tambahbarangkeluar');
-});
+Route::get('/barangkeluar/listbarangkeluar', [RouteController::class, 'barangkeluar']);
+
+Route::get('/barangkeluar/tambahbarangkeluar', [RouteController::class, 'tambahbarangkeluar']);
+
+// Route::get('/coba', function () {
+//     return view('coba');
+// });

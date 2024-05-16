@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Customer;
 use App\Models\Supplier;
 use App\Models\Kategori;
@@ -11,7 +12,7 @@ class RouteController extends Controller
     public function mcustomer()
     {
         return view('Master/Customer/mcustomer', [
-            "title" => "Master Customer", 
+            "title" => "Master Customer",
             "role" => "Admin",
             "customers" => Customer::all()
         ]);
@@ -20,36 +21,45 @@ class RouteController extends Controller
     public function tambahcustomer()
     {
         return view('Master/Customer/tambahcustomer', [
-            "title" => "Tambah Customer", 
+            "title" => "Tambah Customer",
             "role" => "Admin"
         ]);
     }
 
-    public function msupplier(){
+    public function msupplier()
+    {
+        $supplier = Supplier::all();
+        
         return view('Master/Supplier/msupplier', [
-            "title" => "Master Supplier", 
+            
+            "title" => "Master Supplier",
             "role" => "Admin",
-            "suppliers" => Supplier::all()
+            "suppliers" => $supplier
         ]);
     }
-    
-    public function tambahsupplier(){
+
+    public function tambahsupplier()
+    {
         return view('Master/Supplier/tambahsupplier', [
-            "title" => "Tambah Supplier", 
+            "title" => "Tambah Supplier",
             "role" => "Admin"
         ]);
     }
-    public function mkategori(){
+    public function mkategori()
+    {
+        $kategoris = Kategori::all();
         return view('Master/Kategori/mkategori', [
-            "title" => "Master Kategori", 
+            "title" => "Master Kategori",
             "role" => "Admin",
-            "kategori" => Kategori::all()
+            "kategoris" => $kategoris
         ]);
+
     }
-    
-    public function tambahkategori(){
+
+    public function tambahkategori()
+    {
         return view('Master/Kategori/tambahkategori', [
-            "title" => "Tambah Kategori", 
+            "title" => "Tambah Kategori",
             "role" => "Admin"
         ]);
     }
@@ -57,7 +67,7 @@ class RouteController extends Controller
     public function stokbarang()
     {
         return view('Gudang/stokbarang', [
-            "title" => "Stok barang", 
+            "title" => "Stok barang",
             "role" => "Admin"
         ]);
     }
@@ -65,30 +75,39 @@ class RouteController extends Controller
     public function barangmasuk()
     {
         return view('Gudang/BarangMasuk/barangmasuk', [
-            "title" => "Barang Masuk", 
+            "title" => "Barang Masuk",
             "role" => "Admin"
         ]);
     }
 
-    public function tambahbarangmasuk(){
-        return view('Gudang/BarangMasuk/tambahbarangmasuk', [
-            "title" => "Tambah Barang Masuk", 
-            "role" => "Admin"
-        ]);
-    }
-    
-    public function barangkeluar()
+    public function tambahbarangmasuk()
     {
-        return view('Gudang/BarangKeluar/barangkeluar', [
-            "title" => "Barang Keluar", 
-            "role" => "Admin"
+        $kategoris = Kategori::all();
+        $suppliers = Supplier::all();
+        return view('Gudang/BarangMasuk/tambahbarangmasuk', [
+            "title" => "Tambah Barang Masuk",
+            "role" => "Admin",
+            "kategoris" => $kategoris,
+            "suppliers" => $suppliers
         ]);
     }
 
-    public function tambahbarangkeluar(){
+    public function barangkeluar()
+    {   
+        return view('Gudang/BarangKeluar/barangkeluar', [
+            "title" => "Barang Keluar",
+            "role" => "Admin",
+           
+        ]);
+    }
+
+    public function tambahbarangkeluar()
+    {
+        $kategoris = Kategori::all();
         return view('Gudang/BarangKeluar/tambahbarangkeluar', [
-            "title" => "Tambah Barang Keluar", 
-            "role" => "Admin"
+            "title" => "Tambah Barang Keluar",
+            "role" => "Admin",
+            "kategoris" => $kategoris,
         ]);
     }
 }

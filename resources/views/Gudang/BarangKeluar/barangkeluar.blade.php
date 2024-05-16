@@ -15,9 +15,9 @@
     </div>
     <div class="row mb-5 mt-2">
         <div class="col">
-            <table class="table bg-white rounded shadow-sm  table-hover">
+            <div class="table-responsive bg-white p-3">
+                <table table id="brgklr-table" class="table rounded shadow-sm table-hover" style="min-width: 1200px;">
                 <thead>
-                    <tr>
                     <tr>
                         <th>#</th>
                         <th>Kode</th>
@@ -30,25 +30,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>1</th>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                    </tr>
-                    <tr>
-                        <th>3</th>
-                    </tr>
-                    <tr>
-                        <th>4</th>
-                    </tr>
-                    <tr>
-                        <th>5</th>
-                    </tr>
+                
                 </tbody>
             </table>
         </div>
     </div>
-
 </div>
+<script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+        <script>
+            let table = new DataTable('#brgklr-table');
+        </script>
 @endsection

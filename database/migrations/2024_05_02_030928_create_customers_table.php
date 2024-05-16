@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('kode')->unique();
-            $table->string('perusahaan');
-            $table->string('kontak');
-            $table->string('kota');
-            $table->string('alamat');
-            $table->char('notelpon');
-            $table->integer('term');
-            $table->char('limit');
-            $table->text('desc')->nullable();
+            $table->string('kodecust')->unique();
+            $table->string('perusahaancust');
+            $table->string('kontakcust');
+            $table->string('kotacust');
+            $table->string('alamatcust');
+            $table->string('alamat2cust');
+            $table->char('notelponcust');
+            $table->integer('termcust');
+            $table->char('limitcust');
+            $table->text('desccust')->nullable();
             $table->timestamps();
         });
     }

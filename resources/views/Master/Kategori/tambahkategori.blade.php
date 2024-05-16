@@ -10,11 +10,11 @@
                     <table>
                         <tr>
                             <td><label>Kode</label></td>
-                            <td><input type="text" name="KodeKategori"required></td>
+                            <td><input type="text" name="KodeKat"required></td>
                         </tr>
                         <tr>
                             <td><label>Kategori</label></td>
-                            <td><input type="text" name="NamaKategori"required></td>
+                            <td><input type="text" name="NamaKat"required></td>
                         </tr>
                     </table>
                     <a href="/kategori/masterkategori"><button type="button" class="btncancel">Cancel</button></a>

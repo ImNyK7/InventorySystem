@@ -9,30 +9,35 @@
                 <form action="">
                     <table>
                         <tr>
-                            <td><label>Kode</label></td>
+                            <td><label>Kode Laporan</label></td>
                             <td><input type="text" name="KodeBrgKlr" required></td>
                         </tr>
                         <tr>
                             <td><label>Tanggal</label></td>
-                            <td><input type="date" name="TgglBrgMask" required></td>
+                            <td><input type="date" name="TgglBrgKlr" required></td>
+                        </tr>
+                        <tr>
+                            <td><label>Customer</label></td>
+                            <td><input type="text" name="CustBrgKlr" required></td>
                         </tr>
                         <tr>
                             <td><label>Jumlah Barang</label></td>
                             <td><input type="number" name="JmlhBrgKlr" required></td>
                         </tr>
                         <tr>
-                            <td><label> Nama Barang</label></td>
+                            <td><label>Nama Barang</label></td>
                             <td><input type="text" name="NamaBrg" required></td>
                         </tr>
                         <tr>
-                            <td><label>Kategori</label></td>
+                            <td><label for="KatBrg">Kategori</label></td>
                             <td>
-                                <select name="KatBrg">
-                                    <option value="Laptop">Laptop</option>
-                                    <option value="Printer">Printer</option>
-                                    <option value="CCTV">CCTV</option>
+                                <select id="select_page" style="width:140px;" class="operator" name="KatBrg">
+                                    @foreach ($kategoris as $kategori)
+                                        <option value="{{ $kategori->kodekat }}">{{ $kategori->namakategori }}</option>
+                                    @endforeach
                                 </select>
                             </td>
+
                         </tr>
                         <tr>
                             <td><label>Nomor Seri</label></td>
@@ -46,4 +51,9 @@
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $("select").select2();
+    });
+</script>
 @endsection

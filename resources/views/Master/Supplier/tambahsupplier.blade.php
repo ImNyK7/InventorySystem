@@ -10,31 +10,35 @@
                     <table>
                         <tr>
                             <td><label>Kode</label></td>
-                            <td><input type="text" name="KodeSupplier"required></td>
+                            <td><input type="text" name="KodeSupp"required></td>
                         </tr>
                         <tr>
                             <td><label>Perusahaan</label></td>
-                            <td><input type="text" name="PerusahaanSupplier"required></td>
+                            <td><input type="text" name="PerusahaanSupp"required></td>
                         </tr>
                         <tr>
                             <td><label for="KontakSupplier">Kontak</label></td>
-                            <td><input type="text" name="KontakSupplier"required></td>
+                            <td><input type="text" name="KontakSupp"required></td>
                         </tr>
                         <tr>
                             <td><label for="KotaSupplier">Kota</label></td>
-                            <td><input type="text" name="KotaSupplier"required></td>
+                            <td><input type="text" name="KotaSupp"required></td>
                         </tr>
                         <tr>
                             <td><label for="AlamatSupplier">Alamat</label></td>
-                            <td><input type="text" name="KontakSupplier"required></td>
+                            <td><input type="text" name="AlamatSupp"required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="AlamatSupplier">Alamat 2</label></td>
+                            <td><input type="text" name="Alamat2Supp"required></td>
                         </tr>
                         <tr>
                             <td><label for="NomorSupplier">No Tlp</label></td>
-                            <td><input type="text" name="NomorSupplier"required></td>
+                            <td><input type="text" name="TlpSupp"required></td>
                         </tr>
                         <tr>
                             <td><label for="TermSupplier">Term</label></td>
-                            <td><input type="text" name="TermSupplier"required></td>
+                            <td><input type="text" name="TermSupp"required></td>
                             <td>Hari</td>
                         </tr>
                     </table>

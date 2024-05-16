@@ -15,22 +15,26 @@
     </div>
     <div class="row mb-5 mt-2">
         <div class="col">
-            <div class="table-responsive">
-                <table class="table bg-white rounded shadow-sm table-hover" >
+            <div class="table-responsive bg-white p-3">
+                <table table id="kategori-table" class="table rounded shadow-sm table-hover" style="min-width: 1200px;">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Kode</th>
-                            <th>kategori</th>
+                            <th>Kategori</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($kategori as $index => $kategori)
+                        @foreach($kategoris as $index => $kategori)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $kategori->kode }}</td>
+                            <td>{{ $kategori->kodekat }}</td>
                             <td>{{ $kategori->namakategori }}</td>
                             <td>
+                                <button style="outline:none; border:none" class="btn btn-primary btn-sm">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
                                 <button style="background-color: #48EE59; outline:none; border:none" class="btn btn-primary btn-sm">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
@@ -47,4 +51,6 @@
     </div>
 
 </div>
+<script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+<script>let table = new DataTable('#kategori-table');</script>
 @endsection

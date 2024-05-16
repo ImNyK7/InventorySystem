@@ -10,31 +10,35 @@
                     <table>
                         <tr>
                             <td><label>Kode</label></td>
-                            <td><input type="text" name="KodeCustomer"required></td>
+                            <td><input type="text" name="KodeCust"required></td>
                         </tr>
                         <tr>
                             <td><label>Perusahaan</label></td>
-                            <td><input type="text" name="PerusahaanCustomer"required></td>
+                            <td><input type="text" name="PerusahaanCust"required></td>
                         </tr>
                         <tr>
                             <td><label>Kontak</label></td>
-                            <td><input type="text" name="KontakCustomer"required></td>
+                            <td><input type="text" name="KontakCust"required></td>
                         </tr>
                         <tr>
                             <td><label>Kota</label></td>
-                            <td><input type="text" name="KotaCustomer"required></td>
+                            <td><input type="text" name="KotaCust"required></td>
                         </tr>
                         <tr>
                             <td><label>Alamat</label></td>
-                            <td><input type="text" name="KontakCustomer"required></td>
+                            <td><input type="text" name="AlamatCust"required></td>
+                        </tr>
+                        <tr>
+                            <td><label>Alamat 2</label></td>
+                            <td><input type="text" name="Alamat2Cust"required></td>
                         </tr>
                         <tr>
                             <td><label>No Tlp</label></td>
-                            <td><input type="text" name="NomorCustomer"required></td>
+                            <td><input type="text" name="TlpCust"required></td>
                         </tr>
                         <tr>
                             <td><label>Term</label></td>
-                            <td><input type="text" name="TermCustomer"required></td>
+                            <td><input type="text" name="TermCust"required></td>
                             <td>Hari</td>
                         </tr>
                         <tr>

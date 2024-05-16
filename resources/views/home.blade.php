@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="d-flex align-items-center">
-        <h1 class="fs-3 m-4 mb-3" style="color: #1570EF">Dashboard</h1>
+        <h1 class="fs-3 m-4 mb-0" style="color: #1570EF">Dashboard</h1>
     </div>
 
     <div class="container-fluid px-4">
-        <div class="row g-3">
+        <div class="row g-32">
             <div class="col-md-4">
                 <div class="p-3 bg-white shadow-sm d-flex justify-content-between align-items-center rounded">
                     <div>

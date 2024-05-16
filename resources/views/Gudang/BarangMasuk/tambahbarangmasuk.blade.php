@@ -12,7 +12,7 @@
                         <table>
                             <tr>
                                 <td><label>Kode Laporan</label></td>
-                                <td><input type="text" name="KodeBrgMsk"required></td>
+                                <td><input type="text" name="KodeBrgMsk"required style="width: 100px"></td>
                             </tr>
                             <tr>
                                 <td><label>Tanggal</label></td>
@@ -31,15 +31,15 @@
                             </tr>
                             <tr>
                                 <td><label>Nama Barang</label></td>
-                                <td><input type="text" name="NamaBrg"required></td>
+                                <td><input type="text" name="NamaBrg"required style="width: 200px"></td>
                             </tr>
                             <tr>
                                 <td><label>Jumlah Barang</label></td>
-                                <td><input type="number" name="JmlhBrgMsk"required></td>
+                                <td><input type="number" name="JmlhBrgMsk"required style="width: 50px"></td>
                             </tr>
                             <tr>
                                 <td><label>Harga Beli</label></td>
-                                <td><input type="text" name="HrgBeli"required></td>
+                                <td><input type="text" name="HrgBeli"required style="width: 100px"></td>
                             </tr>
                             <tr>
                                 <td><label for="KatBrg">Kategori</label></td>

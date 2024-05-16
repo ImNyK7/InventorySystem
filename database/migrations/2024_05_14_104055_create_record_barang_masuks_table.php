@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('jmlhbrgmsk');
             $table->string('namabrgmsk');
             $table->char('hrgbeli');
-            // $table->string('kategoribrgmsk');
-            // $table->string('supplierbrgmsk');
+            $table->foreignId('kategori_id');
+            $table->foreignId('supplier_id');
             $table->timestamps();
         });
     }

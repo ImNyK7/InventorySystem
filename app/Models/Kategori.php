@@ -11,6 +11,8 @@ class Kategori extends Model
     
     protected $fillable = [
         'kodekat',
-        'namakategori',
+        'namakat',
     ];
+
+    protected $guarded =['id'];
 }

@@ -11,13 +11,14 @@ class Customer extends Model
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'kode',
-        'perusahaan',
-        'kontak',
-        'kota',
-        'alamat',
-        'notelpon',
-        'term',
-        'limit',
+        'kodecust',
+        'perusahaancust',
+        'kontakcust',
+        'kotacust',
+        'alamatcust',
+        'notelponcust',
+        'termcust',
+        'limitcust',
     ];
+    protected $guarded =['id'];
 }

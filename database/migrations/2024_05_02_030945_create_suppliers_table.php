@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('kontaksupp');
             $table->string('kotasupp');
             $table->string('alamatsupp');
-            $table->string('alamat2supp');
+            $table->string('alamat2supp')->nullable();
             $table->bigInteger('notelponsupp');
             $table->integer('termsupp'); 
             $table->text('descsupp')->nullable();

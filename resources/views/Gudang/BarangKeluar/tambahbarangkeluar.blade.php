@@ -10,27 +10,33 @@
                     <table>
                         <tr>
                             <td><label>Kode Laporan</label></td>
-                            <td><input type="text" name="KodeBrgKlr" required></td>
+                            <td><input type="text" name="KodeBrgKlr" required style="width: 100px"></td>
                         </tr>
                         <tr>
                             <td><label>Tanggal</label></td>
                             <td><input type="date" name="TgglBrgKlr" required></td>
                         </tr>
                         <tr>
-                            <td><label>Customer</label></td>
-                            <td><input type="text" name="CustBrgKlr" required></td>
+                            <td><label for="perusahaancust">Customer</label></td>
+                            <td>
+                                <select id="select_page" style="width:190px;" class="operator" name="perusahaancust">
+                                    @foreach ($customers as $customer)
+                                        <option value="{{ $customer->kodecust }}">{{ $customer->perusahaancust }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td><label>Jumlah Barang</label></td>
-                            <td><input type="number" name="JmlhBrgKlr" required></td>
+                            <td><input type="number" name="JmlhBrgKlr" required style="width: 50px"></td>
                         </tr>
                         <tr>
                             <td><label>Nama Barang</label></td>
-                            <td><input type="text" name="NamaBrg" required></td>
+                            <td><input type="text" name="NamaBrg" required style="width: 200px"></td>
                         </tr>
                         <tr>
                             <td><label>Harga Jual</label></td>
-                            <td><input type="text" name="HrgJual"required></td>
+                            <td><input type="text" name="HrgJual"required style="width: 100px"></td>
                         </tr>
                         <tr>
                             <td><label for="KatBrg">Kategori</label></td>

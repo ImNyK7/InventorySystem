@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use App\Models\Supplier;
 use App\Models\Kategori;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Models\RecordBarangMasuk;
+use App\Models\RecordBarangKeluar;
 
 class RouteController extends Controller
 {
@@ -29,9 +31,9 @@ class RouteController extends Controller
     public function msupplier()
     {
         $supplier = Supplier::all();
-        
+
         return view('Master/Supplier/msupplier', [
-            
+
             "title" => "Master Supplier",
             "role" => "Admin",
             "suppliers" => $supplier
@@ -74,9 +76,15 @@ class RouteController extends Controller
 
     public function barangmasuk()
     {
+        $recordbarangmasuks = RecordBarangMasuk::all();
+        $kategoris = Kategori::all();
+        $suppliers = Supplier::all();
         return view('Gudang/BarangMasuk/barangmasuk', [
             "title" => "Barang Masuk",
-            "role" => "Admin"
+            "role" => "Admin",
+            "kategoris" => $kategoris,
+            "suppliers" => $suppliers,
+            "recordbarangmasuks" => $recordbarangmasuks
         ]);
     }
 
@@ -93,21 +101,28 @@ class RouteController extends Controller
     }
 
     public function barangkeluar()
-    {   
+    {
+        $kategoris = Kategori::all();
+        $customers = Customer::all();
+        $recordbarangkeluars = RecordBarangKeluar::all();
         return view('Gudang/BarangKeluar/barangkeluar', [
             "title" => "Barang Keluar",
             "role" => "Admin",
-           
+            "kategoris" => $kategoris,
+            "suppliers" => $customers,
+            "recordbarangkeluars" => $recordbarangkeluars
         ]);
     }
 
     public function tambahbarangkeluar()
     {
         $kategoris = Kategori::all();
+        $customers = Customer::all();
         return view('Gudang/BarangKeluar/tambahbarangkeluar', [
             "title" => "Tambah Barang Keluar",
             "role" => "Admin",
             "kategoris" => $kategoris,
+            "customers" => $customers,
         ]);
     }
 }

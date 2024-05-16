@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('kontakcust');
             $table->string('kotacust');
             $table->string('alamatcust');
-            $table->string('alamat2cust');
+            $table->string('alamat2cust')->nullable();
             $table->char('notelponcust');
             $table->integer('termcust');
             $table->char('limitcust');

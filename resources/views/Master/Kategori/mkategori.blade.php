@@ -30,7 +30,7 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $kategori->kodekat }}</td>
-                            <td>{{ $kategori->namakategori }}</td>
+                            <td>{{ $kategori->namakat }}</td>
                             <td>
                                 <button style="outline:none; border:none" class="btn btn-primary btn-sm">
                                     <i class="fa-solid fa-eye"></i>

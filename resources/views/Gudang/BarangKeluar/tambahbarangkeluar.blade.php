@@ -29,6 +29,10 @@
                             <td><input type="text" name="NamaBrg" required></td>
                         </tr>
                         <tr>
+                            <td><label>Harga Jual</label></td>
+                            <td><input type="text" name="HrgJual"required></td>
+                        </tr>
+                        <tr>
                             <td><label for="KatBrg">Kategori</label></td>
                             <td>
                                 <select id="select_page" style="width:140px;" class="operator" name="KatBrg">

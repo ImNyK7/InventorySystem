@@ -112,6 +112,24 @@
     color: blue !important;
 }
 
+.clickable-summary {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.clickable-summary > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    border-radius: .25rem;
+    color: black; /* Ensure the text color is black */
+}
+.clickable-summary:hover > div {
+    text-decoration: none; /* Ensure no underline on hover */
+}
 
 @media (min-width: 768px) {
     #sidebar-wrapper {

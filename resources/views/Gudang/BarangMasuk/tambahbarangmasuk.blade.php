@@ -30,12 +30,16 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td><label>Nama Barang</label></td>
+                                <td><input type="text" name="NamaBrg"required></td>
+                            </tr>
+                            <tr>
                                 <td><label>Jumlah Barang</label></td>
                                 <td><input type="number" name="JmlhBrgMsk"required></td>
                             </tr>
                             <tr>
-                                <td><label> Nama Barang</label></td>
-                                <td><input type="text" name="NamaBrg"required></td>
+                                <td><label>Harga Beli</label></td>
+                                <td><input type="text" name="HrgBeli"required></td>
                             </tr>
                             <tr>
                                 <td><label for="KatBrg">Kategori</label></td>
@@ -46,9 +50,7 @@
                                         @endforeach
                                     </select>
                                 </td>
-
                             </tr>
-                           
                         </table>
                         <a href="/barangmasuk/listbarangmasuk"><button type="button" class="btncancel">Cancel</button></a>
                         <button type="submit" class="btnsubmit">Submit</button>

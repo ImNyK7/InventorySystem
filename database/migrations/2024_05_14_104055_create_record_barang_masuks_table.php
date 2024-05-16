@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('tanggalbrgmsk');
             $table->integer('jmlhbrgmsk');
             $table->string('namabrgmsk');
+            $table->char('hrgbeli');
             // $table->string('kategoribrgmsk');
             // $table->string('supplierbrgmsk');
             $table->timestamps();

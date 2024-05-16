@@ -15,4 +15,12 @@ class Kategori extends Model
     ];
 
     protected $guarded =['id'];
+
+    public function recordbarangmasuk(){
+        return $this->hasMany(RecordBarangMasuk::class);
+    }
+
+    public function recordbarangkeluar(){
+        return $this->hasMany(RecordBarangKeluar::class);
+    }
 }

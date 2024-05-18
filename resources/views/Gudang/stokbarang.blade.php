@@ -21,11 +21,10 @@
         <div class="row mb-5 mt-2">
             <div class="col">
                 <div class="table-responsive bg-white p-3">
-                    <table table id="stokbrg-table" class="table rounded shadow-sm table-hover" style="min-width: 1200px;">
+                    <table table id="stokbrg-table" class="table rounded shadow-sm table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Kode Laporan</th>
                                 <th>Kategori</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah Barang</th>
@@ -33,7 +32,28 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($recordbarangmasuks as $index => $recordbarangmasuk)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $recordbarangmasuk->kategori->namakat ?? '' }}</td>
+                                        <td>{{ $recordbarangmasuk->namabrgmsk }}</td>    
+                                        <td>{{ $recordbarangmasuk->jmlhbrgmsk }}</td> 
+                                        <td>
+                                            <button style="background-color: #1570EF; outline:none; border:none"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                            <button style="background-color: #48EE59; outline:none; border:none"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                            <button style="background-color: #E70404; outline:none; border:none"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                         </tbody>
                     </table>
                 </div>

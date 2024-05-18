@@ -68,9 +68,11 @@ class RouteController extends Controller
 
     public function stokbarang()
     {
+        $recordbarangmasuks = RecordBarangMasuk::all();
         return view('Gudang/stokbarang', [
             "title" => "Stok barang",
-            "role" => "Admin"
+            "role" => "Admin",
+            "recordbarangmasuks" => $recordbarangmasuks
         ]);
     }
 

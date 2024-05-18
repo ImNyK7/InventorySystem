@@ -37,8 +37,8 @@
                         <td>{{ $recordbarangkeluar->kodebrgklr }}</td>
                         <td>{{ $recordbarangkeluar->tanggalbrgklr }}</td>
                         <td>{{ $recordbarangkeluar->customer->perusahaancust ?? '' }}</td>
-                        <td>{{ $recordbarangkeluar->jmlhbrklr }}</td>
-                        <td>{{ $recordbarangkeluar->namabrklr }}</td>
+                        <td>{{ $recordbarangkeluar->jmlhbrgklr }}</td>
+                        <td>{{ $recordbarangkeluar->namabrgklr }}</td>
                         <td>{{ $recordbarangkeluar->hrgjual }}</td>
                         <td>{{ $recordbarangkeluar->kategori->namakat ?? '' }}</td>
                         <td>

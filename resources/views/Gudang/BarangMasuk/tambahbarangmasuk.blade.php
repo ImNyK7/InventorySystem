@@ -21,7 +21,8 @@
                             <tr>
                                 <td><label for="perusahaansupp">Supplier</label></td>
                                 <td>
-                                    <select id="select_page" style="width:190px;" class="operator" name="perusahaansupp">
+                                    <select id="select_page" style="width:190px; height: 30px" class="operator" name="perusahaansupp">
+                                        <option value="" disabled selected></option>
                                         @foreach ($suppliers as $supplier)
                                             <option value="{{ $supplier->kodesupp }}">{{ $supplier->perusahaansupp }}
                                             </option>
@@ -45,8 +46,9 @@
                                 <td><label for="KatBrg">Kategori</label></td>
                                 <td>
                                     <select id="select_page" style="width:140px;" class="operator" name="KatBrg">
+                                        <option value="" disabled selected></option>
                                         @foreach ($kategoris as $kategori)
-                                            <option value="{{ $kategori->kodekat }}">{{ $kategori->namakategori }}</option>
+                                            <option value="{{ $kategori->kodekat }}">{{ $kategori->namakat }}</option>
                                         @endforeach
                                     </select>
                                 </td>
@@ -61,7 +63,9 @@
     </div>
     <script>
         $(document).ready(function() {
-            $("select").select2();
+            $("select").select2({
+                placeholder: "",
+            });
         });
     </script>
 @endsection

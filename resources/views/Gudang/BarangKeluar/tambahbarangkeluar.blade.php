@@ -14,12 +14,13 @@
                         </tr>
                         <tr>
                             <td><label>Tanggal</label></td>
-                            <td><input type="date" name="TgglBrgKlr" required></td>
+                            <td><input type="date" name="TgglBrgKlr" id="dateField" required readonly style="width: 120px"></td>
                         </tr>
                         <tr>
                             <td><label for="perusahaancust">Customer</label></td>
                             <td>
-                                <select id="select_page" style="width:190px;" class="operator" name="perusahaancust">
+                                <select id="select_page" style="width:190px; height: 30px" class="operator" name="perusahaancust">
+                                    <option value="" disabled selected></option>
                                     @foreach ($customers as $customer)
                                         <option value="{{ $customer->kodecust }}">{{ $customer->perusahaancust }}</option>
                                     @endforeach
@@ -42,8 +43,9 @@
                             <td><label for="KatBrg">Kategori</label></td>
                             <td>
                                 <select id="select_page" style="width:140px;" class="operator" name="KatBrg">
+                                    <option value="" disabled selected></option>
                                     @foreach ($kategoris as $kategori)
-                                        <option value="{{ $kategori->kodekat }}">{{ $kategori->namakategori }}</option>
+                                        <option value="{{ $kategori->kodekat }}">{{ $kategori->namakat }}</option>
                                     @endforeach
                                 </select>
                             </td>
@@ -63,7 +65,16 @@
 </div>
 <script>
     $(document).ready(function() {
-        $("select").select2();
+        $("select").select2({
+                placeholder: "",
+            });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const dateField = document.getElementById('dateField');
+        const today = new Date().toISOString().split('T')[0];
+        dateField.value = today;
     });
 </script>
 @endsection

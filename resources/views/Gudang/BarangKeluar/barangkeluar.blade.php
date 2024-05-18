@@ -15,40 +15,55 @@
     </div>
     <div class="row mb-5 mt-2">
         <div class="col">
-            <table class="table bg-white rounded shadow-sm  table-hover">
+            <div class="table-responsive bg-white p-3">
+                <table table id="brgklr-table" class="table rounded shadow-sm table-hover" style="min-width: 1200px;">
                 <thead>
                     <tr>
-                    <tr>
                         <th>#</th>
-                        <th>Kode</th>
+                        <th>Kode Laporan</th>
                         <th>Tanggal Keluar</th>
-                        <th>Nama Barang</th>
                         <th>Customer</th>
-                        <th>Kategori</th>
                         <th>Jumlah</th>
+                        <th>Nama Barang</th>
+                        <th>Harga Jual</th>
+                        <th>Kategori</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($recordbarangkeluars as $index => $recordbarangkeluar)
                     <tr>
-                        <th>1</th>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $recordbarangkeluar->kodebrgklr }}</td>
+                        <td>{{ $recordbarangkeluar->tanggalbrgklr }}</td>
+                        <td>{{ $recordbarangkeluar->customer->perusahaancust ?? '' }}</td>
+                        <td>{{ $recordbarangkeluar->jmlhbrgklr }}</td>
+                        <td>{{ $recordbarangkeluar->namabrgklr }}</td>
+                        <td>{{ $recordbarangkeluar->hrgjual }}</td>
+                        <td>{{ $recordbarangkeluar->kategori->namakat ?? '' }}</td>
+                        <td>
+                            <button style="background-color: #1570EF; outline:none; border:none"
+                                class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button style="background-color: #48EE59; outline:none; border:none"
+                                class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button style="background-color: #E70404; outline:none; border:none"
+                                class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
                     </tr>
-                    <tr>
-                        <th>2</th>
-                    </tr>
-                    <tr>
-                        <th>3</th>
-                    </tr>
-                    <tr>
-                        <th>4</th>
-                    </tr>
-                    <tr>
-                        <th>5</th>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
 </div>
+<script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+        <script>
+            let table = new DataTable('#brgklr-table');
+        </script>
 @endsection

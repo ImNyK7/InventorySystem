@@ -1,5 +1,5 @@
 .form-wrapper {
-  width: 400px;
+  width: fit-content;
   min-height: 200px;
   max-height: 80vh;
   background: whitesmoke;
@@ -14,7 +14,10 @@
   margin: 20px;
 }
 
-
+.limitedNumbSelect2{
+  width: 80%;
+  height: 15%;
+}
 
 h1 {
     font-size: 30px;

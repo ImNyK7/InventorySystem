@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -11,13 +12,14 @@ Route::get('/login', function () {
 });
 
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => "Home", 
-        "role" => "Admin"
-    ]);
-});
+// Route::get('/', function () {
+//     return view('home', [
+//         "title" => "Home", 
+//         "role" => "Admin"
+//     ]);
+// });
 
+Route::get('/', [DashboardController::class, 'index'] );
 Route::get('/customer/mastercustomer', [RouteController::class, 'mcustomer']);
 
 Route::get('/customer/tambahcustomer', [RouteController::class, 'tambahcustomer']);

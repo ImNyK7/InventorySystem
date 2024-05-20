@@ -3,6 +3,8 @@
 @section('content')
 <div class="wrapper-wrapper">
     <div id="page-content-wrapper">
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
         <form>
             <div class="form-wrapper">
                 <h1>Form<br>Barang Keluar</h1>
@@ -28,12 +30,18 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><label>Jumlah Barang</label></td>
-                            <td><input type="number" name="JmlhBrgKlr" required style="width: 50px"></td>
-                        </tr>
-                        <tr>
                             <td><label>Nama Barang</label></td>
                             <td><input type="text" name="NamaBrg" required style="width: 200px"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Jumlah Barang</label></td>
+                            <td><input type="number" name="JmlhBrgKlr" required style="width: 50px">
+                                <select style="width:100px" name="satuanbrg">
+                                    <option value="" disabled selected></option>
+                                    @foreach ($satuanbrgs as $satuanbrg)
+                                        <option value="{{ $satuanbrg->id }}">{{ $satuanbrg->namasatuan }}</option>
+                                    @endforeach
+                                </select></td>
                         </tr>
                         <tr>
                             <td><label>Harga Jual</label></td>

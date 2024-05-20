@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SatuanBrg;
 use App\Models\User;
 use App\Models\Customer;
 use App\Models\Kategori;
@@ -18,11 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::create([
-        //     'name' => 'TestUser',
-        //     'password' => 'test@example.com',
-        //     'is_admin' => '1'
-        // ]);
+
+        // User::factory(5)->create();
 
         User::create([
             'name' => 'Yuwan',
@@ -45,55 +43,68 @@ class DatabaseSeeder extends Seeder
             'namakat' => 'Kamera CCTV'
         ]);
 
-        Customer::create([
-            'kodecust' => 'C01',
-            'perusahaancust' => 'PT Customer Setia',
-            'kontakcust' => 'Pak Jayadi',
-            'kotacust' => 'Surabaya',
-            'alamatcust' => 'Jl. Bersamamu No 60',
-            'notelponcust' => '083618365917',
-            'termcust' => '14',
-            'limitcust' => '12'
-        ]);
+        Customer::factory(5)->create();
+        // Customer::create([
+        //     'kodecust' => 'C01',
+        //     'perusahaancust' => 'PT Customer Setia',
+        //     'kontakcust' => 'Pak Jayadi',
+        //     'kotacust' => 'Surabaya',
+        //     'alamatcust' => 'Jl. Bersamamu No 60',
+        //     'notelponcust' => '083618365917',
+        //     'termcust' => '14',
+        //     'limitcust' => '12'
+        // ]);
 
-        Supplier::create([
-            'kodesupp' => 'S01',
-            'perusahaansupp' => 'PT Supplier Setia',
-            'kontaksupp' => 'Bu Yanto',
-            'kotasupp' => 'Gresik',
-            'alamatsupp' => 'Jl. Ditempat N0. 1',
-            'notelponsupp' => '084926572044',
-            'termsupp' => '7',
-        ]);
+        Supplier::factory(5)->create();
+        // Supplier::create([
+        //     'kodesupp' => 'S01',
+        //     'perusahaansupp' => 'PT Supplier Setia',
+        //     'kontaksupp' => 'Bu Yanto',
+        //     'kotasupp' => 'Gresik',
+        //     'alamatsupp' => 'Jl. Ditempat N0. 1',
+        //     'notelponsupp' => '084926572044',
+        //     'termsupp' => '7',
+        // ]);
 
-        RecordBarangMasuk::create([
-            'kodebrgmsk' => 'BM-0001',
-            'tanggalbrgmsk' => '2022-04-05',
-            'jmlhbrgmsk' => '10',
-            'namabrgmsk' => 'Laptop ACER Gaming',
-            'hrgbeli' => '14.000.000',
-            'kategori_id' => 1,
-            'supplier_id' => 1,
-        ]);
+        RecordBarangMasuk::factory(5)->create();
+        // RecordBarangMasuk::create([
+        //     'kodebrgmsk' => 'BM-0001',
+        //     'tanggalbrgmsk' => '2022-04-05',
+        //     'jmlhbrgmsk' => '10',
+        //     'namabrgmsk' => 'Laptop ACER Gaming',
+        //     'hrgbeli' => '14.000.000',
+        //     'kategori_id' => 1,
+        //     'supplier_id' => 1,
+        // ]);
 
-        RecordBarangMasuk::create([
-            'kodebrgmsk' => 'BM-0002',
-            'tanggalbrgmsk' => '2022-05-06',
-            'jmlhbrgmsk' => '5',
-            'namabrgmsk' => 'EPSON 3547',
-            'hrgbeli' => '6.000.000',
-            'kategori_id' => 2,
-            'supplier_id' => 1,
+        RecordBarangKeluar::factory(5)->create();
+        // RecordBarangKeluar::create([
+        //     'kodebrgklr' => 'BK-0001',
+        //     'tanggalbrgklr' => '2022-07-08',
+        //     'jmlhbrgklr' => '2',
+        //     'namabrgklr' => 'EPSON 3547',
+        //     'hrgjual' => '7.500.000',
+        //     'kategori_id' => 2,
+        //     'customer_id' => 1,
+        // ]);
+        
+        SatuanBrg::create([
+            'namasatuan' => 'Pcs'
         ]);
-
-        RecordBarangKeluar::create([
-            'kodebrgklr' => 'BK-0001',
-            'tanggalbrgklr' => '2022-07-08',
-            'jmlhbrgklr' => '2',
-            'namabrgklr' => 'EPSON 3547',
-            'hrgjual' => '7.500.000',
-            'kategori_id' => 2,
-            'customer_id' => 1,
+        SatuanBrg::create([
+            'namasatuan' => 'Roll'
+        ]);
+        SatuanBrg::create([
+            'namasatuan' => 'Box'
+        ]);
+        SatuanBrg::create([
+            'namasatuan' => 'EA'
+        ]);
+        SatuanBrg::create([
+            'namasatuan' => 'Unit'
+        ]);
+        SatuanBrg::create([
+            'namasatuan' => 'LCS'
         ]);
     }
 }

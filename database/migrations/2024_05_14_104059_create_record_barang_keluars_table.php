@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('kodebrgklr');
             $table->date('tanggalbrgklr');
             $table->integer('jmlhbrgklr');
+            $table->foreignId('satuanbrg_id');
             $table->string('namabrgklr');
             $table->char('hrgjual');
             $table->foreignId('kategori_id');

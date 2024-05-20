@@ -16,7 +16,7 @@
     <div class="row mb-5 mt-2">
         <div class="col">
             <div class="table-responsive bg-white p-3">
-                <table table id="brgklr-table" class="table rounded shadow-sm table-hover" style="min-width: 1200px;">
+                <table table id="brgklr-table" class="table rounded shadow-sm table-hover" style="min-width: max-content;">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -37,7 +37,7 @@
                         <td>{{ $recordbarangkeluar->kodebrgklr }}</td>
                         <td>{{ $recordbarangkeluar->tanggalbrgklr }}</td>
                         <td>{{ $recordbarangkeluar->customer->perusahaancust ?? '' }}</td>
-                        <td>{{ $recordbarangkeluar->jmlhbrgklr }}</td>
+                        <td>{{ $recordbarangkeluar->jmlhbrgklr }} {{ $recordbarangkeluar->satuanbrg->namasatuan ?? ''}}</td>
                         <td>{{ $recordbarangkeluar->namabrgklr }}</td>
                         <td>{{ $recordbarangkeluar->hrgjual }}</td>
                         <td>{{ $recordbarangkeluar->kategori->namakat ?? '' }}</td>

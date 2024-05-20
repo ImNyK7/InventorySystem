@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Kategori;
 use App\Models\Supplier;
+use App\Models\SatuanBrg;
 use Illuminate\Http\Request;
 use App\Models\RecordBarangMasuk;
 use App\Models\RecordBarangKeluar;
@@ -81,12 +82,14 @@ class RouteController extends Controller
         $recordbarangmasuks = RecordBarangMasuk::all();
         $kategoris = Kategori::all();
         $suppliers = Supplier::all();
+        $satuanbrgs = SatuanBrg::all();
         return view('Gudang/BarangMasuk/barangmasuk', [
             "title" => "Barang Masuk",
             "role" => "Admin",
             "kategoris" => $kategoris,
             "suppliers" => $suppliers,
-            "recordbarangmasuks" => $recordbarangmasuks
+            "recordbarangmasuks" => $recordbarangmasuks,
+            "satuanbrgs" => $satuanbrgs
         ]);
     }
 
@@ -94,11 +97,13 @@ class RouteController extends Controller
     {
         $kategoris = Kategori::all();
         $suppliers = Supplier::all();
+        $satuanbrgs = SatuanBrg::all();
         return view('Gudang/BarangMasuk/tambahbarangmasuk', [
             "title" => "Tambah Barang Masuk",
             "role" => "Admin",
             "kategoris" => $kategoris,
-            "suppliers" => $suppliers
+            "suppliers" => $suppliers,
+            "satuanbrgs" => $satuanbrgs
         ]);
     }
 
@@ -106,13 +111,15 @@ class RouteController extends Controller
     {
         $kategoris = Kategori::all();
         $customers = Customer::all();
+        $satuanbrgs = SatuanBrg::all();
         $recordbarangkeluars = RecordBarangKeluar::all();
         return view('Gudang/BarangKeluar/barangkeluar', [
             "title" => "Barang Keluar",
             "role" => "Admin",
             "kategoris" => $kategoris,
             "suppliers" => $customers,
-            "recordbarangkeluars" => $recordbarangkeluars
+            "recordbarangkeluars" => $recordbarangkeluars,
+            "satuanbrgs" => $satuanbrgs
         ]);
     }
 
@@ -120,11 +127,13 @@ class RouteController extends Controller
     {
         $kategoris = Kategori::all();
         $customers = Customer::all();
+        $satuanbrgs = SatuanBrg::all();
         return view('Gudang/BarangKeluar/tambahbarangkeluar', [
             "title" => "Tambah Barang Keluar",
             "role" => "Admin",
             "kategoris" => $kategoris,
             "customers" => $customers,
+            "satuanbrgs" => $satuanbrgs
         ]);
     }
 }

@@ -29,4 +29,9 @@ class RecordBarangKeluar extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    public function satuanbrg()
+    {
+        return $this->belongsTo(SatuanBrg::class);
+    }
 }

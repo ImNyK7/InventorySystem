@@ -79,7 +79,7 @@ class RouteController extends Controller
 
     public function barangmasuk()
     {
-        $recordbarangmasuks = RecordBarangMasuk::all();
+        $recordbarangmasuks = RecordBarangMasuk::with(['satuanbrg', 'kategori'])->get();
         $kategoris = Kategori::all();
         $suppliers = Supplier::all();
         $satuanbrgs = SatuanBrg::all();
@@ -112,7 +112,7 @@ class RouteController extends Controller
         $kategoris = Kategori::all();
         $customers = Customer::all();
         $satuanbrgs = SatuanBrg::all();
-        $recordbarangkeluars = RecordBarangKeluar::all();
+        $recordbarangkeluars = RecordBarangKeluar::with(['satuanbrg', 'kategori'])->get();
         return view('Gudang/BarangKeluar/barangkeluar', [
             "title" => "Barang Keluar",
             "role" => "Admin",

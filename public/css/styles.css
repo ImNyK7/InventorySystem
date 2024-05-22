@@ -108,9 +108,9 @@
     border: none;
 }
 
-.active-button {
+/* .active-button {
     color: blue !important;
-}
+} */
 
 .clickable-summary {
     display: block;
@@ -125,10 +125,10 @@
     background-color: white;
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
     border-radius: .25rem;
-    color: black; /* Ensure the text color is black */
+    color: black;
 }
 .clickable-summary:hover > div {
-    text-decoration: none; /* Ensure no underline on hover */
+    text-decoration: none;
 }
 
 @media (min-width: 768px) {

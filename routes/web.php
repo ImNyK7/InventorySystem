@@ -1,23 +1,16 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\MasterCustomer;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RouteController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [LoginController::class, 'login']);
 
-
-// Route::get('/', function () {
-//     return view('home', [
-//         "title" => "Home", 
-//         "role" => "Admin"
-//     ]);
-// });
+Route::get('/admin/register', [RegisterController::class, 'register']);
+Route::post('/admin/register', [RegisterController::class, 'store']);
 
 Route::get('/', [DashboardController::class, 'index'] );
 Route::get('/customer/mastercustomer', [RouteController::class, 'mcustomer']);

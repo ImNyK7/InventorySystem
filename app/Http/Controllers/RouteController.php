@@ -16,7 +16,6 @@ class RouteController extends Controller
     {
         return view('Master/Customer/mcustomer', [
             "title" => "Master Customer",
-            "role" => "Admin",
             "customers" => Customer::all()
         ]);
     }
@@ -24,8 +23,7 @@ class RouteController extends Controller
     public function tambahcustomer()
     {
         return view('Master/Customer/tambahcustomer', [
-            "title" => "Tambah Customer",
-            "role" => "Admin"
+            "title" => "Tambah Customer"
         ]);
     }
 
@@ -36,7 +34,6 @@ class RouteController extends Controller
         return view('Master/Supplier/msupplier', [
 
             "title" => "Master Supplier",
-            "role" => "Admin",
             "suppliers" => $supplier
         ]);
     }
@@ -44,8 +41,7 @@ class RouteController extends Controller
     public function tambahsupplier()
     {
         return view('Master/Supplier/tambahsupplier', [
-            "title" => "Tambah Supplier",
-            "role" => "Admin"
+            "title" => "Tambah Supplier"
         ]);
     }
     public function mkategori()
@@ -53,7 +49,6 @@ class RouteController extends Controller
         $kategoris = Kategori::all();
         return view('Master/Kategori/mkategori', [
             "title" => "Master Kategori",
-            "role" => "Admin",
             "kategoris" => $kategoris
         ]);
 
@@ -62,8 +57,7 @@ class RouteController extends Controller
     public function tambahkategori()
     {
         return view('Master/Kategori/tambahkategori', [
-            "title" => "Tambah Kategori",
-            "role" => "Admin"
+            "title" => "Tambah Kategori"
         ]);
     }
 
@@ -72,7 +66,6 @@ class RouteController extends Controller
         $recordbarangmasuks = RecordBarangMasuk::all();
         return view('Gudang/stokbarang', [
             "title" => "Stok barang",
-            "role" => "Admin",
             "recordbarangmasuks" => $recordbarangmasuks
         ]);
     }
@@ -85,7 +78,6 @@ class RouteController extends Controller
         $satuanbrgs = SatuanBrg::all();
         return view('Gudang/BarangMasuk/barangmasuk', [
             "title" => "Barang Masuk",
-            "role" => "Admin",
             "kategoris" => $kategoris,
             "suppliers" => $suppliers,
             "recordbarangmasuks" => $recordbarangmasuks,
@@ -100,7 +92,6 @@ class RouteController extends Controller
         $satuanbrgs = SatuanBrg::all();
         return view('Gudang/BarangMasuk/tambahbarangmasuk', [
             "title" => "Tambah Barang Masuk",
-            "role" => "Admin",
             "kategoris" => $kategoris,
             "suppliers" => $suppliers,
             "satuanbrgs" => $satuanbrgs
@@ -115,7 +106,6 @@ class RouteController extends Controller
         $recordbarangkeluars = RecordBarangKeluar::with(['satuanbrg', 'kategori'])->get();
         return view('Gudang/BarangKeluar/barangkeluar', [
             "title" => "Barang Keluar",
-            "role" => "Admin",
             "kategoris" => $kategoris,
             "suppliers" => $customers,
             "recordbarangkeluars" => $recordbarangkeluars,
@@ -130,7 +120,6 @@ class RouteController extends Controller
         $satuanbrgs = SatuanBrg::all();
         return view('Gudang/BarangKeluar/tambahbarangkeluar', [
             "title" => "Tambah Barang Keluar",
-            "role" => "Admin",
             "kategoris" => $kategoris,
             "customers" => $customers,
             "satuanbrgs" => $satuanbrgs

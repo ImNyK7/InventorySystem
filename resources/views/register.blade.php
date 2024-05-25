@@ -21,10 +21,10 @@
                 @csrf
                 <table>
                     <tr>
-                        <td><label for="name" class="form-label">Username/ID</label></td>
-                        <td><input type="text" name="name"
-                                class="form-control @error('name') is-invalid @enderror" required
-                                value="{{ old('name') }}">
+                        <td><label for="username" class="form-label">Username/ID</label></td>
+                        <td><input type="text" name="username"
+                                class="form-control @error('username') is-invalid @enderror" required
+                                value="{{ old('username') }}">
                             @error('name')
                                 <div class="invalid-feedback">
                                     {{ $message }}

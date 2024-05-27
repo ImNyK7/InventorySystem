@@ -24,7 +24,7 @@ h1 {
 }
 
 .wrapper {
-  width: 400px;
+  width: max-content;
   background: whitesmoke;
   color: fff;
   border-radius: 20px;

@@ -36,7 +36,14 @@
                             </tr>
                             <tr>
                                 <td><label>Jumlah Barang</label></td>
-                                <td><input type="number" name="JmlhBrgMsk"required style="width: 50px"></td>
+                                <td><input type="number" name="JmlhBrgMsk"required style="width: 50px">
+                                    <select style="width:100px" name="satuanbrg">
+                                        <option value="" disabled selected></option>
+                                        @foreach ($satuanbrgs as $satuanbrg)
+                                            <option value="{{ $satuanbrg->id }}">{{ $satuanbrg->namasatuan }}</option>
+                                        @endforeach
+                                    </select></td>
+                                
                             </tr>
                             <tr>
                                 <td><label>Harga Beli</label></td>

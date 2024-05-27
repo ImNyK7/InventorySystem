@@ -16,10 +16,10 @@
     <div class="row mb-5 mt-2">
         <div class="col">
             <div class="table-responsive bg-white p-3">
-                <table table id="brgklr-table" class="table rounded shadow-sm table-hover" style="min-width: 1200px;">
+                <table table id="brgklr-table" class="table rounded shadow-sm table-hover" style="min-width: max-content;">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th width="25px">#</th>
                         <th>Kode Laporan</th>
                         <th>Tanggal Keluar</th>
                         <th>Customer</th>
@@ -27,7 +27,7 @@
                         <th>Nama Barang</th>
                         <th>Harga Jual</th>
                         <th>Kategori</th>
-                        <th>Action</th>
+                        <th width="125px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +37,7 @@
                         <td>{{ $recordbarangkeluar->kodebrgklr }}</td>
                         <td>{{ $recordbarangkeluar->tanggalbrgklr }}</td>
                         <td>{{ $recordbarangkeluar->customer->perusahaancust ?? '' }}</td>
-                        <td>{{ $recordbarangkeluar->jmlhbrgklr }}</td>
+                        <td>{{ $recordbarangkeluar->jmlhbrgklr }} {{ $recordbarangkeluar->satuanbrg->namasatuan ?? ''}}</td>
                         <td>{{ $recordbarangkeluar->namabrgklr }}</td>
                         <td>{{ $recordbarangkeluar->hrgjual }}</td>
                         <td>{{ $recordbarangkeluar->kategori->namakat ?? '' }}</td>

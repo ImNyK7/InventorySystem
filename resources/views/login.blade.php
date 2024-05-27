@@ -14,26 +14,46 @@
 </head>
 
 <body>
-    <div class="wrapper-wrapper">
-        <h1>SELAMAT DATANG <br>SILAHKAN LOGIN</h1>
+    <main class="form-login">
+        @if (session()->has('regsuccess'))
+            <div class="alert alert-success" style="margin-top: -100px" role="alert">
+                {{ session('regsuccess') }}
+            </div>
+        @endif
+        @if (session()->has('loginError'))
+            <div class="alert alert-danger" style="margin-top: -100px" role="alert">
+                {{ session('loginError') }}
+            </div>
+        @endif
+        <br>
+        <div class="heading" style="margin-top: 20px">
+            <h1>SELAMAT DATANG</h1>
+            <br>
+            <h1>SILAHKAN LOGIN</h1>
+        </div>
         <div class="wrapper">
-            <form action="/">
+            <form action="/login" method="POST">
+                @csrf
                 <table>
                     <tr>
-                        <td><label for="username" class="form-label">Username/ID</label></td>
-                        <td><input type="text" id="username" class="form-control" required></td>
+                        <td><label for="username" class="form-label" @error('username')
+                            is-invalid @enderror>Username/ID</label></td>
+                        <td><input type="text" name="username" class="form-control" required autofocus value="{{ old('username') }}"></td>
                         <td><i class="fas fa-user me-2"></i></td>
+                        @error('username')
+                            <tr class="invalid-message">{{ $message }}</tr>
+                        @enderror
                     </tr>
                     <tr>
                         <td><label for="password" class="form-label">Password</label></td>
-                        <td><input type="password" id="password" class="form-control" required></td>
+                        <td><input type="password" name="password" class="form-control" required></td>
                         <td><i class="fa-solid fa-lock me-2"></i></td>
                     </tr>
                 </table>
                 <button type="submit" class="btn">Login</button>
             </form>
         </div>
-    </div>
+    </main>
 </body>
 
 </html>

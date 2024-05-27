@@ -29,4 +29,8 @@ class RecordBarangMasuk extends Model
     public function supplier(){
         return $this->belongsTo(Supplier::class);
     }
+    public function satuanbrg()
+    {
+        return $this->belongsTo(SatuanBrg::class);
+    }
 }

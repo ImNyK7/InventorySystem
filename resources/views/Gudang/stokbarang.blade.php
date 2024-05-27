@@ -24,11 +24,11 @@
                     <table table id="stokbrg-table" class="table rounded shadow-sm table-hover">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th width="25px">#</th>
                                 <th>Nama Barang</th>
                                 <th>Kategori</th> 
                                 <th>Jumlah Barang</th>
-                                <th>Action</th>
+                                <th width="125px">Action</th>
                             </tr>
                         </thead>
                         <tbody>

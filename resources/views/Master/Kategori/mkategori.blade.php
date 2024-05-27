@@ -17,12 +17,12 @@
         <div class="col">
             <div class="table-responsive bg-white p-3">
                 <table table id="kategori-table" class="table rounded shadow-sm table-hover" style="max-width: 1200px;">
-                    <thead>
+                    <thead style="text-align: left">
                         <tr>
-                            <th>#</th>
+                            <th width="25px">#</th>
                             <th>Kode</th>
                             <th>Kategori</th>
-                            <th>Action</th>
+                            <th width="125px">Action</th>
                         </tr>
                     </thead>
                     <tbody>

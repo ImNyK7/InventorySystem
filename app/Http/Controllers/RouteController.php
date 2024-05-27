@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Kategori;
 use App\Models\Supplier;
 use App\Models\SatuanBrg;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\RecordBarangMasuk;
 use App\Models\RecordBarangKeluar;
@@ -123,6 +124,14 @@ class RouteController extends Controller
             "kategoris" => $kategoris,
             "customers" => $customers,
             "satuanbrgs" => $satuanbrgs
+        ]);
+    }
+    public function adminpage()
+    {
+        $users = User::all();
+        return view('/Admin/adminpage', [
+            "title" => "Admin Page",
+            "users" => $users,
         ]);
     }
 }

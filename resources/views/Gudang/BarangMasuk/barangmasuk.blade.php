@@ -19,7 +19,7 @@
                     <table table id="brgmsk-table" class="table rounded shadow-sm table-hover" style="min-width: max-content;">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th width="25px">#</th>
                             <th>Kode Laporan</th>
                             <th>Tanggal Masuk</th>
                             <th>Supplier</th>
@@ -27,7 +27,7 @@
                             <th>Nama Barang</th>
                             <th>Harga Beli</th>
                             <th>Kategori</th>
-                            <th>Action</th>
+                            <th width="125px">Action</th>
                         </tr>
                     </thead>
                     <tbody>

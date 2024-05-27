@@ -7,10 +7,16 @@
                     <i class="fas fa-user me-2"></i>{{ auth()->user()->username }}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="/admin">Admin Page</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
+                    @if(auth()->user()->is_admin)
+                        @if(request()->is('admin'))
+                            <li><a class="dropdown-item" href="/">Dashboard Page</a></li>
+                        @else
+                            <li><a class="dropdown-item" href="/admin">Admin Page</a></li>
+                        @endif
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    @endif
                     <li>
                         <form action="/logout" method="POST">@csrf <button type="submit" class="dropdown-item"
                                 style="color: red">Logout</button></form>

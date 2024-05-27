@@ -19,7 +19,7 @@
                     <table table id="supplier-table" class="table rounded shadow-sm table-hover" style="width: max-content">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th width="25px">#</th>
                                 <th>Kode</th>
                                 <th>Perusahaan</th>
                                 <th>Kontak</th>
@@ -28,7 +28,7 @@
                                 <th>Telpon</th>
                                 <th>Term (Hari)</th>
                                 <th>Description</th>
-                                <th>Action</th>
+                                <th width="125px">Action</th>
                             </tr>
                         </thead>
                         <tbody>

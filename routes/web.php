@@ -15,6 +15,7 @@ Route::get('/admin/register', [RegisterController::class, 'register'])->middlewa
 Route::post('/admin/register', [RegisterController::class, 'store']);
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(('auth'));
+Route::get('/admin', [RouteController::class, 'adminpage'])->name('adminpage')->middleware(('auth'));
 
 Route::get('/customer/mastercustomer', [RouteController::class, 'mcustomer'])->name('customer.master');
 Route::get('/customer/tambahcustomer', [RouteController::class, 'tambahcustomer'])->name('customer.add');

@@ -13,13 +13,6 @@ use App\Models\RecordBarangKeluar;
 
 class RouteController extends Controller
 {
-    public function mcustomer()
-    {
-        return view('Master/Customer/mcustomer', [
-            "title" => "Master Customer",
-            "customers" => Customer::all()
-        ]);
-    }
 
     public function tambahcustomer()
     {
@@ -28,31 +21,11 @@ class RouteController extends Controller
         ]);
     }
 
-    public function msupplier()
-    {
-        $supplier = Supplier::all();
-
-        return view('Master/Supplier/msupplier', [
-
-            "title" => "Master Supplier",
-            "suppliers" => $supplier
-        ]);
-    }
-
     public function tambahsupplier()
     {
         return view('Master/Supplier/tambahsupplier', [
             "title" => "Tambah Supplier"
         ]);
-    }
-    public function mkategori()
-    {
-        $kategoris = Kategori::all();
-        return view('Master/Kategori/mkategori', [
-            "title" => "Master Kategori",
-            "kategoris" => $kategoris
-        ]);
-
     }
 
     public function tambahkategori()
@@ -71,21 +44,6 @@ class RouteController extends Controller
         ]);
     }
 
-    public function barangmasuk()
-    {
-        $recordbarangmasuks = RecordBarangMasuk::with(['satuanbrg', 'kategori'])->get();
-        $kategoris = Kategori::all();
-        $suppliers = Supplier::all();
-        $satuanbrgs = SatuanBrg::all();
-        return view('Gudang/BarangMasuk/barangmasuk', [
-            "title" => "Barang Masuk",
-            "kategoris" => $kategoris,
-            "suppliers" => $suppliers,
-            "recordbarangmasuks" => $recordbarangmasuks,
-            "satuanbrgs" => $satuanbrgs
-        ]);
-    }
-
     public function tambahbarangmasuk()
     {
         $kategoris = Kategori::all();
@@ -95,21 +53,6 @@ class RouteController extends Controller
             "title" => "Tambah Barang Masuk",
             "kategoris" => $kategoris,
             "suppliers" => $suppliers,
-            "satuanbrgs" => $satuanbrgs
-        ]);
-    }
-
-    public function barangkeluar()
-    {
-        $kategoris = Kategori::all();
-        $customers = Customer::all();
-        $satuanbrgs = SatuanBrg::all();
-        $recordbarangkeluars = RecordBarangKeluar::with(['satuanbrg', 'kategori'])->get();
-        return view('Gudang/BarangKeluar/barangkeluar', [
-            "title" => "Barang Keluar",
-            "kategoris" => $kategoris,
-            "suppliers" => $customers,
-            "recordbarangkeluars" => $recordbarangkeluars,
             "satuanbrgs" => $satuanbrgs
         ]);
     }

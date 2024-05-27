@@ -21,4 +21,8 @@ class Customer extends Model
         'limitcust',
     ];
     protected $guarded =['id'];
+
+    public function getRouteKeyName(){
+        return 'perusahaancust';
+    }
 }

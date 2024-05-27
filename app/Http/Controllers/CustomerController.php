@@ -12,7 +12,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        
+        return view('Master/Customer/mcustomer', [
+            "title" => "Master Customer",
+            "customers" => Customer::all()
+        ]);
     }
 
     /**
@@ -34,9 +37,12 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Customer $customer)
+    public function show(Customer $mastercustomer)
     {
-        //
+        return view('Master/Customer/showcustomer',[
+            'customer' => $mastercustomer,
+            'title' => 'Show Customer'
+        ]);
     }
 
     /**

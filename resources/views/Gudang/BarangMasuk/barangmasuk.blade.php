@@ -42,18 +42,23 @@
                                     <td>{{ $recordbarangmasuk->hrgbeli }}</td>
                                     <td>{{ $recordbarangmasuk->kategori->namakat ?? '' }}</td>      
                                     <td>
-                                        <button style="background-color: #1570EF; outline:none; border:none"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </button>
-                                        <button style="background-color: #48EE59; outline:none; border:none"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                        <button style="background-color: #E70404; outline:none; border:none"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
+                                        <a href="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}">
+                                            <button style="background-color: #1570EF; outline:none; border:none" class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </a>                                        
+                                        <a href="/barangmasuk/listbarangmasuk">
+                                            <button style="background-color: #48EE59; outline:none; border:none; text-decoration: none"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                        </a>
+                                        <a href="">
+                                            <button style="background-color: #E70404; outline:none; border:none"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

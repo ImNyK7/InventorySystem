@@ -44,17 +44,23 @@
                                     <td>{{ $supplier->termsupp }}</td>
                                     <td>{{ $supplier->descsupp }}</td>
                                     <td>
-                                        <button style="outline:none; border:none" class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </button>
-                                        <button style="background-color: #48EE59; outline:none; border:none"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                        <button style="background-color: #E70404; outline:none; border:none"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
+                                        <a href="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}">
+                                            <button style="background-color: #1570EF; outline:none; border:none" class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </a>                                        
+                                        <a href="/supplier/tambahsupplier">
+                                            <button style="background-color: #48EE59; outline:none; border:none; text-decoration: none"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                        </a>
+                                        <a href="">
+                                            <button style="background-color: #E70404; outline:none; border:none"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -47,18 +47,23 @@
                                     <td>{{ $customer->limitcust }}</td>
                                     <td>{{ $customer->desccust }}</td>
                                     <td>
-                                        <button style="background-color: #1570EF; outline:none; border:none"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </button>
-                                        <button style="background-color: #48EE59; outline:none; border:none"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                        <button style="background-color: #E70404; outline:none; border:none"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
+                                        <a href="/customer/mastercustomer/{{ $customer->perusahaancust }}">
+                                            <button style="background-color: #1570EF; outline:none; border:none" class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </a>                                        
+                                        <a href="/customer/tambahcustomer">
+                                            <button style="background-color: #48EE59; outline:none; border:none; text-decoration: none"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                        </a>
+                                        <a href="">
+                                            <button style="background-color: #E70404; outline:none; border:none"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

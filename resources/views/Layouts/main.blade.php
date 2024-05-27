@@ -40,17 +40,17 @@
                         id="masterSubMenu">
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="/customer/mastercustomer" {{ $title === 'Master Customer' ? 'active' : '' }}
+                            <a href="/customer/mastercustomer"
                                 style="text-decoration: none; color: gray;">Master Customer</a>
                         </li>
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="/supplier/mastersupplier" {{ $title === 'Master Supplier' ? 'active' : '' }}
+                            <a href="/supplier/mastersupplier"
                                 style="text-decoration: none; color: gray;">Master Supplier</a>
                         </li>
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="/kategori/masterkategori" {{ $title === 'Master Kategori' ? 'active' : '' }}
+                            <a href="/kategori/masterkategori"
                                 style="text-decoration: none; color: gray;">Master Kategori</a>
                         </li>
                     </ul>

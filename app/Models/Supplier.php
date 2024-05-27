@@ -20,4 +20,8 @@ class Supplier extends Model
     ];
 
     protected $guarded =['id'];
+
+    public function getRouteKeyName(){
+        return 'perusahaansupp';
+    }
 }

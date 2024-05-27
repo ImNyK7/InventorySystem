@@ -12,7 +12,11 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        $kategoris = Kategori::all();
+        return view('Master/Kategori/mkategori', [
+            "title" => "Master Kategori",
+            "kategoris" => $kategoris
+        ]);
     }
 
     /**
@@ -34,9 +38,12 @@ class KategoriController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kategori $kategori)
+    public function show(Kategori $masterkategori)
     {
-        //
+        return view('Master/Kategori/showkategori',[
+            'kategori' => $masterkategori,
+            'title' => 'Show Kategori'
+        ]);
     }
 
     /**

@@ -12,7 +12,13 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $supplier = Supplier::all();
+
+        return view('Master/Supplier/msupplier', [
+
+            "title" => "Master Supplier",
+            "suppliers" => $supplier
+        ]);
     }
 
     /**
@@ -34,9 +40,12 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Supplier $supplier)
+    public function show(Supplier $mastersupplier)
     {
-        //
+        return view('Master/Supplier/showsupplier',[
+            'supplier' => $mastersupplier,
+            'title' => 'Show Supplier'
+        ]);
     }
 
     /**

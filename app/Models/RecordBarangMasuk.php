@@ -33,4 +33,8 @@ class RecordBarangMasuk extends Model
     {
         return $this->belongsTo(SatuanBrg::class);
     }
+
+    public function getRouteKeyName(){
+        return 'kodebrgmsk';
+    }
 }

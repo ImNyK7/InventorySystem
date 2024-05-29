@@ -16,9 +16,11 @@ class Customer extends Model
         'kontakcust',
         'kotacust',
         'alamatcust',
+        'alamat2cust',
         'notelponcust',
         'termcust',
         'limitcust',
+        'desccust',
     ];
     protected $guarded =['id'];
 

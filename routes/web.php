@@ -22,17 +22,9 @@ Route::post('/admin/register', [RegisterController::class, 'store']);
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(('auth'));
 Route::get('/admin', [RouteController::class, 'adminpage'])->name('adminpage')->middleware(('auth'));
 
-Route::get('/customer/tambahcustomer', [RouteController::class, 'tambahcustomer'])->name('customer.add');
-
-Route::get('/supplier/tambahsupplier',[RouteController::class, 'tambahsupplier'])->name('supplier.add');
-
-Route::get('/kategori/tambahkategori', [RouteController::class, 'tambahkategori'])->name('category.add');
 
 Route::get('/stokbarang', [RouteController::class, 'stokbarang'])->name('stock');
 
-Route::get('/barangmasuk/tambahbarangmasuk', [RouteController::class, 'tambahbarangmasuk'])->name('tambah.barang.masuk');
-
-Route::get('/barangkeluar/tambahbarangkeluar', [RouteController::class, 'tambahbarangkeluar'])->name('tambah.barang.keluar');
 
 Route::resource('/customer/mastercustomer', CustomerController::class)->middleware("auth");
 Route::resource('/supplier/mastersupplier', SupplierController::class)->middleware("auth");

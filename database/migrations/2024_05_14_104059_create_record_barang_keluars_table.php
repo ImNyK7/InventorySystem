@@ -21,6 +21,7 @@ return new class extends Migration
             $table->char('hrgjual');
             $table->foreignId('kategori_id');
             $table->foreignId('customer_id');
+            $table->string('noseribrgklr');
             $table->timestamps();
         });
     }

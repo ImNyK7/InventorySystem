@@ -23,7 +23,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('Master\Customer\tambahcustomer', [
+            "title" => "Tambah Customer"
+        ]);
     }
 
     /**
@@ -31,7 +33,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($request->all());
     }
 
     /**

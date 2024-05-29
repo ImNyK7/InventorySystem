@@ -15,16 +15,12 @@ class BarangKeluarController extends Controller
      */
     public function index()
     {
-        $kategoris = Kategori::all();
-        $customers = Customer::all();
-        $satuanbrgs = SatuanBrg::all();
-        $recordbarangkeluars = RecordBarangKeluar::with(['satuanbrg', 'kategori'])->get();
         return view('Gudang/BarangKeluar/barangkeluar', [
             "title" => "Barang Keluar",
-            "kategoris" => $kategoris,
-            "suppliers" => $customers,
-            "recordbarangkeluars" => $recordbarangkeluars,
-            "satuanbrgs" => $satuanbrgs
+            "kategoris" => Kategori::all(),
+            "suppliers" => Customer::all(),
+            "recordbarangkeluars" => RecordBarangKeluar::with(['satuanbrg', 'kategori'])->get(),
+            "satuanbrgs" => SatuanBrg::all()
         ]);
     }
 
@@ -33,7 +29,12 @@ class BarangKeluarController extends Controller
      */
     public function create()
     {
-        //
+        return view('Gudang/BarangKeluar/tambahbarangkeluar', [
+            "title" => "Tambah Barang Keluar",
+            "kategoris" => Kategori::all(),
+            "customers" => Customer::all(),
+            "satuanbrgs" => SatuanBrg::all()
+        ]);
     }
 
     /**
@@ -41,7 +42,7 @@ class BarangKeluarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($request->all());
     }
 
     /**

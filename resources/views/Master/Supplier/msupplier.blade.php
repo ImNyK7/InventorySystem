@@ -7,7 +7,7 @@
 
     <div class="container-fluid px-4">
         <div class="btn-wrapper wrapper">
-            <form action="/supplier/tambahsupplier">
+            <form action="/supplier/mastersupplier/create">
                 <button type="submit" class="btn" style="font-size: 17px"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
                         Supplier</span></button>

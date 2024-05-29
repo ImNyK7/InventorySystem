@@ -14,67 +14,19 @@ use App\Models\RecordBarangKeluar;
 class RouteController extends Controller
 {
 
-    public function tambahcustomer()
-    {
-        return view('Master/Customer/tambahcustomer', [
-            "title" => "Tambah Customer"
-        ]);
-    }
-
-    public function tambahsupplier()
-    {
-        return view('Master/Supplier/tambahsupplier', [
-            "title" => "Tambah Supplier"
-        ]);
-    }
-
-    public function tambahkategori()
-    {
-        return view('Master/Kategori/tambahkategori', [
-            "title" => "Tambah Kategori"
-        ]);
-    }
-
     public function stokbarang()
     {
-        $recordbarangmasuks = RecordBarangMasuk::all();
         return view('Gudang/stokbarang', [
             "title" => "Stok barang",
-            "recordbarangmasuks" => $recordbarangmasuks
+            "recordbarangmasuks" => RecordBarangMasuk::all()
         ]);
     }
 
-    public function tambahbarangmasuk()
-    {
-        $kategoris = Kategori::all();
-        $suppliers = Supplier::all();
-        $satuanbrgs = SatuanBrg::all();
-        return view('Gudang/BarangMasuk/tambahbarangmasuk', [
-            "title" => "Tambah Barang Masuk",
-            "kategoris" => $kategoris,
-            "suppliers" => $suppliers,
-            "satuanbrgs" => $satuanbrgs
-        ]);
-    }
-
-    public function tambahbarangkeluar()
-    {
-        $kategoris = Kategori::all();
-        $customers = Customer::all();
-        $satuanbrgs = SatuanBrg::all();
-        return view('Gudang/BarangKeluar/tambahbarangkeluar', [
-            "title" => "Tambah Barang Keluar",
-            "kategoris" => $kategoris,
-            "customers" => $customers,
-            "satuanbrgs" => $satuanbrgs
-        ]);
-    }
     public function adminpage()
     {
-        $users = User::all();
         return view('/Admin/adminpage', [
             "title" => "Admin Page",
-            "users" => $users,
+            "users" => User::all()
         ]);
     }
 }

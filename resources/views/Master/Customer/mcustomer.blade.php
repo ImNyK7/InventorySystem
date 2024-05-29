@@ -7,11 +7,11 @@
 
     <div class="container-fluid px-4">
         <div class="btn-wrapper wrapper">
-            <form action="/customer/tambahcustomer">
+            <a href="/customer/mastercustomer/create">
                 <button type="submit" class="btn" style="font-size: 17px"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
                         Customer</span></button>
-            </form>
+            </a>
         </div>
         <div class="row mb-5 mt-2">
             <div class="col">

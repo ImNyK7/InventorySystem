@@ -5,23 +5,23 @@
     <div id="page-content-wrapper">
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
-        <form>
             <div class="form-wrapper">
                 <h1>Form<br>Barang Keluar</h1>
-                <form action="">
+                <form action="/barangkeluar/listbarangkeluar" method="POST">
+                    @csrf
                     <table>
                         <tr>
                             <td><label>Kode Laporan</label></td>
-                            <td><input type="text" name="KodeBrgKlr" required style="width: 100px"></td>
+                            <td><input type="text" name="kodebrgklr" required style="width: 100px"></td>
                         </tr>
                         <tr>
                             <td><label>Tanggal</label></td>
-                            <td><input type="date" name="TgglBrgKlr" id="dateField" required readonly style="width: 120px"></td>
+                            <td><input type="date" name="tanggalbrgklr" id="dateField" required readonly style="width: 120px"></td>
                         </tr>
                         <tr>
                             <td><label for="perusahaancust">Customer</label></td>
                             <td>
-                                <select id="select_page" style="width:190px; height: 30px" class="operator" name="perusahaancust">
+                                <select id="select_page" style="width:190px; height: 30px" class="operator" name="perusahaancust_id">
                                     <option value="" disabled selected></option>
                                     @foreach ($customers as $customer)
                                         <option value="{{ $customer->kodecust }}">{{ $customer->perusahaancust }}</option>
@@ -31,11 +31,11 @@
                         </tr>
                         <tr>
                             <td><label>Nama Barang</label></td>
-                            <td><input type="text" name="NamaBrg" required style="width: 200px"></td>
+                            <td><input type="text" name="namabrgklr" required style="width: 200px"></td>
                         </tr>
                         <tr>
                             <td><label>Jumlah Barang</label></td>
-                            <td><input type="number" name="JmlhBrgKlr" required style="width: 50px">
+                            <td><input type="number" name="jmlhbrgklr" required style="width: 50px">
                                 <select style="width:100px" name="satuanbrg">
                                     <option value="" disabled selected></option>
                                     @foreach ($satuanbrgs as $satuanbrg)
@@ -45,12 +45,12 @@
                         </tr>
                         <tr>
                             <td><label>Harga Jual</label></td>
-                            <td><input type="text" name="HrgJual"required style="width: 100px"></td>
+                            <td><input type="text" name="hrgjual"required style="width: 100px"></td>
                         </tr>
                         <tr>
                             <td><label for="KatBrg">Kategori</label></td>
                             <td>
-                                <select id="select_page" style="width:140px;" class="operator" name="KatBrg">
+                                <select id="select_page" style="width:140px;" class="operator" name="kategori_id">
                                     <option value="" disabled selected></option>
                                     @foreach ($kategoris as $kategori)
                                         <option value="{{ $kategori->kodekat }}">{{ $kategori->namakat }}</option>
@@ -61,14 +61,13 @@
                         </tr>
                         <tr>
                             <td><label>Nomor Seri</label></td>
-                            <td><input type="text" name="No Seri"></td>
+                            <td><input type="text" name="noseribrgklr"></td>
                         </tr>
                     </table>
                     <a href="/barangkeluar/listbarangkeluar"><button type="button" class="btncancel">Cancel</button></a>
                     <button type="submit" class="btnsubmit">Submit</button>
                 </form>
             </div>
-        </form>
     </div>
 </div>
 <script>

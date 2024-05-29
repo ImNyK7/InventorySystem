@@ -7,7 +7,7 @@
 
     <div class="container-fluid px-4">
         <div class="btn-wrapper wrapper">
-            <form action="/barangmasuk/tambahbarangmasuk">
+            <form action="/barangmasuk/listbarangmasuk/create">
                 <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Barang
                         Masuk</span></button>

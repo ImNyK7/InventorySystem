@@ -12,12 +12,11 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $supplier = Supplier::all();
 
         return view('Master/Supplier/msupplier', [
 
             "title" => "Master Supplier",
-            "suppliers" => $supplier
+            "suppliers" => Supplier::all()
         ]);
     }
 
@@ -26,7 +25,9 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('Master/Supplier/tambahsupplier', [
+            "title" => "Tambah Supplier"
+        ]);
     }
 
     /**
@@ -34,7 +35,7 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($request->all());
     }
 
     /**

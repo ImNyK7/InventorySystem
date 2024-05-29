@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('kotacust');
             $table->string('alamatcust');
             $table->string('alamat2cust')->nullable();
-            $table->char('notelponcust');
+            $table->string('notelponcust');
             $table->integer('termcust');
             $table->char('limitcust');
             $table->text('desccust')->nullable();

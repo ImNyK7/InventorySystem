@@ -33,7 +33,12 @@ class BarangMasukController extends Controller
      */
     public function create()
     {
-        //
+        return view('Gudang/BarangMasuk/tambahbarangmasuk', [
+            "title" => "Tambah Barang Masuk",
+            "kategoris" => Kategori::all(),
+            "suppliers" => Supplier::all(),
+            "satuanbrgs" => SatuanBrg::all()
+        ]);
     }
 
     /**
@@ -41,7 +46,7 @@ class BarangMasukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($request->all());
     }
 
     /**

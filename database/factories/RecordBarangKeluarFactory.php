@@ -25,6 +25,7 @@ class RecordBarangKeluarFactory extends Factory
             'hrgjual' => fake()->randomFloat(),
             'kategori_id' => mt_rand(1,3),
             'customer_id' => mt_rand(1,5),
+            'noseribrgklr' => fake()->numerify(),
         ];
     }
 }

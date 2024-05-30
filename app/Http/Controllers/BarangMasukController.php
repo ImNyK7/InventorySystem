@@ -48,7 +48,7 @@ class BarangMasukController extends Controller
         'jmlhbrgmsk' => 'required|integer',
         'satuanbrg_id' => 'required|exists:satuan_brgs,id',
         'namabrgmsk' => 'required|string|max:255',
-        'hrgbeli' => 'required|string|max:255',
+        'hrgbeli' => 'required|numeric|min:0.01|max:999999999999.99',
         'kategori_id' => 'required|exists:kategoris,id',
         'supplier_id' => 'required|exists:suppliers,id',
     ]);

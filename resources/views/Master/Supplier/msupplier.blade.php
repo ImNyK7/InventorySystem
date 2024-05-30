@@ -5,6 +5,12 @@
         <h1 class="fs-3 m-4 mb-0" style="color: #1570EF">Master Supplier</h1>
     </div>
 
+    @if (session()->has('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+      </div>
+    @endif
+
     <div class="container-fluid px-4">
         <div class="btn-wrapper wrapper">
             <form action="/supplier/mastersupplier/create">

@@ -37,7 +37,10 @@ class KategoriController extends Controller
             'kodekat' => 'required|string|max:20|unique:kategoris,kodekat',
             'namakat' => 'required|string|max:255',
         ]);
-        return response()->json($request->all());
+        
+        Kategori::create($validatedData);
+
+        return redirect('/kategori/masterkategori')->with('success', 'Berhasil Tambah Kategori!');
     }
 
     /**

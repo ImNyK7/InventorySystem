@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('jmlhbrgmsk');
             $table->foreignId('satuanbrg_id');
             $table->string('namabrgmsk');
-            $table->char('hrgbeli');
+            $table->decimal('hrgbeli', 15, 2);;
             $table->foreignId('kategori_id');
             $table->foreignId('supplier_id');
             $table->timestamps();

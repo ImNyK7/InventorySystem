@@ -48,7 +48,7 @@ class BarangKeluarController extends Controller
             'jmlhbrgklr' => 'required|integer',
             'satuanbrg_id' => 'required|exists:satuan_brgs,id',
             'namabrgklr' => 'required|string|max:255',
-            'hrgjual' => 'required|string|max:255',
+            'hrgjual' => 'required|numeric|min:0.01|max:999999999999.99',
             'kategori_id' => 'required|exists:kategoris,id',
             'customer_id' => 'required|exists:customers,id',
         ]);

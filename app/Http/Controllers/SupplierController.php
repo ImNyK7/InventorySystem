@@ -44,8 +44,12 @@ class SupplierController extends Controller
             'alamat2supp' => 'nullable|string|max:255',
             'notelponsupp' => 'required|string|max:30',
             'termsupp' => 'required|integer',
-            'descsupp' => 'nullable|string|max:255',
-        ]);return response()->json($request->all());
+            'descsupp' => 'nullable|string|max:50',
+        ]);
+
+        Supplier::create($validatedData);
+
+        return redirect('/supplier/mastersupplier')->with('success', 'Berhasil Tambah Supplier!');
     }
 
     /**

@@ -43,8 +43,12 @@ class CustomerController extends Controller
             'notelponcust' => 'required|string|max:30',
             'termcust' => 'required|integer',
             'limitcust' => 'required',
-            'desccust' => 'nullable|string|max:255',
-        ]);return response()->json($request->all());
+            'desccust' => 'nullable|string|max:50',
+        ]);
+        
+        Customer::create($validatedData);
+
+        return redirect('/customer/mastercustomer')->with('success', 'Berhasil Tambah Customer!');
     }
 
     /**

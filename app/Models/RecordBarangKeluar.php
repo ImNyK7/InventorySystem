@@ -15,6 +15,7 @@ class RecordBarangKeluar extends Model
         'tanggalbrgklr',
         'namabrgklr',
         'jmlhbrgklr',
+        'satuanbrg_id',
         'hrgjual',
         'kategori_id',
         'customer_id'

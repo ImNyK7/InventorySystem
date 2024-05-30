@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="wrapper-wrapper">
-    <div id="page-content-wrapper">
-        <div class="form-wrapper" style="margin-top: 20px; align-items: center">
+    <div id="page-content-wrapper"  class="d-flex justify-content-center align-items-center">
+        <div class="form-wrapper" style="margin-top: 100px; align-items: center">
             <h1>Detail Kategori</h1>
             <form>
                 <table>

@@ -33,6 +33,10 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'kodekat' => 'required|string|max:20|unique:kategoris,kodekat',
+            'namakat' => 'required|string|max:255',
+        ]);
         return response()->json($request->all());
     }
 

@@ -35,7 +35,17 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($request->all());
+        $validatedData = $request->validate([
+            'kodesupp' => 'required|string|max:15|unique:suppliers,kodesupp',
+            'perusahaansupp' => 'required|string|max:255',
+            'kontaksupp' => 'required|string|max:100',
+            'kotasupp' => 'required|string|max:255',
+            'alamatsupp' => 'required|string|max:255',
+            'alamat2supp' => 'nullable|string|max:255',
+            'notelponsupp' => 'required|string|max:30',
+            'termsupp' => 'required|integer',
+            'descsupp' => 'nullable|string|max:255',
+        ]);return response()->json($request->all());
     }
 
     /**

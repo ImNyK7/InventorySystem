@@ -1,72 +1,119 @@
 @extends('Layouts.main')
 
 @section('content')
+<style>
+    .invalid-message {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+</style>
     <div class="wrapper-wrapper">
-        <div id="page-content-wrapper">
-            <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
-                <div class="form-wrapper">
-                    <h1>Form<br>Barang Masuk</h1>
-                    <form action="/barangmasuk/listbarangmasuk" method="POST">
-                        @csrf
-                        <table>
-                            <tr>
-                                <td><label>Kode Laporan</label></td>
-                                <td><input type="text" name="kodebrgmsk"required style="width: 100px"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Tanggal</label></td>
-                                <td><input type="date" name="tanggalbrgmsk" min="2015-01-02" max="2030-12-31" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="perusahaansupp">Supplier</label></td>
-                                <td>
-                                    <select id="select_page" style="width:190px; height: 30px" class="operator" name="perusahaansupp_id">
-                                        <option value="" disabled selected></option>
-                                        @foreach ($suppliers as $supplier)
-                                            <option value="{{ $supplier->kodesupp }}">{{ $supplier->perusahaansupp }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Nama Barang</label></td>
-                                <td><input type="text" name="namabrgmsk"required style="width: 200px"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Jumlah Barang</label></td>
-                                <td><input type="number" name="jmlhbrgmsk"required style="width: 50px">
-                                    <select style="width:100px" name="satuanbrg">
-                                        <option value="" disabled selected></option>
-                                        @foreach ($satuanbrgs as $satuanbrg)
-                                            <option value="{{ $satuanbrg->id }}">{{ $satuanbrg->namasatuan }}</option>
-                                        @endforeach
-                                    </select></td>
-                                
-                            </tr>
-                            <tr>
-                                <td><label>Harga Beli</label></td>
-                                <td><input type="text" name="hrgbeli"required style="width: 100px"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="KatBrg">Kategori</label></td>
-                                <td>
-                                    <select id="select_page" style="width:140px;" class="operator" name="kategori_id">
-                                        <option value="" disabled selected></option>
-                                        @foreach ($kategoris as $kategori)
-                                            <option value="{{ $kategori->kodekat }}">{{ $kategori->namakat }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                        <a href="/barangmasuk/listbarangmasuk"><button type="button" class="btncancel">Cancel</button></a>
-                        <button type="submit" class="btnsubmit">Submit</button>
-                    </form>
-                </div>
+        <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
+            <div class="form-wrapper" style="margin-top: 20px">
+                <h1>Form<br>Barang Masuk</h1>
+                <form action="/barangmasuk/listbarangmasuk" method="POST">
+                    @csrf
+                    <table>
+                        <tr>
+                            <td><label for="kodebrgmsk">Kode Laporan</label></td>
+                            <td>
+                                <input type="text" name="kodebrgmsk" id="kodebrgmsk" value="{{ old('kodebrgmsk') }}"
+                                    required style="width: 100px">
+                                @error('kodebrgmsk')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                            <td><label for="supplier_id">Supplier</label></td>
+                            <td>
+                                <select id="supplier_id" name="supplier_id" required style="width: 190px; height: 30px">
+                                    <option value="" selected></option>
+                                    @foreach ($suppliers as $supplier)
+                                        <option value="{{ $supplier->id }}"
+                                            {{ old('supplier_id') == $supplier->id ? 'selected' : '' }}>
+                                            {{ $supplier->perusahaansupp }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('supplier_id')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="tanggalbrgmsk">Tanggal</label></td>
+                            <td>
+                                <input type="date" name="tanggalbrgmsk" id="tanggalbrgmsk"
+                                    value="{{ old('tanggalbrgmsk') }}" min="2015-01-02" max="2030-12-31" required>
+                                @error('tanggalbrgmsk')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                            <td><label for="namabrgmsk">Nama Barang</label></td>
+                            <td>
+                                <input type="text" name="namabrgmsk" id="namabrgmsk" value="{{ old('namabrgmsk') }}"
+                                    required style="width: 200px">
+                                @error('namabrgmsk')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="jmlhbrgmsk">Jumlah Barang</label></td>
+                            <td>
+                                <input type="number" name="jmlhbrgmsk" id="jmlhbrgmsk" value="{{ old('jmlhbrgmsk') }}"
+                                    required style="width: 50px">
+                                <select name="satuanbrg_id" id="satuanbrg_id" required style="width: 100px">
+                                    <option value="" selected></option>
+                                    @foreach ($satuanbrgs as $satuanbrg)
+                                        <option value="{{ $satuanbrg->id }}"
+                                            {{ old('satuanbrg_id') == $satuanbrg->id ? 'selected' : '' }}>
+                                            {{ $satuanbrg->namasatuan }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('jmlhbrgmsk')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                                @error('satuanbrg_id')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                            <td><label for="hrgbeli">Harga Beli</label></td>
+                            <td>
+                                <input type="text" name="hrgbeli" id="hrgbeli" value="{{ old('hrgbeli') }}" required
+                                    style="width: 100px">
+                                @error('hrgbeli')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="kategori_id">Kategori</label></td>
+                            <td>
+                                <select id="kategori_id" name="kategori_id" required style="width: 140px;">
+                                    <option value="" selected></option>
+                                    @foreach ($kategoris as $kategori)
+                                        <option value="{{ $kategori->id }}"
+                                            {{ old('kategori_id') == $kategori->id ? 'selected' : '' }}>
+                                            {{ $kategori->namakat }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('kategori_id')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                        </tr>
+                    </table>
+                    <a href="/barangmasuk/listbarangmasuk"><button type="button" class="btncancel">Cancel</button></a>
+                    <button type="submit" class="btnsubmit">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
             $("select").select2({

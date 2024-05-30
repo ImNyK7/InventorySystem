@@ -17,7 +17,7 @@ class RecordBarangKeluarFactory extends Factory
     public function definition(): array
     {
         return [
-            'kodebrgklr' => fake()->numerify('BM-####'),
+            'kodebrgklr' => fake()->numerify('BK-####'),
             'tanggalbrgklr' => fake()->dateTime,
             'jmlhbrgklr' => fake()->numberBetween(1,50),
             'satuanbrg_id' => mt_rand(1,6),

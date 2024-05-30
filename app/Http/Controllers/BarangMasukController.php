@@ -15,16 +15,12 @@ class BarangMasukController extends Controller
      */
     public function index()
     {
-        $recordbarangmasuks = RecordBarangMasuk::with(['satuanbrg', 'kategori'])->get();
-        $kategoris = Kategori::all();
-        $suppliers = Supplier::all();
-        $satuanbrgs = SatuanBrg::all();
         return view('Gudang/BarangMasuk/barangmasuk', [
             "title" => "Barang Masuk",
-            "kategoris" => $kategoris,
-            "suppliers" => $suppliers,
-            "recordbarangmasuks" => $recordbarangmasuks,
-            "satuanbrgs" => $satuanbrgs
+            "kategoris" => Kategori::all(),
+            "suppliers" => Supplier::all(),
+            "recordbarangmasuks" => RecordBarangMasuk::with(['satuanbrg', 'kategori'])->get(),
+            "satuanbrgs" => SatuanBrg::all()
         ]);
     }
 
@@ -45,9 +41,21 @@ class BarangMasukController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        return response()->json($request->all());
-    }
+{
+    $validatedData = $request->validate([
+        'kodebrgmsk' => 'required|string|max:255',
+        'tanggalbrgmsk' => 'required|date',
+        'jmlhbrgmsk' => 'required|integer',
+        'satuanbrg_id' => 'required|exists:satuan_brgs,id',
+        'namabrgmsk' => 'required|string|max:255',
+        'hrgbeli' => 'required|string|max:255',
+        'kategori_id' => 'required|exists:kategoris,id',
+        'supplier_id' => 'required|exists:suppliers,id',
+    ]);
+
+    return response()->json($validatedData);
+}
+
 
     /**
      * Display the specified resource.

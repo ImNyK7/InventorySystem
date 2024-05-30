@@ -33,7 +33,18 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($request->all());
+        $validatedData = $request->validate([
+            'kodecust' => 'required|string|max:15|unique:customers,kodecust',
+            'perusahaancust' => 'required|string|max:255',
+            'kontakcust' => 'required|string|max:100',
+            'kotacust' => 'required|string|max:255',
+            'alamatcust' => 'required|string|max:255',
+            'alamat2cust' => 'nullable|string|max:255',
+            'notelponcust' => 'required|string|max:30',
+            'termcust' => 'required|integer',
+            'limitcust' => 'required',
+            'desccust' => 'nullable|string|max:255',
+        ]);return response()->json($request->all());
     }
 
     /**

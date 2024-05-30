@@ -18,7 +18,7 @@ class BarangKeluarController extends Controller
         return view('Gudang/BarangKeluar/barangkeluar', [
             "title" => "Barang Keluar",
             "kategoris" => Kategori::all(),
-            "suppliers" => Customer::all(),
+            "customers" => Customer::all(),
             "recordbarangkeluars" => RecordBarangKeluar::with(['satuanbrg', 'kategori'])->get(),
             "satuanbrgs" => SatuanBrg::all()
         ]);
@@ -42,7 +42,18 @@ class BarangKeluarController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($request->all());
+        $validatedData = $request->validate([
+            'kodebrgklr' => 'required|string|max:255',
+            'tanggalbrgklr' => 'required|date',
+            'jmlhbrgklr' => 'required|integer',
+            'satuanbrg_id' => 'required|exists:satuan_brgs,id',
+            'namabrgklr' => 'required|string|max:255',
+            'hrgjual' => 'required|string|max:255',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'customer_id' => 'required|exists:customers,id',
+        ]);
+    
+        return response()->json($validatedData);
     }
 
     /**

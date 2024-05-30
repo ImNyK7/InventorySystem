@@ -17,6 +17,7 @@ class RecordBarangMasuk extends Model
             'tanggalbrgmsk',
             'namabrgmsk',
             'jmlhbrgmsk',
+            'satuanbrg_id',
             'hrgbeli',
             'kategori_id',
             'supplier_id'

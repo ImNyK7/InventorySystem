@@ -2,22 +2,29 @@
 
 namespace App\Models;
 
-use App\Models\RecordBarangMasuk;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class StokBarang extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'recordbarangmasuk_id',
-        'jmlhstokbrg'
+        'recordbarangmasuk_id', 'stokbrg', 'namabrg', 'kategori_id', 'satuanbrg_id'
     ];
-    protected $guarded =['id'];
 
-    public function recordbarangmasuk()
+    public function recordBarangMasuk()
     {
-        return $this->hasMany(RecordBarangMasuk::class);
+        return $this->belongsTo(RecordBarangMasuk::class, 'recordbarangmasuk_id');
+    }
+
+    public function kategori(){
+        return $this->belongsTo(Kategori::class);
+    }
+
+    public function satuanbrg()
+    {
+        return $this->belongsTo(SatuanBrg::class);
     }
 }
+

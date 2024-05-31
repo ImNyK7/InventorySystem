@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
         //     'supplier_id' => 1,
         // ]);
 
-        RecordBarangKeluar::factory(5)->create();
+        // RecordBarangKeluar::factory(5)->create();
         // RecordBarangKeluar::create([
         //     'kodebrgklr' => 'BK-0001',
         //     'tanggalbrgklr' => '2022-07-08',

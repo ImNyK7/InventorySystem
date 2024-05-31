@@ -18,9 +18,14 @@ class RecordBarangKeluar extends Model
         'satuanbrg_id',
         'hrgjual',
         'kategori_id',
-        'customer_id'
+        'customer_id',
+        'noseribrgklr'
     ];
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'noseribrgklr' => 'array',
+    ];    
 
     public function kategori()
     {

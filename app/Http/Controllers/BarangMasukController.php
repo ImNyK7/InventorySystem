@@ -7,6 +7,7 @@ use App\Models\Supplier;
 use App\Models\SatuanBrg;
 use Illuminate\Http\Request;
 use App\Models\RecordBarangMasuk;
+use App\Models\StokBarang;
 
 class BarangMasukController extends Controller
 {
@@ -41,20 +42,25 @@ class BarangMasukController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $validatedData = $request->validate([
-        'kodebrgmsk' => 'required|string|max:255',
-        'tanggalbrgmsk' => 'required|date',
-        'jmlhbrgmsk' => 'required|integer',
-        'satuanbrg_id' => 'required|exists:satuan_brgs,id',
-        'namabrgmsk' => 'required|string|max:255',
-        'hrgbeli' => 'required|numeric|min:0.01|max:999999999999.99',
-        'kategori_id' => 'required|exists:kategoris,id',
-        'supplier_id' => 'required|exists:suppliers,id',
-    ]);
+    {
+        $validatedData = $request->validate([
+            'kodebrgmsk' => 'required|string|max:255',
+            'tanggalbrgmsk' => 'required|date',
+            'jmlhbrgmsk' => 'required|integer|min:1',
+            'satuanbrg_id' => 'required|exists:satuan_brgs,id',
+            'namabrgmsk' => 'required|string|max:255',
+            'hrgbeli' => 'required|numeric|min:0.01|max:999999999999.99',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'supplier_id' => 'required|exists:suppliers,id',
+        ]);
 
-    return response()->json($validatedData);
-}
+        if (RecordBarangMasuk::where('kodebrgmsk', $validatedData['kodebrgmsk'])->exists()) {
+            return redirect()->back()->withErrors(['kodebrgmsk' => 'Kode barang masuk sudah ada, silahkan buat kode baru atau gunakan fitur Edit.'])->withInput();
+        }
+
+        RecordBarangMasuk::create($validatedData);
+        return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Tambah Laporan!');
+    }
 
 
     /**
@@ -62,7 +68,7 @@ class BarangMasukController extends Controller
      */
     public function show(RecordBarangMasuk $listbarangmasuk)
     {
-        return view('Gudang/BarangMasuk/showbarangmasuk',[
+        return view('Gudang/BarangMasuk/showbarangmasuk', [
             'recordbarangmasuk' => $listbarangmasuk,
             'title' => 'Barang Masuk'
         ]);

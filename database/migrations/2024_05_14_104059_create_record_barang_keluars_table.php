@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('hrgjual', 15, 2);;
             $table->foreignId('kategori_id');
             $table->foreignId('customer_id');
-            $table->string('noseribrgklr');
+            $table->json('noseribrgklr')->nullable();
             $table->timestamps();
         });
     }

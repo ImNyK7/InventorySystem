@@ -15,6 +15,15 @@ class BarangKeluarController extends Controller
      */
     public function index()
     {
+        $recordbarangkeluars = RecordBarangKeluar::with(['satuanbrg', 'kategori'])->get();
+
+        // Konversi noseribrgklr dari JSON ke array
+        $recordbarangkeluars->transform(function ($item) {
+            $item->noseribrgklr = json_decode($item->noseribrgklr);
+            return $item;
+        });
+
+
         return view('Gudang/BarangKeluar/barangkeluar', [
             "title" => "Barang Keluar",
             "kategoris" => Kategori::all(),
@@ -48,12 +57,17 @@ class BarangKeluarController extends Controller
             'jmlhbrgklr' => 'required|integer',
             'satuanbrg_id' => 'required|exists:satuan_brgs,id',
             'namabrgklr' => 'required|string|max:255',
-            'hrgjual' => 'required|numeric|min:0.01|max:999999999999.99',
+            'hrgjual' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategoris,id',
             'customer_id' => 'required|exists:customers,id',
+            'noseribrgklr' => 'required|array',
         ]);
-    
-        return response()->json($validatedData);
+
+        // Convert 'noseribrgklr' array to a JSON string
+        $validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
+
+        RecordBarangKeluar::create($validatedData);
+        return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Tambah Laporan!');
     }
 
     /**
@@ -61,7 +75,7 @@ class BarangKeluarController extends Controller
      */
     public function show(RecordBarangKeluar $listbarangkeluar)
     {
-        return view('Gudang/BarangKeluar/showbarangkeluar',[
+        return view('Gudang/BarangKeluar/showbarangkeluar', [
             'recordbarangkeluar' => $listbarangkeluar,
             'title' => 'Barang Masuk'
         ]);

@@ -1,18 +1,18 @@
 @extends('Layouts.main')
 
 @section('content')
-<style>
-    .invalid-message {
-        color: red;
-        font-size: 0.9em;
-        margin-top: 5px;
-    }
-</style>
+    <style>
+        .invalid-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
     <div class="wrapper-wrapper">
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper" style="margin-top: 20px">
                 <h1>Form<br>Barang Masuk</h1>
-                <form action="/barangmasuk/listbarangmasuk" method="POST">
+                <form action="{{ route('listbarangmasuk.store') }}" method="POST">
                     @csrf
                     <table>
                         <tr>

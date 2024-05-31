@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('stok_barangs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('recordbarangmasuk_id');
+            $table->string('namabrg');
+            $table->foreignId('kategori_id');
+            $table->foreignId('satuanbrg_id');
             $table->integer('stokbrg');
             $table->timestamps();
         });

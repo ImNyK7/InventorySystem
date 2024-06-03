@@ -88,6 +88,8 @@
                                 @error('satuanbrg_id')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
+                                <div class="invalid-message" id="jmlhbrgmsk-error" style="display:none;">Jumlah barang
+                                    melebihi stok!</div>
                             </td>
                             <td><label for="hrgbeli">Harga Beli</label></td>
                             <td>
@@ -131,24 +133,47 @@
             $("select").select2({
                 placeholder: "",
             });
-    
+            
             const dateField = document.getElementById('dateField');
             const today = new Date().toISOString().split('T')[0];
             dateField.value = today;
     
+            let stokJumlah = 0;
+
             $('#stokbarang_id').on('change', function() {
                 var selectedOption = $(this).find('option:selected');
+                stokJumlah = selectedOption.data('jumlah');
                 var jumlah = selectedOption.data('jumlah');
                 var kategori = selectedOption.data('kategori');
                 var satuan = selectedOption.data('satuan');
     
-                $('#jmlhbrgmsk').val(jumlah);
-
+                $('#jmlhbrgmsk').val('');
+    
                 $('#kategori_id_display').val(kategori).trigger('change');
                 $('#kategori_id').val(kategori);
+
                 $('#satuanbrg_display').val(satuan).trigger('change');
                 $('#satuanbrg_id').val(satuan);
+                $('#jmlhbrgmsk-error').hide();
+            });
+
+            $('#jmlhbrgmsk').on('input', function() {
+                var jumlahMasuk = $(this).val();
+                if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
+                    $('#jmlhbrgmsk-error').show();
+                } else {
+                    $('#jmlhbrgmsk-error').hide();
+                }
+            });
+    
+            $('form').on('submit', function(event) {
+                var jumlahMasuk = $('#jmlhbrgmsk').val();
+                if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
+                    $('#jmlhbrgmsk-error').show();
+                    event.preventDefault();
+                }
             });
         });
-    </script>    
+    </script>
+    
 @endsection

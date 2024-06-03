@@ -40,24 +40,29 @@
                                 @enderror
                             </td>
                         </tr>
-                        <tr>
+                        <td><label for="stokbarang_id">Nama Barang</label></td>
+                            <td>
+                                <select id="stokbarang_id" name="stokbarang_id" required style="width: 190px; height: 30px">
+                                    <option value="" selected></option>
+                                    @foreach ($stokbarangs as $stokbarang)
+                                        <option value="{{ $stokbarang->id }}"
+                                            {{ old('stokbarang_id') == $stokbarang->id ? 'selected' : '' }}>
+                                            {{ $stokbarang->namabrg }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('stokbarang_id')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                            </td>
                             <td><label for="tanggalbrgmsk">Tanggal</label></td>
                             <td>
-                                <input type="date" name="tanggalbrgmsk" id="tanggalbrgmsk"
+                                <input type="date" name="tanggalbrgmsk" id="dateField"
                                     value="{{ old('tanggalbrgmsk') }}" min="2015-01-02" max="2030-12-31" required>
                                 @error('tanggalbrgmsk')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
                             </td>
-                            <td><label for="namabrgmsk">Nama Barang</label></td>
-                            <td>
-                                <input type="text" name="namabrgmsk" id="namabrgmsk" value="{{ old('namabrgmsk') }}"
-                                    required style="width: 200px">
-                                @error('namabrgmsk')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                        </tr>
                         <tr>
                             <td><label for="jmlhbrgmsk">Jumlah Barang</label></td>
                             <td>
@@ -120,5 +125,11 @@
                 placeholder: "",
             });
         });
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+        const dateField = document.getElementById('dateField');
+        const today = new Date().toISOString().split('T')[0];
+        dateField.value = today;
+    });
     </script>
 @endsection

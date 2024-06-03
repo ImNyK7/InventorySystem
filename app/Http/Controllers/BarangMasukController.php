@@ -34,7 +34,8 @@ class BarangMasukController extends Controller
             "title" => "Tambah Barang Masuk",
             "kategoris" => Kategori::all(),
             "suppliers" => Supplier::all(),
-            "satuanbrgs" => SatuanBrg::all()
+            "satuanbrgs" => SatuanBrg::all(),
+            "stokbarangs" => StokBarang::all(),
         ]);
     }
 
@@ -48,7 +49,7 @@ class BarangMasukController extends Controller
             'tanggalbrgmsk' => 'required|date',
             'jmlhbrgmsk' => 'required|integer|min:1',
             'satuanbrg_id' => 'required|exists:satuan_brgs,id',
-            'namabrgmsk' => 'required|string|max:255',
+            'stokbarang_id' => 'required|exists:stok_barangs,id',
             'hrgbeli' => 'required|numeric|min:0.01|max:999999999999.99',
             'kategori_id' => 'required|exists:kategoris,id',
             'supplier_id' => 'required|exists:suppliers,id',
@@ -56,9 +57,10 @@ class BarangMasukController extends Controller
 
         if (RecordBarangMasuk::where('kodebrgmsk', $validatedData['kodebrgmsk'])->exists()) {
             return redirect()->back()->withErrors(['kodebrgmsk' => 'Kode barang masuk sudah ada, silahkan buat kode baru atau gunakan fitur Edit.'])->withInput();
+            
         }
-
         RecordBarangMasuk::create($validatedData);
+        //dd("aaaa");
         return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Tambah Laporan!');
     }
 

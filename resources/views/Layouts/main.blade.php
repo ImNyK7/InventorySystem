@@ -63,7 +63,7 @@
                         id="gudangSubMenu">
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">
-                            <a href="/stokbarang" style="text-decoration: none; color: gray;">Lihat Stok Barang</a>
+                            <a href="/stokbarang" style="text-decoration: none; color: gray;">Stok Barang</a>
                         </li>
                         <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                             style="padding: 9px">

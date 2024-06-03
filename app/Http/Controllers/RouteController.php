@@ -14,14 +14,6 @@ use App\Models\RecordBarangKeluar;
 class RouteController extends Controller
 {
 
-    public function stokbarang()
-    {
-        return view('Gudang/stokbarang', [
-            "title" => "Stok barang",
-            "recordbarangmasuks" => RecordBarangMasuk::all()
-        ]);
-    }
-
     public function adminpage()
     {
         return view('/Admin/adminpage', [

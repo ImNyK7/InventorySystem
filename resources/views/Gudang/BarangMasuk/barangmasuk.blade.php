@@ -38,7 +38,7 @@
                                     <td>{{ $recordbarangmasuk->tanggalbrgmsk }}</td>
                                     <td>{{ $recordbarangmasuk->supplier->perusahaansupp ?? '' }}</td>
                                     <td>{{ $recordbarangmasuk->jmlhbrgmsk }} {{ $recordbarangmasuk->satuanbrg->namasatuan ?? '' }}</td>
-                                    <td>{{ $recordbarangmasuk->namabrgmsk }}</td>
+                                    <td>{{ $recordbarangmasuk->stokbarang->namabrg ?? '' }}</td>
                                     <td>{{ $recordbarangmasuk->hrgbeli }}</td>
                                     <td>{{ $recordbarangmasuk->kategori->namakat ?? '' }}</td>      
                                     <td>

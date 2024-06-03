@@ -9,6 +9,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StokBarangController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
 
@@ -31,6 +32,7 @@ Route::resource('/supplier/mastersupplier', SupplierController::class)->middlewa
 Route::resource('/kategori/masterkategori', KategoriController::class)->middleware("auth");
 Route::resource('/barangmasuk/listbarangmasuk', BarangMasukController::class)->middleware("auth");
 Route::resource('/barangkeluar/listbarangkeluar', BarangKeluarController::class)->middleware("auth");
+Route::resource('/stokbarang', StokBarangController::class)->middleware("auth");
 
 // Route::get('/coba', function () {
 //     return view('coba');

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('namabrg');
             $table->foreignId('kategori_id');
             $table->foreignId('satuanbrg_id');
-            $table->integer('stokbrg');
+            $table->integer('jmlhbrg');
             $table->timestamps();
         });
     }

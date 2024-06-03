@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('kodebrgklr');
             $table->date('tanggalbrgklr');
-            $table->integer('jmlhbrgklr');
+            //$table->integer('jmlhbrgklr');
             $table->foreignId('satuanbrg_id');
-            $table->string('namabrgklr');
+            $table->foreignId('stokbarang_id');
+            //$table->string('namabrgklr');
             $table->decimal('hrgjual', 15, 2);;
             $table->foreignId('kategori_id');
             $table->foreignId('customer_id');

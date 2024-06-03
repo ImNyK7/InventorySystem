@@ -2,21 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Kategori;
+use App\Models\SatuanBrg;
+use App\Models\RecordBarangMasuk;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class StokBarang extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'recordbarangmasuk_id', 'stokbrg', 'namabrg', 'kategori_id', 'satuanbrg_id'
-    ];
-
-    public function recordBarangMasuk()
-    {
-        return $this->belongsTo(RecordBarangMasuk::class, 'recordbarangmasuk_id');
-    }
+    protected $guarded = ['id'];
 
     public function kategori(){
         return $this->belongsTo(Kategori::class);
@@ -25,6 +21,10 @@ class StokBarang extends Model
     public function satuanbrg()
     {
         return $this->belongsTo(SatuanBrg::class);
+    }
+
+    public function recordbarangmasuk(){
+        return $this->belongsTo(RecordBarangMasuk::class);
     }
 }
 

@@ -137,7 +137,7 @@
 
     document.getElementById('jmlhbrgklr').addEventListener('input', function() {
         const noseriContainer = document.getElementById('noseri-container');
-        noseriContainer.innerHTML = ''; // Clear existing inputs
+        noseriContainer.innerHTML = '';
         const count = parseInt(this.value);
         for (let i = 0; i < count; i++) {
             const input = document.createElement('input');

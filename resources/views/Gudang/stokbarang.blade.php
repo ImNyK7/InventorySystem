@@ -7,21 +7,20 @@
 
     <div class="container-fluid px-4">
         <div class="btn-wrapper wrapper">
-            <form action="/barangmasuk/listbarangmasuk/create">
+            <form action="/stokbarang/create">
                 <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
-                        style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Barang
-                        Masuk</span></button>
+                        style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Stok Barang</span></button>
             </form>
-            <form action="/barangkeluar/listbarangkeluar/create">
+            {{-- <form action="/barangkeluar/listbarangkeluar/create">
                 <button type="submit" class="btn2"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Barang
                         Keluar</span></button>
-            </form>
+            </form> --}}
         </div>
         <div class="row mb-5 mt-2">
             <div class="col">
                 <div class="table-responsive bg-white p-3">
-                    <table id="stokbrg-table" class="table rounded shadow-sm table-hover">
+                    <table id="stokbarang-table" class="table rounded shadow-sm table-hover">
                         <thead>
                             <tr>
                                 <th width="25px">#</th>
@@ -32,12 +31,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($recordbarangmasuks as $index => $recordbarangmasuk)
+                            @foreach ($stokbarangs as $index => $stokbarang)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $recordbarangmasuk->namabrgmsk }}</td>
-                                    <td>{{ $recordbarangmasuk->kategori->namakat ?? '' }}</td>
-                                    <td>{{ $recordbarangmasuk->jmlhbrgmsk }} {{ $recordbarangmasuk->satuanbrg->namasatuan ?? '' }}</td>
+                                    <td>{{ $stokbarang->namabrg }}</td>
+                                    <td>{{ $stokbarang->kategori->namakat ?? '' }}</td>
+                                    <td>{{ $stokbarang->jmlhbrg }} {{ $stokbarang->satuanbrg->namasatuan ?? '' }}</td>
                                     <td>
                                         <button style="background-color: #1570EF; outline:none; border:none"
                                             class="btn btn-primary btn-sm">
@@ -61,6 +60,6 @@
         </div>
         <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
         <script>
-            let table = new DataTable('#stokbrg-table');
+            let table = new DataTable('#stokbarang-table');
         </script>
 @endsection

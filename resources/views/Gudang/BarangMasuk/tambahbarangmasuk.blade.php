@@ -41,34 +41,37 @@
                             </td>
                         </tr>
                         <td><label for="stokbarang_id">Nama Barang</label></td>
-                            <td>
-                                <select id="stokbarang_id" name="stokbarang_id" required style="width: 190px; height: 30px">
-                                    <option value="" selected></option>
-                                    @foreach ($stokbarangs as $stokbarang)
-                                        <option value="{{ $stokbarang->id }}"
-                                            {{ old('stokbarang_id') == $stokbarang->id ? 'selected' : '' }}>
-                                            {{ $stokbarang->namabrg }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('stokbarang_id')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                            <td><label for="tanggalbrgmsk">Tanggal</label></td>
-                            <td>
-                                <input type="date" name="tanggalbrgmsk" id="dateField"
-                                    value="{{ old('tanggalbrgmsk') }}" min="2015-01-02" max="2030-12-31" required>
-                                @error('tanggalbrgmsk')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
+                        <td>
+                            <select id="stokbarang_id" name="stokbarang_id" required style="width: 190px; height: 30px">
+                                <option value="" selected></option>
+                                @foreach ($stokbarangs as $stokbarang)
+                                    <option value="{{ $stokbarang->id }}" data-jumlah="{{ $stokbarang->jmlhbrg }}"
+                                        data-kategori="{{ $stokbarang->kategori_id }}"
+                                        data-satuan="{{ $stokbarang->satuanbrg_id }}"
+                                        {{ old('stokbarang_id') == $stokbarang->id ? 'selected' : '' }}>
+                                        {{ $stokbarang->namabrg }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('stokbarang_id')
+                                <div class="invalid-message">{{ $message }}</div>
+                            @enderror
+                        </td>
+                        <td><label for="tanggalbrgmsk">Tanggal</label></td>
+                        <td>
+                            <input type="date" name="tanggalbrgmsk" id="dateField" value="{{ old('tanggalbrgmsk') }}"
+                                min="2015-01-02" max="2030-12-31" required>
+                            @error('tanggalbrgmsk')
+                                <div class="invalid-message">{{ $message }}</div>
+                            @enderror
+                        </td>
                         <tr>
                             <td><label for="jmlhbrgmsk">Jumlah Barang</label></td>
                             <td>
                                 <input type="number" name="jmlhbrgmsk" id="jmlhbrgmsk" value="{{ old('jmlhbrgmsk') }}"
                                     required style="width: 50px">
-                                <select name="satuanbrg_id" id="satuanbrg_id" required style="width: 100px">
+                                <select name="satuanbrg_display" id="satuanbrg_display" required style="width: 100px"
+                                    disabled>
                                     <option value="" selected></option>
                                     @foreach ($satuanbrgs as $satuanbrg)
                                         <option value="{{ $satuanbrg->id }}"
@@ -77,6 +80,8 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <input type="hidden" name="satuanbrg_id" id="satuanbrg_id"
+                                    value="{{ old('satuanbrg_id') }}">
                                 @error('jmlhbrgmsk')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
@@ -94,9 +99,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="kategori_id">Kategori</label></td>
+                            <td><label for="kategori_id_display">Kategori</label></td>
                             <td>
-                                <select id="kategori_id" name="kategori_id" required style="width: 140px;">
+                                <select id="kategori_id_display" name="kategori_id_display" required style="width: 140px;"
+                                    disabled>
                                     <option value="" selected></option>
                                     @foreach ($kategoris as $kategori)
                                         <option value="{{ $kategori->id }}"
@@ -105,6 +111,7 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <input type="hidden" name="kategori_id" id="kategori_id" value="{{ old('kategori_id') }}">
                                 @error('kategori_id')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
@@ -124,12 +131,24 @@
             $("select").select2({
                 placeholder: "",
             });
-        });
+    
+            const dateField = document.getElementById('dateField');
+            const today = new Date().toISOString().split('T')[0];
+            dateField.value = today;
+    
+            $('#stokbarang_id').on('change', function() {
+                var selectedOption = $(this).find('option:selected');
+                var jumlah = selectedOption.data('jumlah');
+                var kategori = selectedOption.data('kategori');
+                var satuan = selectedOption.data('satuan');
+    
+                $('#jmlhbrgmsk').val(jumlah);
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-        const dateField = document.getElementById('dateField');
-        const today = new Date().toISOString().split('T')[0];
-        dateField.value = today;
-    });
-    </script>
+                $('#kategori_id_display').val(kategori).trigger('change');
+                $('#kategori_id').val(kategori);
+                $('#satuanbrg_display').val(satuan).trigger('change');
+                $('#satuanbrg_id').val(satuan);
+            });
+        });
+    </script>    
 @endsection

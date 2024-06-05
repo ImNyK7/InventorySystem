@@ -9,32 +9,32 @@
                 <table>
                     <tr>
                         <td><label>Kode</label></td>
-                        <td><input value="{{ $recordbarangkeluar->kodebrgklr }}" readonly style="width: 90px"></td>
+                        <td><input value="{{ $recordbarangkeluar->kodebrgklr }}" readonly disabled style="width: 90px"></td>
                         <td><label>Tanggal Keluar</label></td>
-                        <td><input value="{{ $recordbarangkeluar->tanggalbrgklr }}" readonly style="width: 100px"></td>
+                        <td><input value="{{ $recordbarangkeluar->tanggalbrgklr }}" readonly disabled style="width: 100px"></td>
                     </tr>
                     <tr>
                         <td><label>Jumlah</label></td>
-                        <td><input value="{{ $recordbarangkeluar->jmlhbrgklr }}" readonly style="width: 50px"></td>
+                        <td><input value="{{ $recordbarangkeluar->jmlhbrgklr }}" readonly disabled style="width: 50px"> <input value="{{ $recordbarangkeluar->satuanbrg->namasatuan }}" style="width: 50px" readonly disabled></td>
                         <td><label>Nama Barang</label></td>
-                        <td><input value="{{ $recordbarangkeluar->namabrgklr }}" readonly style="width: 200px"></td>
+                        <td><input value="{{ $recordbarangkeluar->stokbarang->namabrg }}" readonly disabled style="width: 200px"></td>
                     </tr>
                     <tr>
                         <td><label>Harga Jual</label></td>
-                        <td><input value="{{ $recordbarangkeluar->hrgjual }}" readonly style="width: 100px"></td>
+                        <td><input value="{{ $recordbarangkeluar->hrgjual }}" readonly disabled style="width: 100px"></td>
                         <td><label>Kategori</label></td>
-                        <td><input value="{{ $recordbarangkeluar->kategori->namakat }}" readonly style="width: fit-content"></td>
+                        <td><input value="{{ $recordbarangkeluar->kategori->namakat }}" readonly disabled style="width: fit-content"></td>
                     </tr>
                     <tr>
                         <td><label>Customer</label></td>
-                        <td><input value="{{ $recordbarangkeluar->customer->perusahaancust }}" readonly style="width: 200px"></td>             
+                        <td><input value="{{ $recordbarangkeluar->customer->perusahaancust }}" readonly disabled style="width: 200px"></td>             
                     </tr>
                     <tr>
                         <td><label>Nomor Seri</label></td>
                         <td>
                             @foreach(json_decode($recordbarangkeluar->noseribrgklr) as $index => $noseri)
                         <tr>
-                            <td><input value="{{ $noseri }}"></td>
+                            <td><input value="{{ $noseri }}" readonly disabled></td>
                         </tr>
                     @endforeach</td>             
                     </tr>

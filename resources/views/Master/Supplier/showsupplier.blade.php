@@ -9,27 +9,27 @@
                 <table>
                     <tr>
                         <td><label>Kode</label></td>
-                        <td><input value="{{ $supplier->kodesupp }}" readonly style="width: 50px"></td>
-                        <td><label>Perusahaan</label></td>
-                        <td><input value="{{ $supplier->perusahaansupp }}" readonly style="width: 200px"></td>
+                        <td><input value="{{ $supplier->kodesupp }}" readonly disabled style="width: 50px"></td>
+                        <td><label>Kontak</label></td>
+                        <td><input value="{{ $supplier->kontaksupp }}" readonly disabled style="width: 150px"></td>
                     </tr>
                     <tr>
-                        <td><label>Kontak</label></td>
-                        <td><input value="{{ $supplier->kontaksupp }}" readonly style="width: 150px"></td>
+                        <td><label>Perusahaan</label></td>
+                        <td><input value="{{ $supplier->perusahaansupp }}" readonly disabled style="width: 200px"></td>
                         <td><label>Kota</label></td>
-                        <td><input value="{{ $supplier->kotasupp }}" readonly style="width: 150px"></td>
+                        <td><input value="{{ $supplier->kotasupp }}" readonly disabled style="width: 150px"></td>
                     </tr>
                     <tr>
                         <td><label>Alamat</label></td>
-                        <td><input value="{{ $supplier->alamatsupp }}" readonly style="width: 300px"></td>
+                        <td><input value="{{ $supplier->alamatsupp }}" readonly disabled style="width: 300px"></td>
                         <td><label>No Tlp</label></td>
-                        <td><input value="{{ $supplier->notelponsupp }}" readonly style="width: fit-content"></td>
+                        <td><input value="{{ $supplier->notelponsupp }}" readonly disabled style="width: fit-content"></td>
                     </tr>
                     <tr>
                         <td><label>Alamat 2</label></td>
-                        <td><input value="{{ $supplier->alamat2supp ?? ' -' }}" readonly style="width: 200px"></td>
+                        <td><input value="{{ $supplier->alamat2supp ?? ' -' }}" readonly disabled style="width: 200px"></td>
                         <td><label>Term</label></td>
-                        <td><input value="{{ $supplier->termsupp }}" readonly style="width: 50px"> Hari</td>
+                        <td><input value="{{ $supplier->termsupp }}" readonly disabled style="width: 50px"> Hari</td>
                     </tr>
                 </table>
             </form>

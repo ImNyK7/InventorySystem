@@ -57,7 +57,6 @@ class BarangMasukController extends Controller
 
         if (RecordBarangMasuk::where('kodebrgmsk', $validatedData['kodebrgmsk'])->exists()) {
             return redirect()->back()->withErrors(['kodebrgmsk' => 'Kode barang masuk sudah ada, silahkan buat kode baru atau gunakan fitur Edit.'])->withInput();
-            
         }
         RecordBarangMasuk::create($validatedData);
         //dd("aaaa");

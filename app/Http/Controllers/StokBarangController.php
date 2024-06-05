@@ -62,7 +62,10 @@ class StokBarangController extends Controller
      */
     public function show(StokBarang $stokBarang)
     {
-        //
+        return view('Gudang/showstokbarang', [
+            'stokbarang' => $stokBarang,
+            'title' => 'View Stok'
+        ]);//
     }
 
     /**

@@ -9,9 +9,9 @@
                 <table>
                     <tr>
                         <td><label>Kode</label></td>
-                        <td><input value="{{ $kategori->kodekat }}" readonly style="width: 50px"></td>
+                        <td><input value="{{ $kategori->kodekat }}" readonly disabled style="width: 50px"></td>
                         <td><label>Nama Kategori</label></td>
-                        <td><input value="{{ $kategori->namakat }}" readonly style="width: 100px"></td>
+                        <td><input value="{{ $kategori->namakat }}" readonly disabled style="width: 100px"></td>
                     </tr>
                 </table>
             </form>

@@ -5,6 +5,12 @@
         <h1 class="fs-3 m-4 mb-0" style="color: #1570EF">List Barang Masuk</h1>
     </div>
 
+    @if (session()->has('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+      </div>
+    @endif
+
     <div class="container-fluid px-4">
         <div class="btn-wrapper wrapper">
             <form action="/barangmasuk/listbarangmasuk/create">
@@ -19,7 +25,7 @@
                     <table table id="brgmsk-table" class="table rounded shadow-sm table-hover" style="min-width: max-content;">
                     <thead>
                         <tr>
-                            <th width="25px">#</th>
+                            <th style="background-color: whitesmoke">#</th>
                             <th>Kode Laporan</th>
                             <th>Tanggal Masuk</th>
                             <th>Supplier</th>
@@ -27,7 +33,7 @@
                             <th>Nama Barang</th>
                             <th>Harga Beli</th>
                             <th>Kategori</th>
-                            <th width="125px">Action</th>
+                            <th style="background-color: whitesmoke">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,24 +48,16 @@
                                     <td>{{ $recordbarangmasuk->hrgbeli }}</td>
                                     <td>{{ $recordbarangmasuk->kategori->namakat ?? '' }}</td>      
                                     <td>
-                                        <a href="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}">
-                                            <button style="background-color: #1570EF; outline:none; border:none" class="btn btn-primary btn-sm">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </button>
+                                        <a href="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}" class="btn btn-primary btn-sm" style="background-color: #1570EF; border:none; outline:none;">
+                                            <i class="fa-solid fa-eye"></i>
                                         </a>                                        
-                                        <a href="/barangmasuk/listbarangmasuk">
-                                            <button style="background-color: #48EE59; outline:none; border:none; text-decoration: none"
-                                                class="btn btn-primary btn-sm">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </button>
+                                        <a href="/barangmasuk/listbarangmasuk" class="btn btn-success btn-sm" style="background-color: #48EE59; border:none; outline:none;">
+                                            <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <a href="">
-                                            <button style="background-color: #E70404; outline:none; border:none"
-                                                class="btn btn-primary btn-sm">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
+                                        <a href="#" class="btn btn-danger btn-sm" style="background-color: #E70404; border:none; outline:none;">
+                                            <i class="fa-solid fa-trash-can"></i>
                                         </a>
-                                    </td>
+                                    </td>                                    
                                 </tr>
                             @endforeach
                     </tbody>
@@ -67,8 +65,14 @@
             </div>
         </div>
     </div>
-    <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
     <script>
-        let table = new DataTable('#brgmsk-table');
+        $(document).ready(function() {
+            var table = $('#brgmsk-table').DataTable({
+                scrollX: true,
+                fixedColumns: {
+                    rightColumns: 1
+                }
+            });
+        });
     </script>
 @endsection

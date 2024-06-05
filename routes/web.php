@@ -23,10 +23,6 @@ Route::post('/admin/register', [RegisterController::class, 'store']);
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(('auth'));
 Route::get('/admin', [RouteController::class, 'adminpage'])->name('adminpage')->middleware(('auth'));
 
-
-Route::get('/stokbarang', [RouteController::class, 'stokbarang'])->name('stock');
-
-
 Route::resource('/customer/mastercustomer', CustomerController::class)->middleware("auth");
 Route::resource('/supplier/mastersupplier', SupplierController::class)->middleware("auth");
 Route::resource('/kategori/masterkategori', KategoriController::class)->middleware("auth");

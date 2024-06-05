@@ -38,22 +38,14 @@
                             <td>{{ $kategori->kodekat }}</td>
                             <td>{{ $kategori->namakat }}</td>
                             <td>
-                                <a href="/kategori/masterkategori/{{ $kategori->namakat }}">
-                                    <button style="background-color: #1570EF; outline:none; border:none" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
+                                <a href="/kategori/masterkategori/{{ $kategori->namakat }}" class="btn btn-primary btn-sm" style="background-color: #1570EF; border:none; outline:none;">
+                                    <i class="fa-solid fa-eye"></i>
                                 </a>                                        
-                                <a href="/kategori/tambahkategori">
-                                    <button style="background-color: #48EE59; outline:none; border:none; text-decoration: none"
-                                        class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
+                                <a href="/kategori/masterkategori" class="btn btn-success btn-sm" style="background-color: #48EE59; border:none; outline:none;">
+                                    <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
-                                <a href="">
-                                    <button style="background-color: #E70404; outline:none; border:none"
-                                        class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
+                                <a href="#" class="btn btn-danger btn-sm" style="background-color: #E70404; border:none; outline:none;">
+                                    <i class="fa-solid fa-trash-can"></i>
                                 </a>
                             </td>
                         </tr>
@@ -65,6 +57,5 @@
     </div>
 
 </div>
-<script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
 <script>let table = new DataTable('#kategori-table');</script>
 @endsection

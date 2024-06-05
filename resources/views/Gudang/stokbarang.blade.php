@@ -5,6 +5,12 @@
         <h1 class="fs-3 m-4 mb-0" style="color: #1570EF">Stok Barang</h1>
     </div>
 
+    @if (session()->has('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+      </div>
+    @endif
+
     <div class="container-fluid px-4">
         <div class="btn-wrapper wrapper">
             <form action="/stokbarang/create">
@@ -38,19 +44,17 @@
                                     <td>{{ $stokbarang->kategori->namakat ?? '' }}</td>
                                     <td>{{ $stokbarang->jmlhbrg }} {{ $stokbarang->satuanbrg->namasatuan ?? '' }}</td>
                                     <td>
-                                        <button style="background-color: #1570EF; outline:none; border:none"
-                                            class="btn btn-primary btn-sm">
+                                        <a href="/stokbarang/{{ $stokbarang->namabrg }}" class="btn btn-primary btn-sm" style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
-                                        </button>
-                                        <button style="background-color: #48EE59; outline:none; border:none"
-                                            class="btn btn-primary btn-sm">
+                                        </a>                                        
+                                        <a href="/stokbarang/" class="btn btn-success btn-sm" style="background-color: #48EE59; border:none; outline:none;">
                                             <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                        <button style="background-color: #E70404; outline:none; border:none"
-                                            class="btn btn-primary btn-sm">
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-sm" style="background-color: #E70404; border:none; outline:none;">
                                             <i class="fa-solid fa-trash-can"></i>
-                                        </button>
+                                        </a>
                                     </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>
@@ -58,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+       
         <script>
             let table = new DataTable('#stokbarang-table');
         </script>

@@ -24,6 +24,10 @@ class Kategori extends Model
         return $this->hasMany(RecordBarangKeluar::class);
     }
 
+    public function stokbarang(){
+        return $this->hasMany(StokBarang::class);
+    }
+
     public function getRouteKeyName(){
         return 'namakat';
     }

@@ -47,12 +47,14 @@
                                         <a href="/stokbarang/{{ $stokbarang->namabrg }}" class="btn btn-primary btn-sm" style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>                                        
-                                        <a href="/stokbarang/" class="btn btn-success btn-sm" style="background-color: #48EE59; border:none; outline:none;">
+                                        <a href="/stokbarang/{{ $stokbarang->namabrg }}/edit" class="btn btn-success btn-sm" style="background-color: #48EE59; border:none; outline:none;">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <a href="#" class="btn btn-danger btn-sm" style="background-color: #E70404; border:none; outline:none;">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </a>
+                                        <form action="/stokbarang/{{ $stokbarang->namabrg }}" method="POST" class="d-inline">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm" style="background-color: #E70404; border:none; outline:none;" onclick="return confirm('Yakin Akan Menghapus Data Ini?')"><i class="fa-solid fa-trash-can"></i></button>
+                                        </form> 
                                     </td>
                                     
                                 </tr>

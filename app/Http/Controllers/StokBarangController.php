@@ -87,8 +87,9 @@ class StokBarangController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(StokBarang $stokBarang)
+    public function destroy(StokBarang $stokbarang)
     {
-        //
+        $stokbarang->delete();
+        return redirect('/stokbarang')->with('success', 'Berhasil Hapus Stok!');
     }
 }

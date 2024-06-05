@@ -124,8 +124,9 @@ class BarangKeluarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RecordBarangKeluar $recordBarangKeluar)
+    public function destroy(RecordBarangKeluar $recordbarangkeluar)
     {
-        //
+        $recordbarangkeluar->delete();
+        return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Hapus Laporan!');
     }
 }

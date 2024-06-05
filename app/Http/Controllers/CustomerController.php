@@ -83,6 +83,7 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+        return redirect('/customer/mastercustomer')->with('success', 'Berhasil Hapus Customer!');
     }
 }

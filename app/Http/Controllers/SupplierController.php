@@ -84,6 +84,7 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->delete();
+        return redirect('/supplier/mastersupplier')->with('success', 'Berhasil Hapus Supplier!');
     }
 }

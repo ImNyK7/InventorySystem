@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\StokBarang;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
@@ -23,12 +24,23 @@ Route::post('/admin/register', [RegisterController::class, 'store']);
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(('auth'));
 Route::get('/admin', [RouteController::class, 'adminpage'])->name('adminpage')->middleware(('auth'));
 
-Route::resource('/customer/mastercustomer', CustomerController::class)->middleware("auth");
-Route::resource('/supplier/mastersupplier', SupplierController::class)->middleware("auth");
-Route::resource('/kategori/masterkategori', KategoriController::class)->middleware("auth");
-Route::resource('/barangmasuk/listbarangmasuk', BarangMasukController::class)->middleware("auth");
-Route::resource('/barangkeluar/listbarangkeluar', BarangKeluarController::class)->middleware("auth");
-Route::resource('/stokbarang', StokBarangController::class)->middleware("auth");
+Route::resource('/customer/mastercustomer', CustomerController::class)->except(['destroy', 'edit', 'update'])->middleware("auth");
+Route::delete('/customer/mastercustomer/{customer:perusahaancust}', [CustomerController::class, 'destroy'])->middleware('auth');
+
+Route::resource('/supplier/mastersupplier', SupplierController::class)->except(['destroy', 'edit', 'update'])->middleware("auth");
+Route::delete('/supplier/mastersupplier/{supplier:perusahaansupp}', [SupplierController::class, 'destroy'])->middleware('auth');
+
+Route::resource('/kategori/masterkategori', KategoriController::class)->except(['destroy', 'edit', 'update'])->middleware("auth");
+Route::delete('/kategori/masterkategori/{kategori:namakat}', [KategoriController::class, 'destroy'])->middleware("auth");
+
+Route::resource('/barangmasuk/listbarangmasuk', BarangMasukController::class)->except(['destroy', 'edit', 'update'])->middleware("auth");
+Route::delete('/barangmasuk/listbarangmasuk/{recordbarangmasuk:kodebrgmsk}', [BarangMasukController::class, 'destroy'])->middleware("auth");
+
+Route::resource('/barangkeluar/listbarangkeluar', BarangKeluarController::class)->except(['destroy', 'edit', 'update'])->middleware("auth");
+Route::delete('/barangkeluar/listbarangkeluar/{listbarangkeluar:kodebrgklr}', [BarangKeluarController::class, 'destroy'])->middleware("auth");
+
+Route::resource('/stokbarang', StokBarangController::class)->except(['destroy', 'edit', 'update'])->middleware("auth");
+Route::delete('/stokbarang/{stokbarang:namabrg}', [StokBarangController::class, 'destroy'])->middleware("auth");
 
 // Route::get('/coba', function () {
 //     return view('coba');

@@ -15,9 +15,15 @@ class Supplier extends Model
         'kontaksupp',
         'kotasupp',
         'alamatsupp',
+        'alamat2supp',
         'notelponsupp',
         'termsupp',
+        'descsupp',
     ];
 
     protected $guarded =['id'];
+
+    public function getRouteKeyName(){
+        return 'perusahaansupp';
+    }
 }

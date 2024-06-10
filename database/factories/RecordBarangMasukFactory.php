@@ -21,10 +21,10 @@ class RecordBarangMasukFactory extends Factory
             'tanggalbrgmsk' => fake()->dateTime,
             'jmlhbrgmsk' => fake()->numberBetween(1,50),
             'satuanbrg_id' => mt_rand(1,6),
-            'namabrgmsk' => fake()->word(),
+            'stokbarang_id' => mt_rand(1,2),
             'hrgbeli' => fake()->randomFloat(),
             'kategori_id' => mt_rand(1,3),
-            'supplier_id' => mt_rand(1,5),
+            'supplier_id' => mt_rand(1,4),
         ];
     }
 }

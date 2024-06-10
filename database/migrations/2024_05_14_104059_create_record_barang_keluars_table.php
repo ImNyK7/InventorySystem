@@ -17,10 +17,12 @@ return new class extends Migration
             $table->date('tanggalbrgklr');
             $table->integer('jmlhbrgklr');
             $table->foreignId('satuanbrg_id');
-            $table->string('namabrgklr');
-            $table->char('hrgjual');
+            $table->foreignId('stokbarang_id');
+            //$table->string('namabrgklr');
+            $table->decimal('hrgjual', 15, 2);
             $table->foreignId('kategori_id');
             $table->foreignId('customer_id');
+            //$table->json('noseribrgklr');
             $table->timestamps();
         });
     }

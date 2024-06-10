@@ -6,13 +6,10 @@
   color: fff;
   border-radius: 20px;
   padding: 35px 20px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-25%, -50%);
   overflow-y: auto;
   margin: 20px;
 }
+
 
 .limitedNumbSelect2{
   width: 80%;

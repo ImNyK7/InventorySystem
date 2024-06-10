@@ -15,6 +15,11 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/4.0.1/css/fixedColumns.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/fixedcolumns/4.0.1/js/dataTables.fixedColumns.min.js"></script>
     <title>SI SUPRAS | {{ $title }}</title>
 </head>
 
@@ -22,63 +27,7 @@
 
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
-        <div class="bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center py-4 primary-text fs-2 fw-bold text-uppercase border-bottom">
-                SI SUPRAS 
-            </div>
-            <div class="list-group list-group-flush">
-                <a href="/"
-                    class="list-group-item list-group-item-action bg-transparent second-text dashboard-button fw-bold"
-                    style="text-decoration: none; color: gray;">
-                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
-                </a>
-                <div class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <a href="" style="text-decoration: none; color: gray;" id="masterLink">
-                        <i class="fas fa-user-circle me-2"></i>Master
-                    </a>
-                    <ul class="list-group list-group-flush my-1" style="margin-left: 15px; display: none;"
-                        id="masterSubMenu">
-                        <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
-                            style="padding: 9px">
-                            <a href="/customer/mastercustomer" {{ $title === 'Master Customer' ? 'active' : '' }}
-                                style="text-decoration: none; color: gray;">Master Customer</a>
-                        </li>
-                        <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
-                            style="padding: 9px">
-                            <a href="/supplier/mastersupplier" {{ $title === 'Master Supplier' ? 'active' : '' }}
-                                style="text-decoration: none; color: gray;">Master Supplier</a>
-                        </li>
-                        <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
-                            style="padding: 9px">
-                            <a href="/kategori/masterkategori" {{ $title === 'Master Kategori' ? 'active' : '' }}
-                                style="text-decoration: none; color: gray;">Master Kategori</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <a href="stokbarang" style="text-decoration: none; color: gray;" id="gudangLink">
-                        <i class="fas fa-box me-2"></i>Gudang
-                    </a>
-                    <ul class="list-group list-group-flush my-1" style="margin-left: 15px; display: none;"
-                        id="gudangSubMenu">
-                        <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
-                            style="padding: 9px">
-                            <a href="/stokbarang" style="text-decoration: none; color: gray;">Lihat Stok Barang</a>
-                        </li>
-                        <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
-                            style="padding: 9px">
-                            <a href="/barangmasuk/listbarangmasuk" style="text-decoration: none; color: gray;">List
-                                Barang Masuk</a>
-                        </li>
-                        <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
-                            style="padding: 9px">
-                            <a href="/barangkeluar/listbarangkeluar" style="text-decoration: none; color: gray;">List
-                                Barang Keluar</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        @include('Partials.sidebar')
 
         <!-- Page Content -->
         <div id="page-content-wrapper">

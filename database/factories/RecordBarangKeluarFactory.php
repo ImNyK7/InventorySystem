@@ -17,14 +17,15 @@ class RecordBarangKeluarFactory extends Factory
     public function definition(): array
     {
         return [
-            'kodebrgklr' => fake()->numerify('BM-####'),
+            'kodebrgklr' => fake()->numerify('BK-####'),
             'tanggalbrgklr' => fake()->dateTime,
             'jmlhbrgklr' => fake()->numberBetween(1,50),
             'satuanbrg_id' => mt_rand(1,6),
             'namabrgklr' => fake()->word(),
             'hrgjual' => fake()->randomFloat(),
             'kategori_id' => mt_rand(1,3),
-            'customer_id' => mt_rand(1,5),
+            'customer_id' => mt_rand(1,4),
+            'noseribrgklr' => fake()->numerify(),
         ];
     }
 }

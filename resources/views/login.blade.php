@@ -40,9 +40,6 @@
                             is-invalid @enderror>Username/ID</label></td>
                         <td><input type="text" name="username" class="form-control" required autofocus value="{{ old('username') }}"></td>
                         <td><i class="fas fa-user me-2"></i></td>
-                        @error('username')
-                            <tr class="invalid-message">{{ $message }}</tr>
-                        @enderror
                     </tr>
                     <tr>
                         <td><label for="password" class="form-label">Password</label></td>

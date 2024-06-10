@@ -12,7 +12,10 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        return view('Master/Kategori/mkategori', [
+            "title" => "Master Kategori",
+            "kategoris" => Kategori::all()
+        ]);
     }
 
     /**
@@ -20,7 +23,9 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('Master/Kategori/tambahkategori', [
+            "title" => "Tambah Kategori"
+        ]);
     }
 
     /**
@@ -28,31 +33,51 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'kodekat' => 'required|string|max:20|unique:kategoris,kodekat',
+            'namakat' => 'required|string|max:255',
+        ]);
+        
+        Kategori::create($validatedData);
+
+        return redirect('/kategori/masterkategori')->with('success', 'Berhasil Tambah Kategori!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Kategori $kategori)
+    public function show(Kategori $masterkategori)
     {
-        //
+        return view('Master/Kategori/showkategori',[
+            'kategori' => $masterkategori,
+            'title' => 'Show Kategori'
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kategori $kategori)
+    public function edit(Kategori $masterkategori)
     {
-        //
+        return view('Master.Kategori.editkategori', [
+            'kategori' => $masterkategori,
+            'title' => 'Edit Kategori'
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kategori $kategori)
+    public function update(Request $request, Kategori $masterkategori)
     {
-        //
+        $validatedData = $request->validate([
+            'kodekat' => 'required|string|max:20|unique:kategoris,kodekat',
+            'namakat' => 'required|string|max:255',
+        ]);
+
+        $masterkategori->update($validatedData);
+
+        return redirect('/kategori/masterkategori')->with('success', 'Berhasil Edit Kategori!');
     }
 
     /**
@@ -60,6 +85,7 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori)
     {
-        //
+        $kategori->delete();
+        return redirect('/kategori/masterkategori')->with('success', 'Berhasil Hapus Kategori!');
     }
 }

@@ -34,6 +34,7 @@
                                 <th>Nama Barang</th>
                                 <th>Harga Beli</th>
                                 <th>Kategori</th>
+                                <th>Total</th>
                                 <th style="background-color: whitesmoke">Action</th>
                             </tr>
                         </thead>
@@ -45,7 +46,7 @@
                                     <td>{{ $recordbarangmasuk->tanggalbrgmsk }}</td>
                                     <td>
                                         <a style="text-decoration: none; color: black"
-                                            href="/supplier/mastersupplier/{{ $recordbarangmasuk->supplier->perusahaansupp  ?? ''}}">
+                                            href="/supplier/mastersupplier/{{ $recordbarangmasuk->supplier->perusahaansupp ?? '' }}">
                                             {{ $recordbarangmasuk->supplier->perusahaansupp ?? '' }}
                                         </a>
                                     </td>
@@ -58,8 +59,9 @@
                                         </a>
                                         {{ $recordbarangmasuk->stokbarang->namabrg ?? '' }}
                                     </td>
-                                    <td>{{ $recordbarangmasuk->hrgbeli }}</td>
+                                    <td>Rp{{ number_format($recordbarangmasuk->hrgbeli) }}</td>
                                     <td>{{ $recordbarangmasuk->kategori->namakat ?? '' }}</td>
+                                    <td>Rp{{ number_format($recordbarangmasuk->hrgbeli * $recordbarangmasuk->jmlhbrgmsk, 2) }}</td>
                                     <td>
                                         <a href="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}"
                                             class="btn btn-primary btn-sm"

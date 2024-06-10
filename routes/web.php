@@ -26,7 +26,7 @@ Route::get('/admin', [RouteController::class, 'adminpage'])->name('adminpage')->
 
 Route::resource('/customer/mastercustomer', CustomerController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/customer/mastercustomer/{customer:perusahaancust}', [CustomerController::class, 'destroy'])->middleware('auth');
-Route::get('/customer/mastercustomer/{customer:perusahaancust}', [CustomerController::class, 'edit']);
+//Route::get('/customer/mastercustomer/{customer:perusahaancust}/edit', [CustomerController::class, 'edit']);
 
 Route::resource('/supplier/mastersupplier', SupplierController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/supplier/mastersupplier/{supplier:perusahaansupp}', [SupplierController::class, 'destroy'])->middleware('auth');

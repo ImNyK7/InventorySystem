@@ -56,6 +56,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $mastercustomer)
     {
+        dd($mastercustomer);
         return view('Master/Customer/showcustomer', [
             'customer' => $mastercustomer,
             'title' => 'Show Customer'
@@ -65,18 +66,16 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Customer $customer)
+    public function edit(Customer $mastercustomer)
     {
-
-        $results = Customer::where('kodecust', $customer)->first();
-
-        return view('Master\Customer\editcustomer', [
-            "customer" => $results,
-            "title" => "Edit Customer"
+        //dd($customer);
+        return view('Master.Customer.editcustomer', [
+            'customer' => $mastercustomer,
+            'title' => 'Edit Customer'
         ]);
     }
 
-public function update(Request $request, Customer $customer)
+    public function update(Request $request, Customer $mastercustomer)
     {
         $validatedData = $request->validate([
             'kodecust' => 'required|string|max:15',
@@ -91,11 +90,11 @@ public function update(Request $request, Customer $customer)
             'desccust' => 'nullable|string|max:50',
         ]);
 
-        Customer::where('kodecust', $customer->kodecust)
-                ->update($validatedData);
+        $mastercustomer->update($validatedData);
 
         return redirect('/customer/mastercustomer')->with('success', 'Berhasil Edit Customer!');
     }
+
 
     /**
      * Remove the specified resource from storage.

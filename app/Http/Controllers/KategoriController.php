@@ -57,17 +57,27 @@ class KategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kategori $kategori)
+    public function edit(Kategori $masterkategori)
     {
-        //
+        return view('Master.Kategori.editkategori', [
+            'kategori' => $masterkategori,
+            'title' => 'Edit Kategori'
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kategori $kategori)
+    public function update(Request $request, Kategori $masterkategori)
     {
-        //
+        $validatedData = $request->validate([
+            'kodekat' => 'required|string|max:20|unique:kategoris,kodekat',
+            'namakat' => 'required|string|max:255',
+        ]);
+
+        $masterkategori->update($validatedData);
+
+        return redirect('/kategori/masterkategori')->with('success', 'Berhasil Edit Kategori!');
     }
 
     /**

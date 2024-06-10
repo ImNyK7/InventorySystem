@@ -33,6 +33,7 @@
                                 <th>Nama Barang</th>
                                 <th>Harga Jual</th>
                                 <th>Kategori</th>
+                                <th>Total</th>
                                 <th style="background-color: whitesmoke">Action</th>
                             </tr>
                         </thead>
@@ -56,8 +57,9 @@
                                             {{ $recordbarangkeluar->stokbarang->namabrg ?? '' }}
                                         </a>
                                     </td>
-                                    <td>{{ $recordbarangkeluar->hrgjual }}</td>
+                                    <td>Rp{{ number_format($recordbarangkeluar->hrgjual) }}</td>
                                     <td>{{ $recordbarangkeluar->kategori->namakat ?? '' }}</td>
+                                    <td>Rp{{ number_format($recordbarangkeluar->hrgjual * $recordbarangkeluar->jmlhbrgklr, 2) }}</td>
                                     <td>
                                         <a href="/barangkeluar/listbarangkeluar/{{ $recordbarangkeluar->kodebrgklr }}"
                                             class="btn btn-primary btn-sm"

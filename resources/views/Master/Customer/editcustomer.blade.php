@@ -5,14 +5,14 @@
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper">
                 <h1>Form<br>Edit Customer</h1>
-                <form method="POST" action="{{  url('/customer/mastercustomer', $customer->kodecust)  }}">
-                    @method('put')
+                <form method="POST" action="{{  url('/customer/mastercustomer/'.$customer->perusahaancust)  }}">
                     @csrf
+                    @method('put')
                     <table>
                         <tr>
                             <td><label for="kodecust">Kode</label></td>
                             <td>
-                                <input type="text" name="kodecust" id="kodecust" value="{{ old('kodecust', $customer->kodecust ) }}" required style="width: 50px"
+                                <input type="text" name="kodecust" id="kodecust" value="{{ old('kodecust', $customer->kodecust) }}" required style="width: 50px"
                                     @error('kodecust') class="is-invalid" @enderror>
                                 @error('kodecust')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -100,8 +100,7 @@
                             </td>
                         </tr>
                     </table>
-                    <a href="{{ url('/supplier/mastersupplier') }}"><button type="button"
-                            class="btncancel">Cancel</button></a>
+                    <a href="{{ url('/customer/mastercustomer') }}"><button type="button" class="btncancel">Cancel</button></a>
                     <button type="submit" class="btnsubmit">Submit</button>
                 </form>
             </div>

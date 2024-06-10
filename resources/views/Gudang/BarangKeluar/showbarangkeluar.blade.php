@@ -29,7 +29,7 @@
                         <td><label>Customer</label></td>
                         <td><input value="{{ $recordbarangkeluar->customer->perusahaancust }}" readonly disabled style="width: 200px"></td>             
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <td><label>Nomor Seri</label></td>
                         <td>
                             @foreach(json_decode($recordbarangkeluar->noseribrgklr) as $index => $noseri)
@@ -37,7 +37,7 @@
                             <td><input value="{{ $noseri }}" readonly disabled></td>
                         </tr>
                     @endforeach</td>             
-                    </tr>
+                    </tr> --}}
                 </table>
             </form>
             

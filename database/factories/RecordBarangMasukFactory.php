@@ -24,7 +24,7 @@ class RecordBarangMasukFactory extends Factory
             'stokbarang_id' => mt_rand(1,2),
             'hrgbeli' => fake()->randomFloat(),
             'kategori_id' => mt_rand(1,3),
-            'supplier_id' => mt_rand(1,5),
+            'supplier_id' => mt_rand(1,4),
         ];
     }
 }

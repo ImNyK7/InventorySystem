@@ -43,10 +43,21 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $recordbarangmasuk->kodebrgmsk }}</td>
                                     <td>{{ $recordbarangmasuk->tanggalbrgmsk }}</td>
-                                    <td>{{ $recordbarangmasuk->supplier->perusahaansupp ?? '' }}</td>
+                                    <td>
+                                        <a style="text-decoration: none; color: black"
+                                            href="/supplier/mastersupplier/{{ $recordbarangmasuk->supplier->perusahaansupp  ?? ''}}">
+                                            {{ $recordbarangmasuk->supplier->perusahaansupp ?? '' }}
+                                        </a>
+                                    </td>
                                     <td>{{ $recordbarangmasuk->jmlhbrgmsk }}
                                         {{ $recordbarangmasuk->satuanbrg->namasatuan ?? '' }}</td>
-                                    <td>{{ $recordbarangmasuk->stokbarang->namabrg ?? '' }}</td>
+                                    <td>
+                                        <a style="text-decoration: none; color: black"
+                                            href="/stokbarang/{{ $recordbarangmasuk->stokbarang->namabrg ?? '' }}">
+                                            
+                                        </a>
+                                        {{ $recordbarangmasuk->stokbarang->namabrg ?? '' }}
+                                    </td>
                                     <td>{{ $recordbarangmasuk->hrgbeli }}</td>
                                     <td>{{ $recordbarangmasuk->kategori->namakat ?? '' }}</td>
                                     <td>
@@ -55,7 +66,8 @@
                                             style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
-                                        <a href="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}/edit" class="btn btn-success btn-sm"
+                                        <a href="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}/edit"
+                                            class="btn btn-success btn-sm"
                                             style="background-color: #48EE59; border:none; outline:none;">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>

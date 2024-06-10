@@ -17,7 +17,7 @@
                         <td><label>Jumlah</label></td>
                         <td><input value="{{ $recordbarangmasuk->jmlhbrgmsk }}"  readonly disabled style="width: 50px"> <input value="{{ $recordbarangmasuk->satuanbrg->namasatuan }}" style="width: 50px" readonly disabled></td>
                         <td><label>Nama Barang</label></td>
-                        <td><input value="{{ $recordbarangmasuk->stokbarang->namabrg }}" readonly disabled style="width: 200px"></td>
+                        <td><input value="{{ $recordbarangmasuk->stokbarang->namabrg ?? ''}}" readonly disabled style="width: 200px"></td>
                     </tr>
                     <tr>
                         <td><label>Harga Beli</label></td>
@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <td><label>Supplier</label></td>
-                        <td><input value="{{ $recordbarangmasuk->supplier->perusahaansupp }}" readonly disabled style="width: 200px"></td>             
+                        <td><input value="{{ $recordbarangmasuk->supplier->perusahaansupp ?? ''}}" readonly disabled style="width: 200px"></td>             
                     </tr>
 
                 </table>

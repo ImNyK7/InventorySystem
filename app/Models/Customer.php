@@ -12,6 +12,8 @@ class Customer extends Model
 
     protected $guarded =['id'];
 
+    protected $table = 'customers';
+
     public function getRouteKeyName(){
         return 'perusahaancust';
     }

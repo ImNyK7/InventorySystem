@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\SatuanBrg;
 use App\Models\User;
 use App\Models\Customer;
 use App\Models\Kategori;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Supplier;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\SatuanBrg;
+use App\Models\StokBarang;
 use Illuminate\Database\Seeder;
 use App\Models\RecordBarangMasuk;
 use App\Models\RecordBarangKeluar;
@@ -43,6 +44,24 @@ class DatabaseSeeder extends Seeder
             'namakat' => 'Kamera CCTV'
         ]);
 
+        StokBarang::create([
+            'namabrg' => 'Laptop Asus Vivobook S14',
+            'jmlhbrg' => '5',
+            'satuanbrg_id' => '3',
+            'kategori_id' => '2'
+        ]);
+        StokBarang::create([
+            'namabrg' => 'Kamera CTV',
+            'jmlhbrg' => '10',
+            'satuanbrg_id' => '2',
+            'kategori_id' => '3'
+        ]);
+        StokBarang::create([
+            'namabrg' => 'Printer EPSON 3242',
+            'jmlhbrg' => '15',
+            'satuanbrg_id' => '1',
+            'kategori_id' => '1'
+        ]);
         Customer::factory(5)->create();
         // Customer::create([
         //     'kodecust' => 'C01',
@@ -66,7 +85,7 @@ class DatabaseSeeder extends Seeder
         //     'termsupp' => '7',
         // ]);
 
-        RecordBarangMasuk::factory(5)->create();
+        RecordBarangMasuk::factory(15)->create();
         // RecordBarangMasuk::create([
         //     'kodebrgmsk' => 'BM-0001',
         //     'tanggalbrgmsk' => '2022-04-05',
@@ -77,7 +96,7 @@ class DatabaseSeeder extends Seeder
         //     'supplier_id' => 1,
         // ]);
 
-        // RecordBarangKeluar::factory(5)->create();
+        //RecordBarangKeluar::factory(15)->create();
         // RecordBarangKeluar::create([
         //     'kodebrgklr' => 'BK-0001',
         //     'tanggalbrgklr' => '2022-07-08',

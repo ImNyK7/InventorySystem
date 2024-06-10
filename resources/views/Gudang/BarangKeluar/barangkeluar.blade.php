@@ -42,10 +42,20 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $recordbarangkeluar->kodebrgklr }}</td>
                                     <td>{{ $recordbarangkeluar->tanggalbrgklr }}</td>
-                                    <td>{{ $recordbarangkeluar->customer->perusahaancust ?? '' }}</td>
+                                    <td>
+                                        <a style="text-decoration: none; color: black"
+                                            href="/customer/mastercustomer/{{ $recordbarangkeluar->customer->perusahaansupp }}">
+                                            {{ $recordbarangkeluar->customer->perusahaancust ?? '' }}
+                                        </a>
+                                    </td>
                                     <td>{{ $recordbarangkeluar->jmlhbrgklr }}
                                         {{ $recordbarangkeluar->satuanbrg->namasatuan ?? '' }}</td>
-                                    <td>{{ $recordbarangkeluar->namabrgklr }}</td>
+                                    <td>
+                                        <a style="text-decoration: none; color: black"
+                                            href="/stokbarang/{{ $recordbarangkeluar->stokbarang->namabrg }}">
+                                            {{ $recordbarangkeluar->stokbarang->namabrg ?? '' }}
+                                        </a>
+                                    </td>
                                     <td>{{ $recordbarangkeluar->hrgjual }}</td>
                                     <td>{{ $recordbarangkeluar->kategori->namakat ?? '' }}</td>
                                     <td>

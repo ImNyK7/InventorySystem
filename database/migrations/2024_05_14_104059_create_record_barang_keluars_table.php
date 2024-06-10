@@ -19,10 +19,10 @@ return new class extends Migration
             $table->foreignId('satuanbrg_id');
             $table->foreignId('stokbarang_id');
             //$table->string('namabrgklr');
-            $table->decimal('hrgjual', 15, 2);;
+            $table->decimal('hrgjual', 15, 2);
             $table->foreignId('kategori_id');
             $table->foreignId('customer_id');
-            $table->json('noseribrgklr')->nullable();
+            //$table->json('noseribrgklr');
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@ use App\Models\Supplier;
 use App\Models\SatuanBrg;
 use Illuminate\Http\Request;
 use App\Models\RecordBarangMasuk;
+use App\Models\StokBarang;
 
 class BarangMasukController extends Controller
 {
@@ -33,7 +34,8 @@ class BarangMasukController extends Controller
             "title" => "Tambah Barang Masuk",
             "kategoris" => Kategori::all(),
             "suppliers" => Supplier::all(),
-            "satuanbrgs" => SatuanBrg::all()
+            "satuanbrgs" => SatuanBrg::all(),
+            "stokbarangs" => StokBarang::all(),
         ]);
     }
 
@@ -41,20 +43,25 @@ class BarangMasukController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $validatedData = $request->validate([
-        'kodebrgmsk' => 'required|string|max:255',
-        'tanggalbrgmsk' => 'required|date',
-        'jmlhbrgmsk' => 'required|integer',
-        'satuanbrg_id' => 'required|exists:satuan_brgs,id',
-        'namabrgmsk' => 'required|string|max:255',
-        'hrgbeli' => 'required|numeric|min:0.01|max:999999999999.99',
-        'kategori_id' => 'required|exists:kategoris,id',
-        'supplier_id' => 'required|exists:suppliers,id',
-    ]);
+    {
+        $validatedData = $request->validate([
+            'kodebrgmsk' => 'required|string|max:255|unique:record_barang_masuks,kodebrgmsk',
+            'tanggalbrgmsk' => 'required|date',
+            'jmlhbrgmsk' => 'required|integer|min:1',
+            'satuanbrg_id' => 'required|exists:satuan_brgs,id',
+            'stokbarang_id' => 'required|exists:stok_barangs,id',
+            'hrgbeli' => 'required|numeric|min:0.01|max:999999999999.99',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'supplier_id' => 'required|exists:suppliers,id',
+        ]);
 
-    return response()->json($validatedData);
-}
+        if (RecordBarangMasuk::where('kodebrgmsk', $validatedData['kodebrgmsk'])->exists()) {
+            return redirect()->back()->withErrors(['kodebrgmsk' => 'Kode barang masuk sudah ada, silahkan buat kode baru atau gunakan fitur Edit.'])->withInput();
+        }
+        RecordBarangMasuk::create($validatedData);
+        //dd("aaaa");
+        return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Tambah Laporan!');
+    }
 
 
     /**
@@ -62,33 +69,62 @@ class BarangMasukController extends Controller
      */
     public function show(RecordBarangMasuk $listbarangmasuk)
     {
-        return view('Gudang/BarangMasuk/showbarangmasuk',[
+        return view('Gudang/BarangMasuk/showbarangmasuk', [
             'recordbarangmasuk' => $listbarangmasuk,
-            'title' => 'Barang Masuk'
+            'title' => 'Barang Masuk',
+            "kategoris" => Kategori::all(),
+            "suppliers" => Supplier::all(),
+            "satuanbrgs" => SatuanBrg::all(),
+            "stokbarangs" => StokBarang::all(),
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RecordBarangMasuk $recordBarangMasuk)
+    public function edit(RecordBarangMasuk $listbarangmasuk)
     {
-        //
+
+        return view('Gudang/BarangMasuk/editbarangmasuk', [
+            'recordbarangmasuk' => $listbarangmasuk,
+            'title' => 'Edit Laporan Barang Masuk',
+            "kategoris" => Kategori::all(),
+            "suppliers" => Supplier::all(),
+            "satuanbrgs" => SatuanBrg::all(),
+            "stokbarangs" => StokBarang::all(),
+        ]);
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RecordBarangMasuk $recordBarangMasuk)
+    public function update(Request $request, RecordBarangMasuk $listbarangmasuk)
     {
-        //
+        $validatedData = $request->validate([
+            'kodebrgmsk' => 'required|string|max:255',
+            'tanggalbrgmsk' => 'required|date',
+            'jmlhbrgmsk' => 'integer|min:1',
+            'satuanbrg_id' => 'required|exists:satuan_brgs,id',
+            'stokbarang_id' => 'exists:stok_barangs,id',
+            'hrgbeli' => 'required|numeric|min:0.01|max:999999999999.99',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'supplier_id' => 'required|exists:suppliers,id',
+        ]);
+
+        $listbarangmasuk->update($validatedData);
+
+        return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Edit Laporan!');
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RecordBarangMasuk $recordBarangMasuk)
+    public function destroy(RecordBarangMasuk $recordbarangmasuk)
     {
-        //
+        $recordbarangmasuk->delete();
+        return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Hapus Laporan!');
     }
 }

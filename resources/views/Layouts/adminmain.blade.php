@@ -27,11 +27,11 @@
 
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
-        @include('Partials.sidebar')
+        @include('Partials.adminsidebar')
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            @include('Partials.navbar')
+            @include('Partials.adminnavbar')
             <div class="container-fluid px-4">
                 <!-- Content area -->
                 @yield('content')

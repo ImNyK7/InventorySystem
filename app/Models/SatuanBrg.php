@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\StokBarang;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SatuanBrg extends Model
 {
@@ -18,5 +19,9 @@ class SatuanBrg extends Model
     }
     public function recordbarangkeluar(){
         return $this->hasMany(RecordBarangKeluar::class);
+    }
+
+    public function stokbarang(){
+        return $this->hasMany(StokBarang::class);
     }
 }

@@ -10,19 +10,9 @@ class Customer extends Model
 {
     use HasFactory, Notifiable;
 
-    protected $fillable = [
-        'kodecust',
-        'perusahaancust',
-        'kontakcust',
-        'kotacust',
-        'alamatcust',
-        'alamat2cust',
-        'notelponcust',
-        'termcust',
-        'limitcust',
-        'desccust',
-    ];
     protected $guarded =['id'];
+
+    protected $table = 'customers';
 
     public function getRouteKeyName(){
         return 'perusahaancust';

@@ -42,10 +42,10 @@ class CustomerController extends Controller
             'alamat2cust' => 'nullable|string|max:255',
             'notelponcust' => 'required|string|max:30',
             'termcust' => 'required|integer',
-            'limitcust' => 'required',
+            'limitcust' => 'required|numeric|min:0.01|max:999999999999.99',
             'desccust' => 'nullable|string|max:50',
         ]);
-        
+
         Customer::create($validatedData);
 
         return redirect('/customer/mastercustomer')->with('success', 'Berhasil Tambah Customer!');
@@ -56,7 +56,8 @@ class CustomerController extends Controller
      */
     public function show(Customer $mastercustomer)
     {
-        return view('Master/Customer/showcustomer',[
+        dd($mastercustomer);
+        return view('Master/Customer/showcustomer', [
             'customer' => $mastercustomer,
             'title' => 'Show Customer'
         ]);
@@ -65,24 +66,42 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Customer $customer)
+    public function edit(Customer $mastercustomer)
     {
-        //
+        //dd($customer);
+        return view('Master/Customer/editcustomer', [
+            'customer' => $mastercustomer,
+            'title' => 'Edit Customer'
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, Customer $mastercustomer)
     {
-        //
+        $validatedData = $request->validate([
+            'kodecust' => 'required|string|max:15',
+            'perusahaancust' => 'required|string|max:255',
+            'kontakcust' => 'required|string|max:100',
+            'kotacust' => 'required|string|max:255',
+            'alamatcust' => 'required|string|max:255',
+            'alamat2cust' => 'nullable|string|max:255',
+            'notelponcust' => 'required|string|max:30',
+            'termcust' => 'required|integer',
+            'limitcust' => 'required',
+            'desccust' => 'nullable|string|max:50',
+        ]);
+
+        $mastercustomer->update($validatedData);
+
+        return redirect('/customer/mastercustomer')->with('success', 'Berhasil Edit Customer!');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+        return redirect('/customer/mastercustomer')->with('success', 'Berhasil Hapus Customer!');
     }
 }

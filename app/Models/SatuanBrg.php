@@ -10,8 +10,6 @@ class SatuanBrg extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['namasatuan'];
-
     protected $guarded = ['id'];
 
     public function recordbarangmasuk(){

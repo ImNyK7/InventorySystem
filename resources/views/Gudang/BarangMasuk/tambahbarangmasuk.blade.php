@@ -131,38 +131,29 @@
                 placeholder: "",
             });
 
-            // Mengisi tanggal saat ini
             const dateField = document.getElementById('dateField');
             const today = new Date().toISOString().split('T')[0];
             dateField.value = today;
 
             let stokJumlah = 0;
 
-            // Event listener untuk perubahan pada elemen select stokbarang_id
             $('#stokbarang_id').on('change', function() {
                 var selectedOption = $(this).find('option:selected');
                 stokJumlah = selectedOption.data('jumlah');
                 var kategori = selectedOption.data('kategori');
                 var satuan = selectedOption.data('satuan');
 
-                // Mengisi field jumlah barang
                 $('#jmlhbrgmsk').val('');
 
-                // Mengisi select kategori_id_display
                 $('#kategori_id_display').val(kategori).trigger('change');
-                // Mengisi hidden input kategori_id
                 $('#kategori_id').val(kategori);
 
-                // Mengisi select satuanbrg_display
                 $('#satuanbrg_display').val(satuan).trigger('change');
-                // Mengisi hidden input satuanbrg_id
                 $('#satuanbrg_id').val(satuan);
 
-                // Sembunyikan pesan error jika ada
                 $('#jmlhbrgmsk-error').hide();
             });
 
-            // Event listener untuk perubahan pada elemen input jmlhbrgmsk
             $('#jmlhbrgmsk').on('input', function() {
                 var jumlahMasuk = $(this).val();
                 if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
@@ -172,12 +163,11 @@
                 }
             });
 
-            // Mencegah submit form jika jumlah barang melebihi stok
             $('form').on('submit', function(event) {
                 var jumlahMasuk = $('#jmlhbrgmsk').val();
                 if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
                     $('#jmlhbrgmsk-error').show();
-                    event.preventDefault(); // Mencegah submit form
+                    event.preventDefault();
                 }
             });
         });

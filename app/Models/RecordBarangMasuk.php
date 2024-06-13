@@ -37,17 +37,3 @@ class RecordBarangMasuk extends Model
         return 'kodebrgmsk';
     }
 }
-
-// class StokBarang extends Model
-// {
-//     use HasFactory;
-
-//     protected $fillable = [
-//         'recordbarangmasuk_id', 'stokbrg'
-//     ];
-
-//     public function recordBarangMasuk()
-//     {
-//         return $this->belongsTo(RecordBarangMasuk::class, 'recordbarangmasuk_id');
-//     }
-// }

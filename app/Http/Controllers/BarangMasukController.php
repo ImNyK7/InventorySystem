@@ -71,7 +71,7 @@ class BarangMasukController extends Controller
     {
         return view('Gudang/BarangMasuk/showbarangmasuk', [
             'recordbarangmasuk' => $listbarangmasuk,
-            'title' => 'Barang Masuk',
+            'title' => 'Detail Barang Masuk',
             "kategoris" => Kategori::all(),
             "suppliers" => Supplier::all(),
             "satuanbrgs" => SatuanBrg::all(),
@@ -113,7 +113,6 @@ class BarangMasukController extends Controller
         ]);
 
         $listbarangmasuk->update($validatedData);
-
         return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Edit Laporan!');
 
 

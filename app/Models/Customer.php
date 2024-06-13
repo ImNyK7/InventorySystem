@@ -17,4 +17,9 @@ class Customer extends Model
     public function getRouteKeyName(){
         return 'perusahaancust';
     }
+
+    public function recordbarangkeluar(){
+        return $this->hasMany(RecordBarangKeluar::class);
+    }
+
 }

@@ -56,7 +56,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $mastercustomer)
     {
-        dd($mastercustomer);
+        //dd($mastercustomer);
         return view('Master/Customer/showcustomer', [
             'customer' => $mastercustomer,
             'title' => 'Show Customer'

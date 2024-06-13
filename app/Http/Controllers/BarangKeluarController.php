@@ -18,19 +18,11 @@ class BarangKeluarController extends Controller
     {
         $recordbarangkeluars = RecordBarangKeluar::with(['satuanbrg', 'kategori'])->get();
 
-        // Konversi noseribrgklr dari JSON ke array
-        // $recordbarangkeluars->transform(function ($item) {
-        //     $item->noseribrgklr = json_decode($item->noseribrgklr);
-        //     return $item;
-        // });
-
-
-            
         return view('Gudang/BarangKeluar/barangkeluar', [
             "title" => "Barang Keluar",
             "kategoris" => Kategori::all(),
             "customers" => Customer::all(),
-            "recordbarangkeluars" => RecordBarangKeluar::with(['satuanbrg', 'kategori'])->get(),
+            "recordbarangkeluars" => $recordbarangkeluars,
             "satuanbrgs" => SatuanBrg::all(),
             "stokbarangs" => StokBarang::all(),
         ]);
@@ -64,27 +56,15 @@ class BarangKeluarController extends Controller
             'hrgjual' => 'required|numeric|min:0.01|max:999999999999.99',
             'kategori_id' => 'required|exists:kategoris,id',
             'customer_id' => 'required|exists:customers,id',
-            //'noseribrgklr' => 'required|array',
+            'noseribrgklr' => 'required|array',
         ]);
 
         // Convert 'noseribrgklr' array to a JSON string
-        //$validatedData['noseribrgklr'] = json_decode($validatedData['noseribrgklr']);
+        $validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
 
         if (RecordBarangKeluar::where('kodebrgklr', $validatedData['kodebrgklr'])->exists()) {
             return redirect()->back()->withErrors(['kodebrgklr' => 'Kode barang sudah ada, silahkan buat kode baru atau gunakan fitur Edit.'])->withInput();
-            
         }
-
-        // $recordBarangKeluar = new RecordBarangKeluar();
-        // $recordBarangKeluar->kodebrgklr = $request->kodebrgklr;
-        // $recordBarangKeluar->tanggalbrgklr = $request->tanggalbrgklr;
-        // $recordBarangKeluar->jmlhbrgklr = $request->jmlhbrgklr;
-        // $recordBarangKeluar->hrgjual = $request->hrgjual;
-        // $recordBarangKeluar->stokbarang_id = $request->stokbarang_id;
-        // $recordBarangKeluar->satuanbrg_id = $request->satuanbrg_id;
-        // $recordBarangKeluar->kategori_id = $request->kategori_id;
-        // $recordBarangKeluar->customer_id = $request->customer_id;
-        // $recordBarangKeluar->save();
 
         $stokbarang = StokBarang::find($request->stokbarang_id);
         $stokbarang->jmlhbrg -= $request->jmlhbrgklr;
@@ -101,24 +81,48 @@ class BarangKeluarController extends Controller
     {
         return view('Gudang/BarangKeluar/showbarangkeluar', [
             'recordbarangkeluar' => $listbarangkeluar,
-            'title' => 'Barang Masuk'
+            'title' => 'Detail Barang Keluar',
+            "kategoris" => Kategori::all(),
+            "customers" => Customer::all(),
+            "satuanbrgs" => SatuanBrg::all(),
+            "stokbarangs" => StokBarang::all(),
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RecordBarangKeluar $recordBarangKeluar)
+    public function edit(RecordBarangKeluar $listbarangkeluar)
     {
-        //
+        return view('Gudang/BarangKeluar/editbarangkeluar', [
+            'recordbarangkeluar' => $listbarangkeluar,
+            'title' => 'Edit Laporan Barang Keluar',
+            "kategoris" => Kategori::all(),
+            "customers" => Customer::all(),
+            "satuanbrgs" => SatuanBrg::all(),
+            "stokbarangs" => StokBarang::all(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RecordBarangKeluar $recordBarangKeluar)
+    public function update(Request $request, RecordBarangKeluar $listbarangkeluar)
     {
-        //
+        $validatedData = $request->validate([
+            'kodebrgklr' => 'required|string|max:255',
+            'tanggalbrgklr' => 'required|date',
+            'jmlhbrgklr' => 'integer|min:1',
+            'satuanbrg_id' => 'required|exists:satuan_brgs,id',
+            'stokbarang_id' => 'exists:stok_barangs,id',
+            'hrgjual' => 'required|numeric|min:0.01|max:999999999999.99',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'customer_id' => 'required|exists:customers,id',
+            'noseribrgklr' => 'required|array',
+        ]);
+
+        $listbarangkeluar->update($validatedData);
+        return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Edit Laporan!');
     }
 
     /**

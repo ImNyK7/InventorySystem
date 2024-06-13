@@ -45,7 +45,7 @@
                                     <td>{{ $recordbarangkeluar->tanggalbrgklr }}</td>
                                     <td>
                                         <a style="text-decoration: none; color: black"
-                                            href="/customer/mastercustomer/{{ $recordbarangkeluar->customer->perusahaansupp }}">
+                                            href="/customer/mastercustomer/{{ $recordbarangkeluar->customer->perusahaancust }}">
                                             {{ $recordbarangkeluar->customer->perusahaancust ?? '' }}
                                         </a>
                                     </td>

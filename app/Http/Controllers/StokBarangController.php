@@ -64,24 +64,41 @@ class StokBarangController extends Controller
     {
         return view('Gudang/showstokbarang', [
             'stokbarang' => $stokbarang,
-            'title' => 'View Stok'
-        ]);//
+            'title' => 'View Stok',
+
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(StokBarang $stokBarang)
+    public function edit(StokBarang $stokbarang)
     {
-        //
+        return view('Gudang/editstokbarang', [
+            'stokbarang' => $stokbarang,
+            'title' => 'Edit Stok',
+            'kategoris' => Kategori::all(),
+            'satuanbrgs' => SatuanBrg::all(),
+            
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, StokBarang $stokBarang)
+    public function update(Request $request, StokBarang $stokbarang)
     {
-        //
+        $validatedData = $request->validate([
+            
+            'jmlhbrg' => 'required|integer|min:1',
+            'satuanbrg_id' => 'exists:satuan_brgs,id',
+            'namabrg' => 'required|string|max:255',
+            'kategori_id' => 'exists:kategoris,id',
+        ]);
+
+        $stokbarang->update($validatedData);
+        return redirect('/stokbarang')->with('success', 'Berhasil Edit Customer!');
+
     }
 
     /**

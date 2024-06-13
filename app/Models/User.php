@@ -16,13 +16,17 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'username',
-        'password',
-        'is_admin'
-    ];
+    // protected $fillable = [
+    //     'username',
+    //     'password',
+    //     'is_admin'
+    // ];
 
     protected $guarded = ['id'];
+
+    public function getRouteKeyName(){
+        return 'username';
+    }
 
     /**
      * The attributes that should be hidden for serialization.

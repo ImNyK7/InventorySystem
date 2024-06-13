@@ -69,7 +69,7 @@ class CustomerController extends Controller
     public function edit(Customer $mastercustomer)
     {
         //dd($customer);
-        return view('Master.Customer.editcustomer', [
+        return view('Master/Customer/editcustomer', [
             'customer' => $mastercustomer,
             'title' => 'Edit Customer'
         ]);

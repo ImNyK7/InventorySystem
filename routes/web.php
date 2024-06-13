@@ -3,6 +3,7 @@
 use App\Models\StokBarang;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\CustomerController;
@@ -22,11 +23,12 @@ Route::get('/admin/register', [RegisterController::class, 'register'])->middlewa
 Route::post('/admin/register', [RegisterController::class, 'store']);
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(('auth'));
-Route::get('/admin', [RouteController::class, 'adminpage'])->name('adminpage')->middleware(('auth'));
+
+Route::resource('/admin', UserController::class)->except(['destroy'])->middleware("auth");
+Route::delete('/admin/{user:username}', [UserController::class, 'destroy'])->middleware(('auth'));
 
 Route::resource('/customer/mastercustomer', CustomerController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/customer/mastercustomer/{customer:perusahaancust}', [CustomerController::class, 'destroy'])->middleware('auth');
-//Route::get('/customer/mastercustomer/{customer:perusahaancust}/edit', [CustomerController::class, 'edit']);
 
 Route::resource('/supplier/mastersupplier', SupplierController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/supplier/mastersupplier/{supplier:perusahaansupp}', [SupplierController::class, 'destroy'])->middleware('auth');

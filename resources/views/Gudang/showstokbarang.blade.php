@@ -10,12 +10,12 @@
                     <tr>
                         <td><label>Nama</label></td>
                         <td><input value="{{ $stokbarang->namabrg }}" readonly disabled style="width: 200px"></td>
-                        <td><label>Kategori</label></td>
-                        <td><input value="{{ $stokbarang->kategori->namakat ?? '' }}" readonly disabled style="width: 100px"></td>
-                    </tr>
-                    <tr>
                         <td><label>Jumlah</label></td>
                         <td><input value="{{ $stokbarang->jmlhbrg }}"  readonly disabled style="width: 50px"> <input value="{{ $stokbarang->satuanbrg->namasatuan }}" style="width: 50px" readonly disabled></td>
+                    </tr>
+                    <tr>
+                        <td><label>Kategori</label></td>
+                        <td><input value="{{ $stokbarang->kategori->namakat ?? '' }}" readonly disabled style="width: 150px"></td>
                     </tr>
                     <tr>
                 </table>

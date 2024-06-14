@@ -12,10 +12,11 @@
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper" style="margin-top: 20px">
                 <h1>Form<br>Stok Barang</h1>
-                <form action="{{ route('stokbarang.store') }}" method="POST">
+                <form action="{{ url('stokbarang/' . $stokbarang->namabrg) }}" method="POST">
                     @csrf
+                    @method('put')
                     <table>
-    
+                    
                         <tr>
                             <td><label for="namabrg">Nama Barang</label></td>
                             <td>
@@ -31,7 +32,7 @@
                             <td>
                                 <input type="number" name="jmlhbrg" id="jmlhbrg" value="{{ old('jmlhbrg', $stokbarang->jmlhbrg) }}"
                                     style="width: 50px">
-                                    <select name="satuanbrg_display" id="satuanbrg_display" style="width: 100px" >
+                                    <select name="satuanbrg_id" id="satuanbrg_id" style="width: 100px" >
                                         <option value="" selected></option>
                                         @foreach ($satuanbrgs as $satuanbrg)
                                             <option value="{{ $satuanbrg->id }}"
@@ -51,7 +52,7 @@
                         <tr>
                             <td><label for="kategori_id">Kategori</label></td>
                             <td>
-                                <select id="kategori_id_display" name="kategori_id_display" style="width: 140px;">
+                                <select id="kategori_id" name="kategori_id" style="width: 140px;">
                                     <option value="" selected></option>
                                     @foreach ($kategoris as $kategori)
                                         <option value="{{ $kategori->id }}"

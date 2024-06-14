@@ -48,10 +48,8 @@ class StokBarangController extends Controller
         ]);
 
         if (StokBarang::where('namabrg', $validatedData['namabrg'])->exists()) {
-            return redirect()->back()->withErrors(['namabrg' => 'Nama barang masuk sudah ada, silahkan gunakan fitur Edit.'])->withInput();
-            
+            return redirect()->back()->withErrors(['namabrg' => 'Nama barang sudah ada, silahkan gunakan fitur Edit.'])->withInput();
         }
-
 
         StokBarang::create($validatedData);
         return redirect('/stokbarang')->with('success', 'Berhasil Tambah Barang!');
@@ -97,7 +95,7 @@ class StokBarangController extends Controller
         ]);
 
         $stokbarang->update($validatedData);
-        return redirect('/stokbarang')->with('success', 'Berhasil Edit Customer!');
+        return redirect('/stokbarang/')->with('success', 'Berhasil Edit Customer!');
 
     }
 

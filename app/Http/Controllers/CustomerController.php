@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -104,4 +105,5 @@ class CustomerController extends Controller
         $customer->delete();
         return redirect('/customer/mastercustomer')->with('success', 'Berhasil Hapus Customer!');
     }
+
 }

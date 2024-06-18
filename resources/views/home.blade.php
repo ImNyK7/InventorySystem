@@ -12,7 +12,7 @@
                     <div class="p-3 bg-white shadow-sm d-flex justify-content-between align-items-center rounded">
                         <div>
                             <h3 class="fs-2">{{ $recordbarangmasuks }}</h3>
-                            <p class="fs-5">Barang Masuk</p>
+                            <p class="fs-6">Laporan Barang Masuk</p>
                         </div>
                         <i class="fas fa-inbox fs-1 text-success border rounded-full secondary-bg p-3" style="background-color: lightgreen"></i>
                     </div>
@@ -23,7 +23,7 @@
                 <a href="/stokbarang" class="clickable-summary">
                     <div class="p-3 bg-white shadow-sm d-flex justify-content-between align-items-center rounded">
                         <div>
-                            <h3 class="fs-2">{{ $stokbarangs }}</h3>
+                            <h3 class="fs-2">{{ $totalJumlahBarang }}</h3>
                             <p class="fs-5">Total Stok</p>
                         </div>
                         <i class="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
@@ -36,7 +36,7 @@
                     <div class="p-3 bg-white shadow-sm d-flex justify-content-between align-items-center rounded">
                         <div>
                             <h3 class="fs-2">{{ $recordbarangkeluars }}</h3>
-                            <p class="fs-5">Barang Keluar</p>
+                            <p class="fs-6">Laporan Barang Keluar</p>
                         </div>
                         <i class="fas fa-right-from-bracket fs-1 text-danger border rounded-full secondary-bg p-3"  style="background-color: lightpink"></i>
                     </div>

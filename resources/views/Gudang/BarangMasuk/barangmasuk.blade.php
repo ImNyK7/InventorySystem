@@ -12,7 +12,20 @@
     @endif
 
     <div class="container-fluid px-4">
-        <div class="btn-wrapper wrapper">
+        <div class="d-flex btn-wrapper wrapper justify-content-between align-items-center mb-3">
+            <div class="d-flex">
+                <div class="me-2">
+                    <label for="start_date"><strong>Start Date:</strong></label>
+                    <input type="date" id="start_date" class="form-control" autocomplete="off">
+                </div>
+                <div class="me-2">
+                    <label for="end_date"><strong>End Date:</strong></label>
+                    <input type="date" id="end_date" class="form-control" autocomplete="off">
+                </div>
+                <button id="filter" class="btn btn-primary align-self-end mb-0"
+                    style="background-color:cornflowerblue; height: 38px;width: 60px">Filter</button>
+                    <button id="clear" class="btn btn-secondary align-self-end mb-0 ms-2" style="background-color:crimson; height: 38px;width: 100px">Clear Filter</button>
+            </div>
             <form action="/barangmasuk/listbarangmasuk/create">
                 <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Barang
@@ -55,13 +68,14 @@
                                     <td>
                                         <a style="text-decoration: none; color: black"
                                             href="/stokbarang/{{ $recordbarangmasuk->stokbarang->namabrg ?? '' }}">
-                                            
+
                                         </a>
                                         {{ $recordbarangmasuk->stokbarang->namabrg ?? '' }}
                                     </td>
                                     <td>Rp{{ number_format($recordbarangmasuk->hrgbeli) }}</td>
                                     <td>{{ $recordbarangmasuk->kategori->namakat ?? '' }}</td>
-                                    <td>Rp{{ number_format($recordbarangmasuk->hrgbeli * $recordbarangmasuk->jmlhbrgmsk, 2) }}</td>
+                                    <td>Rp{{ number_format($recordbarangmasuk->hrgbeli * $recordbarangmasuk->jmlhbrgmsk, 2) }}
+                                    </td>
                                     <td>
                                         <a href="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}"
                                             class="btn btn-primary btn-sm"
@@ -97,6 +111,36 @@
                     fixedColumns: {
                         rightColumns: 1
                     }
+                });
+                $('#filter').click(function() {
+                    var startDate = $('#start_date').val();
+                    var endDate = $('#end_date').val();
+
+                    $.fn.dataTable.ext.search.push(
+                        function(settings, data, dataIndex) {
+                            var min = startDate ? new Date(startDate).getTime() : null;
+                            var max = endDate ? new Date(endDate).getTime() : null;
+                            var date = new Date(data[2])
+                                .getTime(); // Use data for the Tanggal Keluar column
+
+                            if ((min === null && max === null) ||
+                                (min === null && date <= max) ||
+                                (min <= date && max === null) ||
+                                (min <= date && date <= max)) {
+                                return true;
+                            }
+                            return false;
+                        }
+                    );
+
+                    table.draw();
+                });
+
+                $('#clear').click(function() {
+                    $('#start_date').val('');
+                    $('#end_date').val('');
+                    $.fn.dataTable.ext.search.pop();
+                    table.draw();
                 });
             });
         </script>

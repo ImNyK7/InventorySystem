@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -103,5 +104,20 @@ class SupplierController extends Controller
     {
         $supplier->delete();
         return redirect('/supplier/mastersupplier')->with('success', 'Berhasil Hapus Supplier!');
+    }
+
+    public function generatesuppPDF()
+    {
+        $suppliers = Supplier::get();
+    
+        $data = [
+            'title' => 'Supplier List',
+            'date' => date('d/m/Y'),
+            'suppliers' => $suppliers
+        ]; 
+              
+        $pdf = PDF::loadView('Master.Supplier.printsupplier', $data);
+       
+        return $pdf->stream('List Supplier.pdf');
     }
 }

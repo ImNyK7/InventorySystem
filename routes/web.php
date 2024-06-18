@@ -26,11 +26,11 @@ Route::delete('/admin/{user:username}', [UserController::class, 'destroy'])->mid
 
 Route::resource('/customer/mastercustomer', CustomerController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/customer/mastercustomer/{customer:perusahaancust}', [CustomerController::class, 'destroy'])->middleware('auth');
-Route::get('customer/mastercustomer/customerprint', [CustomerController::class, 'customerprint'])->name('customerprint')->middleware('auth');
-
+Route::get('customer-pdf', [CustomerController::class, 'generatecustPDF']);
 
 Route::resource('/supplier/mastersupplier', SupplierController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/supplier/mastersupplier/{supplier:perusahaansupp}', [SupplierController::class, 'destroy'])->middleware('auth');
+Route::get('supplier-pdf', [SupplierController::class, 'generatesuppPDF']);
 
 Route::resource('/kategori/masterkategori', KategoriController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/kategori/masterkategori/{kategori:namakat}', [KategoriController::class, 'destroy'])->middleware("auth");
@@ -40,11 +40,11 @@ Route::delete('/barangmasuk/listbarangmasuk/{recordbarangmasuk:kodebrgmsk}', [Ba
 
 Route::resource('/barangkeluar/listbarangkeluar', BarangKeluarController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/barangkeluar/listbarangkeluar/{recordbarangkeluar:kodebrgklr}', [BarangKeluarController::class, 'destroy'])->middleware("auth");
-//Route::get('/barangkeluar/listbarangkeluar/filter', [BarangKeluarController::class, 'list'])->name('filterBarangKeluar');
 
 
 Route::resource('/stokbarang', StokBarangController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/stokbarang/{stokbarang:namabrg}', [StokBarangController::class, 'destroy'])->middleware("auth");
+Route::get('stok-pdf', [StokBarangController::class, 'generatestokPDF']);
 
 // Route::get('/coba', function () {
 //     return view('coba');

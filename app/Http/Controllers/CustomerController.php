@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -104,6 +104,21 @@ class CustomerController extends Controller
     {
         $customer->delete();
         return redirect('/customer/mastercustomer')->with('success', 'Berhasil Hapus Customer!');
+    }
+
+    public function generatecustPDF()
+    {
+        $customers = Customer::get();
+    
+        $data = [
+            'title' => 'Customer List',
+            'date' => date('d/m/Y'),
+            'customers' => $customers
+        ]; 
+              
+        $pdf = PDF::loadView('Master.Customer.printcustomer', $data);
+       
+        return $pdf->download('List Customer.pdf');
     }
 
 }

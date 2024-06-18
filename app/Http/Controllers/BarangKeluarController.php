@@ -60,6 +60,8 @@ class BarangKeluarController extends Controller
         ]);
 
         // Convert 'noseribrgklr' array to a JSON string
+        //$validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
+
         $validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
 
         if (RecordBarangKeluar::where('kodebrgklr', $validatedData['kodebrgklr'])->exists()) {
@@ -120,6 +122,8 @@ class BarangKeluarController extends Controller
             'customer_id' => 'required|exists:customers,id',
             'noseribrgklr' => 'required|array',
         ]);
+
+        $validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
 
         $listbarangkeluar->update($validatedData);
         return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Edit Laporan!');

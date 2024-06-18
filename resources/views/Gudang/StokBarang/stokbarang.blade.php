@@ -12,7 +12,11 @@
     @endif
 
     <div class="container-fluid px-4">
-        <div class="btn-wrapper wrapper">
+        <div class="btn-wrapper wrapper" style="justify-content: flex-end; align-items: center">
+            <a href="{{ url('stok-pdf') }}">
+                <button type="submit" class="btn" style="background-color: #1570EF; width: fit-content; height:fit-content;"><i class="fa-solid fa-print"
+                        style="font-size: large; vertical-align: -1px"></i></button>
+            </a>
             <form action="/stokbarang/create">
                 <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Stok Barang</span></button>

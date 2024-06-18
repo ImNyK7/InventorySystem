@@ -40,10 +40,13 @@
                         <tr>
                             <td><label>Nomor Seri</label></td>
                             <td>
-                                @foreach ($recordbarangkeluar->noseribrgklr as $noseri)
-                                    <input type="text" name="noseribrgklr[]" value="{{ $noseri }}" readonly disabled>
+                                @php
+                                $noseribrgklr = json_decode($recordbarangkeluar->noseribrgklr);
+                                @endphp
+                                @foreach ($noseribrgklr as $noseri)
+                                    <input type="text" name="noseribrgklr[]" value="{{ $noseri }}" required disabled>
                                 @endforeach
-                            </td>
+                            </td>                            
                         </tr>
                     </table>
                 </form>

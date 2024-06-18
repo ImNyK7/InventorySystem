@@ -12,7 +12,11 @@
     @endif
 
     <div class="container-fluid px-4">
-        <div class="btn-wrapper wrapper mb-3">
+        <div class="btn-wrapper wrapper" style="justify-content: flex-end; align-items: center">
+            <a href="{{ url('supplier-pdf') }}">
+                <button type="submit" class="btn" style="background-color: #1570EF; width: fit-content; height:fit-content;"><i class="fa-solid fa-print"
+                        style="font-size: large; vertical-align: -1px"></i></button>
+            </a>
             <form action="/supplier/mastersupplier/create">
                 <button type="submit" class="btn" style="font-size: 17px"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
@@ -31,6 +35,7 @@
                                 <th>Kontak</th>
                                 <th>Kota</th>
                                 <th>Alamat</th>
+                                <th>Alamat 2</th>
                                 <th>Telpon</th>
                                 <th>Term (Hari)</th>
                                 <th>Description</th>
@@ -46,6 +51,7 @@
                                     <td>{{ $supplier->kontaksupp }}</td>
                                     <td>{{ $supplier->kotasupp }}</td>
                                     <td>{{ $supplier->alamatsupp }}</td>
+                                    <td>{{ $supplier->alamat2supp }}</td>
                                     <td>{{ $supplier->notelponsupp }}</td>
                                     <td>{{ $supplier->termsupp }}</td>
                                     <td>{{ $supplier->descsupp }}</td>

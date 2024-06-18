@@ -1,11 +1,8 @@
 <?php
 
-use App\Models\StokBarang;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RouteController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RegisterController;
@@ -29,6 +26,8 @@ Route::delete('/admin/{user:username}', [UserController::class, 'destroy'])->mid
 
 Route::resource('/customer/mastercustomer', CustomerController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/customer/mastercustomer/{customer:perusahaancust}', [CustomerController::class, 'destroy'])->middleware('auth');
+Route::get('customer/mastercustomer/customerprint', [CustomerController::class, 'customerprint'])->name('customerprint')->middleware('auth');
+
 
 Route::resource('/supplier/mastersupplier', SupplierController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/supplier/mastersupplier/{supplier:perusahaansupp}', [SupplierController::class, 'destroy'])->middleware('auth');
@@ -41,6 +40,8 @@ Route::delete('/barangmasuk/listbarangmasuk/{recordbarangmasuk:kodebrgmsk}', [Ba
 
 Route::resource('/barangkeluar/listbarangkeluar', BarangKeluarController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/barangkeluar/listbarangkeluar/{recordbarangkeluar:kodebrgklr}', [BarangKeluarController::class, 'destroy'])->middleware("auth");
+//Route::get('/barangkeluar/listbarangkeluar/filter', [BarangKeluarController::class, 'list'])->name('filterBarangKeluar');
+
 
 Route::resource('/stokbarang', StokBarangController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/stokbarang/{stokbarang:namabrg}', [StokBarangController::class, 'destroy'])->middleware("auth");

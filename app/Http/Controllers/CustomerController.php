@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -56,7 +57,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $mastercustomer)
     {
-        dd($mastercustomer);
+        //dd($mastercustomer);
         return view('Master/Customer/showcustomer', [
             'customer' => $mastercustomer,
             'title' => 'Show Customer'
@@ -104,4 +105,5 @@ class CustomerController extends Controller
         $customer->delete();
         return redirect('/customer/mastercustomer')->with('success', 'Berhasil Hapus Customer!');
     }
+
 }

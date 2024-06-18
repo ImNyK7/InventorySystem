@@ -13,19 +13,7 @@
 
     <div class="container-fluid px-4">
         <div class="d-flex btn-wrapper wrapper justify-content-between align-items-center mb-3">
-            <div class="d-flex">
-                <div class="me-2">
-                    <label for="start_date"><strong>Start Date:</strong></label>
-                    <input type="date" id="start_date" class="form-control" autocomplete="off">
-                </div>
-                <div class="me-2">
-                    <label for="end_date"><strong>End Date:</strong></label>
-                    <input type="date" id="end_date" class="form-control" autocomplete="off">
-                </div>
-                <button id="filter" class="btn btn-primary align-self-end mb-0"
-                    style="background-color:cornflowerblue; height: 38px;width: 60px">Filter</button>
-                    <button id="clear" class="btn btn-secondary align-self-end mb-0 ms-2" style="background-color:crimson; height: 38px;width: 100px">Clear Filter</button>
-            </div>
+            @include('Partials.filterdate')
             <form action="/barangkeluar/listbarangkeluar/create">
                 <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Barang

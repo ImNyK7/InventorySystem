@@ -14,8 +14,7 @@
     <div class="container-fluid px-4">
         <div class="btn-wrapper wrapper" style="justify-content: flex-end; align-items: center">
             <a href="{{ url('supplier-pdf') }}">
-                <button type="submit" class="btn" style="background-color: #1570EF; width: fit-content; height:fit-content;"><i class="fa-solid fa-print"
-                        style="font-size: large; vertical-align: -1px"></i></button>
+                @include('Partials.printbutton')
             </a>
             <form action="/supplier/mastersupplier/create">
                 <button type="submit" class="btn" style="font-size: 17px"><i class="fa-solid fa-circle-plus"

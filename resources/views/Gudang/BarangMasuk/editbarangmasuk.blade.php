@@ -70,7 +70,7 @@
                         <tr>
                             <td><label for="jmlhbrgmsk">Jumlah Barang</label></td>
                             <td>
-                                <input type="number" name="jmlhbrgmsk" id="jmlhbrgmsk" value="{{ old('jmlhbrgmsk', $recordbarangmasuk->jmlhbrgmsk) }}" disabled
+                                <input type="number" name="jmlhbrgmsk" id="jmlhbrgmsk" value="{{ old('jmlhbrgmsk', $recordbarangmasuk->jmlhbrgmsk) }}"
                                     required style="width: 50px">
                                 <select name="satuanbrg_display" id="satuanbrg_display" style="width: 100px" disabled>
                                     <option value="" selected></option>
@@ -88,7 +88,7 @@
                                 @error('satuanbrg_id')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
-                                {{-- <div class="invalid-message" id="jmlhbrgmsk-error" style="display:none;">Jumlah barang melebihi stok!</div> --}}
+                                <div class="invalid-message" id="jmlhbrgmsk-error" style="display:none;">Jumlah barang melebihi stok!</div>
                             </td>
                             <td><label for="hrgbeli">Harga Beli</label></td>
                             <td>
@@ -156,6 +156,15 @@
                 $('#satuanbrg_id').val(satuan);
 
                 $('#jmlhbrgmsk-error').hide();
+            });
+
+            $('#jmlhbrgmsk').on('input', function() {
+                var jumlahMasuk = $(this).val();
+                if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
+                    $('#jmlhbrgmsk-error').show();
+                } else {
+                    $('#jmlhbrgmsk-error').hide();
+                }
             });
 
             // $('#jmlhbrgmsk').on('input', function() {

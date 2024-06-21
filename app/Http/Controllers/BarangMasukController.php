@@ -128,18 +128,32 @@ class BarangMasukController extends Controller
         return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Hapus Laporan!');
     }
 
-    public function generatebrgmskPDF()
+    public function generatebrgmskPDF(Request $request)
     {
-        $recordbarangmasuks = RecordBarangMasuk::get();
-    
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $query = RecordBarangMasuk::query();
+
+        if ($startDate) {
+            $query->where('tanggalbrgmsk', '>=', $startDate);
+        }
+
+        if ($endDate) {
+            $query->where('tanggalbrgmsk', '<=', $endDate);
+        }
+
+        $recordbarangmasuks = $query->get();
+
         $data = [
             'title' => 'List Barang Masuk',
             'date' => date('d/m/Y'),
             'recordbarangmasuks' => $recordbarangmasuks
-        ]; 
-              
+        ];
+
         $pdf = PDF::loadView('Gudang.BarangMasuk.printbarangmasuk', $data);
-       
+
         return $pdf->stream("Barang Masuk List.pdf", array("Attachment" => false));
     }
+
 }

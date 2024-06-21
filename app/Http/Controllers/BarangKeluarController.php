@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Kategori;
+use Barryvdh\DomPDF\Facade\PDF;
 use App\Models\SatuanBrg;
 use App\Models\StokBarang;
 use Illuminate\Http\Request;
@@ -136,5 +137,33 @@ class BarangKeluarController extends Controller
     {
         $recordbarangkeluar->delete();
         return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Hapus Laporan!');
+    }
+
+    public function generatebrgklrPDF(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $query = RecordBarangKeluar::query();
+
+        if ($startDate) {
+            $query->where('tanggalbrgklr', '>=', $startDate);
+        }
+
+        if ($endDate) {
+            $query->where('tanggalbrgklr', '<=', $endDate);
+        }
+
+        $recordbarangkeluars = $query->get();
+
+        $data = [
+            'title' => 'List Barang Keluar',
+            'date' => date('d/m/Y'),
+            'recordbarangkeluars' => $recordbarangkeluars
+        ];
+
+        $pdf = PDF::loadView('Gudang.BarangKeluar.printbarangkeluar', $data);
+
+        return $pdf->stream("Barang Keluar List.pdf", array("Attachment" => false));
     }
 }

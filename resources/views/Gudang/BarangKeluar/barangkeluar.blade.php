@@ -12,13 +12,21 @@
     @endif
 
     <div class="container-fluid px-4">
-        <div class="d-flex btn-wrapper wrapper justify-content-between align-items-center mb-3">
-            @include('Partials.filterdate')
-            <form action="/barangkeluar/listbarangkeluar/create">
-                <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
-                        style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Barang
-                        Keluar</span></button>
-            </form>
+        <div class="btn-wrapper wrapper">
+            <div class="btn-wrapper wrapper" style="display: flex; justify-content: flex-start; flex-grow: 1;">
+                @include('Partials.filterdate')
+            </div>
+            <div class="btn-wrapper wrapper" style="justify-content: flex-end; align-items: center; margin-bottom: 0px">
+                <a href="{{ url('barangkeluar-pdf') }}" id="print-pdf" target="_blank">
+                    @include('Partials.printbutton')
+                </a>
+                <form action="/barangkeluar/listbarangkeluar/create">
+                    <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
+                            style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
+                            Barang
+                            Keluar</span></button>
+                </form>
+            </div>
         </div>
         <div class="row mb-5 mt-2">
             <div class="col">
@@ -128,6 +136,14 @@
                 $.fn.dataTable.ext.search.pop();
                 table.draw();
             });
+
+            $('#print-pdf').click(function(e) {
+                    e.preventDefault();
+                    var startDate = $('#start_date').val();
+                    var endDate = $('#end_date').val();
+                    var url = "{{ url('barangkeluar-pdf') }}?start_date=" + startDate + "&end_date=" + endDate;
+                    window.open(url, '_blank');
+                });
         });
     </script>
 @endsection

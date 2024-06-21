@@ -17,16 +17,17 @@
                 @include('Partials.filterdate')
             </div>
             <div class="btn-wrapper wrapper" style="justify-content: flex-end; align-items: center; margin-bottom: 0px">
-                <a href="{{ url('barangmasuk-pdf') }}" target="_blank">
+                <a href="{{ url('barangmasuk-pdf') }}" id="print-pdf" target="_blank">
                     @include('Partials.printbutton')
                 </a>
                 <form action="/barangmasuk/listbarangmasuk/create">
                     <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
-                            style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Barang
+                            style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
+                            Barang
                             Masuk</span></button>
                 </form>
             </div>
-        </div>        
+        </div>
         <div class="row mb-5 mt-2">
             <div class="col">
                 <div class="table-responsive bg-white p-3">
@@ -107,6 +108,7 @@
                         rightColumns: 1
                     }
                 });
+
                 $('#filter').click(function() {
                     var startDate = $('#start_date').val();
                     var endDate = $('#end_date').val();
@@ -116,7 +118,7 @@
                             var min = startDate ? new Date(startDate).getTime() : null;
                             var max = endDate ? new Date(endDate).getTime() : null;
                             var date = new Date(data[2])
-                                .getTime(); // Use data for the Tanggal Keluar column
+                        .getTime(); // Use data for the Tanggal Keluar column
 
                             if ((min === null && max === null) ||
                                 (min === null && date <= max) ||
@@ -137,6 +139,15 @@
                     $.fn.dataTable.ext.search.pop();
                     table.draw();
                 });
+
+                $('#print-pdf').click(function(e) {
+                    e.preventDefault();
+                    var startDate = $('#start_date').val();
+                    var endDate = $('#end_date').val();
+                    var url = "{{ url('barangmasuk-pdf') }}?start_date=" + startDate + "&end_date=" + endDate;
+                    window.open(url, '_blank');
+                });
+
             });
         </script>
     @endsection

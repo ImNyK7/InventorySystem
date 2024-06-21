@@ -1,7 +1,6 @@
 @extends('layouts.adminmain')
 
 @section('content')
-            <!-- Content area -->
             <div class="d-flex align-items-center">
                 <h1 class="fs-3 m-4 mb-0" style="color: #1570EF">User List</h1>
             </div>

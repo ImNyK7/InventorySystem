@@ -118,9 +118,7 @@ class CustomerController extends Controller
               
         $pdf = PDF::loadView('Master.Customer.printcustomer', $data);
        
-        return $pdf->stream('List Customer.pdf');
-        //return $pdf->stream('List Customer.pdf', ["Attachment" => false]);
-        //return $pdf->stream('List Customer.pdf', array ("Attachment" => false));
+        return $pdf->stream("Customer List.pdf", array("Attachment" => false));
     }
 
 }

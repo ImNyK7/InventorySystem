@@ -37,6 +37,7 @@ Route::delete('/kategori/masterkategori/{kategori:namakat}', [KategoriController
 
 Route::resource('/barangmasuk/listbarangmasuk', BarangMasukController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/barangmasuk/listbarangmasuk/{recordbarangmasuk:kodebrgmsk}', [BarangMasukController::class, 'destroy'])->middleware("auth");
+Route::get('barangmasuk-pdf', [BarangMasukController::class, 'generatebrgmskPDF']);
 
 Route::resource('/barangkeluar/listbarangkeluar', BarangKeluarController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/barangkeluar/listbarangkeluar/{recordbarangkeluar:kodebrgklr}', [BarangKeluarController::class, 'destroy'])->middleware("auth");

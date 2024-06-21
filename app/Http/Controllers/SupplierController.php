@@ -118,6 +118,6 @@ class SupplierController extends Controller
               
         $pdf = PDF::loadView('Master.Supplier.printsupplier', $data);
        
-        return $pdf->stream('List Supplier.pdf');
+        return $pdf->stream("Supplier List", array("Attachment" => false));
     }
 }

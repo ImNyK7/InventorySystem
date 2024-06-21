@@ -12,14 +12,21 @@
     @endif
 
     <div class="container-fluid px-4">
-        <div class="d-flex btn-wrapper wrapper justify-content-between align-items-center mb-3">
-            @include('Partials.filterdate')
-            <form action="/barangmasuk/listbarangmasuk/create">
-                <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
-                        style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Barang
-                        Masuk</span></button>
-            </form>
-        </div>
+        <div class="btn-wrapper wrapper">
+            <div class="btn-wrapper wrapper" style="display: flex; justify-content: flex-start; flex-grow: 1;">
+                @include('Partials.filterdate')
+            </div>
+            <div class="btn-wrapper wrapper" style="justify-content: flex-end; align-items: center; margin-bottom: 0px">
+                <a href="{{ url('barangmasuk-pdf') }}" target="_blank">
+                    @include('Partials.printbutton')
+                </a>
+                <form action="/barangmasuk/listbarangmasuk/create">
+                    <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
+                            style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Barang
+                            Masuk</span></button>
+                </form>
+            </div>
+        </div>        
         <div class="row mb-5 mt-2">
             <div class="col">
                 <div class="table-responsive bg-white p-3">

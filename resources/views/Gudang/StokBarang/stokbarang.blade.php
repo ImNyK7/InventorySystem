@@ -13,18 +13,13 @@
 
     <div class="container-fluid px-4">
         <div class="btn-wrapper wrapper" style="justify-content: flex-end; align-items: center">
-            <a href="{{ url('stok-pdf') }}">
+            <a href="{{ url('stok-pdf') }}" target="_blank">
                 @include('Partials.printbutton')
             </a>
             <form action="/stokbarang/create">
                 <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Stok Barang</span></button>
             </form>
-            {{-- <form action="/barangkeluar/listbarangkeluar/create">
-                <button type="submit" class="btn2"><i class="fa-solid fa-circle-plus"
-                        style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Barang
-                        Keluar</span></button>
-            </form> --}}
         </div>
         <div class="row mb-5 mt-2">
             <div class="col">

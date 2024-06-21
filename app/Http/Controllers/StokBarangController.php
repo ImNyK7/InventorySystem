@@ -113,14 +113,16 @@ class StokBarangController extends Controller
     {
         $stokbarangs = StokBarang::get();
     
+        
         $data = [
-            'title' => 'StokBarang List',
+            'title' => 'List Stok Barang',
             'date' => date('d/m/Y'),
             'stokbarangs' => $stokbarangs
         ]; 
               
         $pdf = PDF::loadView('Gudang.StokBarang.printstokbarang', $data);
        
-        return $pdf->download('List StokBarang.pdf');
+        return $pdf->stream("StokBarang.pdf", array("Attachment" => false));
+        //return $pdf->download('List StokBarang.pdf');
     }
 }

@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Supplier;
+use Barryvdh\DomPDF\Facade\PDF;
 use App\Models\SatuanBrg;
+use App\Models\StokBarang;
 use Illuminate\Http\Request;
 use App\Models\RecordBarangMasuk;
-use App\Models\StokBarang;
 
 class BarangMasukController extends Controller
 {
@@ -125,5 +126,20 @@ class BarangMasukController extends Controller
     {
         $recordbarangmasuk->delete();
         return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Hapus Laporan!');
+    }
+
+    public function generatebrgmskPDF()
+    {
+        $recordbarangmasuks = RecordBarangMasuk::get();
+    
+        $data = [
+            'title' => 'List Barang Masuk',
+            'date' => date('d/m/Y'),
+            'recordbarangmasuks' => $recordbarangmasuks
+        ]; 
+              
+        $pdf = PDF::loadView('Gudang.BarangMasuk.printbarangmasuk', $data);
+       
+        return $pdf->stream("Barang Masuk List.pdf", array("Attachment" => false));
     }
 }

@@ -13,7 +13,7 @@
 
     <div class="container-fluid px-4">
         <div class="btn-wrapper wrapper" style="justify-content: flex-end; align-items: center">
-            <a href="{{ url('supplier-pdf') }}">
+            <a href="{{ url('supplier-pdf') }}" target="_blank">
                 @include('Partials.printbutton')
             </a>
             <form action="/supplier/mastersupplier/create">

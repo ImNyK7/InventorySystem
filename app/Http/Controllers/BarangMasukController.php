@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Supplier;
+use Barryvdh\DomPDF\Facade\PDF;
 use App\Models\SatuanBrg;
+use App\Models\StokBarang;
 use Illuminate\Http\Request;
 use App\Models\RecordBarangMasuk;
-use App\Models\StokBarang;
 
 class BarangMasukController extends Controller
 {
@@ -126,4 +127,45 @@ class BarangMasukController extends Controller
         $recordbarangmasuk->delete();
         return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Hapus Laporan!');
     }
+
+    public function generatebrgmskPDF(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $query = RecordBarangMasuk::query();
+
+        if ($startDate) {
+            $query->where('tanggalbrgmsk', '>=', $startDate);
+        }
+
+        if ($endDate) {
+            $query->where('tanggalbrgmsk', '<=', $endDate);
+        }
+
+        $recordbarangmasuks = $query->get();
+
+        $data = [
+            'title' => 'List Barang Masuk',
+            'date' => date('d/m/Y'),
+            'recordbarangmasuks' => $recordbarangmasuks
+        ];
+
+        $pdf = PDF::loadView('Gudang.BarangMasuk.printbarangmasuk', $data);
+
+        return $pdf->stream("Barang Masuk List.pdf", array("Attachment" => false));
+    }
+
+    public function printSingleBarangMasukPDF(RecordBarangMasuk $recordbarangmasuk)
+    {
+        $data = [
+            'recordbarangmasuk' => $recordbarangmasuk,
+            'title' => 'Detail Barang Masuk',
+            'date' => date('d/m/Y')
+        ];
+
+        $pdf = PDF::loadView('Gudang.BarangMasuk.printsinglebarangmasuk', $data);
+        return $pdf->stream("Detail_Barang_Masuk.pdf", array("Attachment" => false));
+    }
+
 }

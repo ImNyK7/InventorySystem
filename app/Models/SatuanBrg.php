@@ -11,6 +11,7 @@ class SatuanBrg extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    //protected $fillable = ['stok_barang_id'];
 
     public function recordbarangmasuk(){
         return $this->hasMany(RecordBarangMasuk::class);

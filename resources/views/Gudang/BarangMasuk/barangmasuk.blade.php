@@ -12,25 +12,21 @@
     @endif
 
     <div class="container-fluid px-4">
-        <div class="d-flex btn-wrapper wrapper justify-content-between align-items-center mb-3">
-            <div class="d-flex">
-                <div class="me-2">
-                    <label for="start_date"><strong>Start Date:</strong></label>
-                    <input type="date" id="start_date" class="form-control" autocomplete="off">
-                </div>
-                <div class="me-2">
-                    <label for="end_date"><strong>End Date:</strong></label>
-                    <input type="date" id="end_date" class="form-control" autocomplete="off">
-                </div>
-                <button id="filter" class="btn btn-primary align-self-end mb-0"
-                    style="background-color:cornflowerblue; height: 38px;width: 60px">Filter</button>
-                    <button id="clear" class="btn btn-secondary align-self-end mb-0 ms-2" style="background-color:crimson; height: 38px;width: 100px">Clear Filter</button>
+        <div class="btn-wrapper wrapper">
+            <div class="btn-wrapper wrapper" style="display: flex; justify-content: flex-start; flex-grow: 1;">
+                @include('Partials.filterdate')
             </div>
-            <form action="/barangmasuk/listbarangmasuk/create">
-                <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
-                        style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Barang
-                        Masuk</span></button>
-            </form>
+            <div class="btn-wrapper wrapper" style="justify-content: flex-end; align-items: center; margin-bottom: 0px">
+                <a href="{{ url('barangmasuk-pdf') }}" id="print-pdf" target="_blank">
+                    @include('Partials.printbutton')
+                </a>
+                <form action="/barangmasuk/listbarangmasuk/create">
+                    <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
+                            style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
+                            Barang
+                            Masuk</span></button>
+                </form>
+            </div>
         </div>
         <div class="row mb-5 mt-2">
             <div class="col">
@@ -112,6 +108,7 @@
                         rightColumns: 1
                     }
                 });
+
                 $('#filter').click(function() {
                     var startDate = $('#start_date').val();
                     var endDate = $('#end_date').val();
@@ -121,7 +118,7 @@
                             var min = startDate ? new Date(startDate).getTime() : null;
                             var max = endDate ? new Date(endDate).getTime() : null;
                             var date = new Date(data[2])
-                                .getTime(); // Use data for the Tanggal Keluar column
+                        .getTime(); // Use data for the Tanggal Keluar column
 
                             if ((min === null && max === null) ||
                                 (min === null && date <= max) ||
@@ -142,6 +139,15 @@
                     $.fn.dataTable.ext.search.pop();
                     table.draw();
                 });
+
+                $('#print-pdf').click(function(e) {
+                    e.preventDefault();
+                    var startDate = $('#start_date').val();
+                    var endDate = $('#end_date').val();
+                    var url = "{{ url('barangmasuk-pdf') }}?start_date=" + startDate + "&end_date=" + endDate;
+                    window.open(url, '_blank');
+                });
+
             });
         </script>
     @endsection

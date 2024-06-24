@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Kategori;
+use Barryvdh\DomPDF\Facade\PDF;
 use App\Models\SatuanBrg;
 use App\Models\StokBarang;
 use Illuminate\Http\Request;
@@ -60,6 +61,8 @@ class BarangKeluarController extends Controller
         ]);
 
         // Convert 'noseribrgklr' array to a JSON string
+        //$validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
+
         $validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
 
         if (RecordBarangKeluar::where('kodebrgklr', $validatedData['kodebrgklr'])->exists()) {
@@ -121,6 +124,8 @@ class BarangKeluarController extends Controller
             'noseribrgklr' => 'required|array',
         ]);
 
+        $validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
+
         $listbarangkeluar->update($validatedData);
         return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Edit Laporan!');
     }
@@ -133,4 +138,45 @@ class BarangKeluarController extends Controller
         $recordbarangkeluar->delete();
         return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Hapus Laporan!');
     }
+
+    public function generatebrgklrPDF(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $query = RecordBarangKeluar::query();
+
+        if ($startDate) {
+            $query->where('tanggalbrgklr', '>=', $startDate);
+        }
+
+        if ($endDate) {
+            $query->where('tanggalbrgklr', '<=', $endDate);
+        }
+
+        $recordbarangkeluars = $query->get();
+
+        $data = [
+            'title' => 'List Barang Keluar',
+            'date' => date('d/m/Y'),
+            'recordbarangkeluars' => $recordbarangkeluars
+        ];
+
+        $pdf = PDF::loadView('Gudang.BarangKeluar.printbarangkeluar', $data);
+
+        return $pdf->stream("Barang Keluar List.pdf", array("Attachment" => false));
+    }
+
+    public function printSingleBarangKeluarPDF(RecordBarangKeluar $recordbarangkeluar)
+    {
+        $data = [
+            'recordbarangkeluar' => $recordbarangkeluar,
+            'title' => 'Detail Barang Keluar',
+            'date' => date('d/m/Y')
+        ];
+
+        $pdf = PDF::loadView('Gudang.BarangKeluar.printsinglebarangkeluar', $data);
+        return $pdf->stream("Detail_Barang_Keluar.pdf", array("Attachment" => false));
+    }
+
 }

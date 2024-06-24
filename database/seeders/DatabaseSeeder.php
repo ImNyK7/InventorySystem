@@ -44,24 +44,24 @@ class DatabaseSeeder extends Seeder
             'namakat' => 'Kamera CCTV'
         ]);
 
-        StokBarang::create([
-            'namabrg' => 'Laptop Asus Vivobook S14',
-            'jmlhbrg' => '5',
-            'satuanbrg_id' => '3',
-            'kategori_id' => '2'
-        ]);
-        StokBarang::create([
-            'namabrg' => 'Kamera CTV',
-            'jmlhbrg' => '10',
-            'satuanbrg_id' => '2',
-            'kategori_id' => '3'
-        ]);
-        StokBarang::create([
-            'namabrg' => 'Printer EPSON 3242',
-            'jmlhbrg' => '15',
-            'satuanbrg_id' => '1',
-            'kategori_id' => '1'
-        ]);
+        // StokBarang::create([
+        //     'namabrg' => 'Laptop Asus Vivobook S14',
+        //     'jmlhbrg' => '5',
+        //     'satuanbrg_id' => '3',
+        //     'kategori_id' => '2'
+        // ]);
+        // StokBarang::create([
+        //     'namabrg' => 'Kamera CTV',
+        //     'jmlhbrg' => '10',
+        //     'satuanbrg_id' => '2',
+        //     'kategori_id' => '3'
+        // ]);
+        // StokBarang::create([
+        //     'namabrg' => 'Printer EPSON 3242',
+        //     'jmlhbrg' => '15',
+        //     'satuanbrg_id' => '1',
+        //     'kategori_id' => '1'
+        // ]);
         Customer::factory(5)->create();
         // Customer::create([
         //     'kodecust' => 'C01',
@@ -85,7 +85,7 @@ class DatabaseSeeder extends Seeder
         //     'termsupp' => '7',
         // ]);
 
-        RecordBarangMasuk::factory(15)->create();
+        //RecordBarangMasuk::factory(15)->create();
         // RecordBarangMasuk::create([
         //     'kodebrgmsk' => 'BM-0001',
         //     'tanggalbrgmsk' => '2022-04-05',

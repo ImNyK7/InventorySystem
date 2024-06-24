@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Supplier;
+use Barryvdh\DomPDF\Facade\PDF;
 use App\Models\SatuanBrg;
 use App\Models\StokBarang;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class StokBarangController extends Controller
      */
     public function index()
     {
-        return view('Gudang/stokbarang', [
+        return view('Gudang/StokBarang/stokbarang', [
             "title" => "Stok barang",
             "stokbarangs" => StokBarang::all()
         ]);
@@ -26,7 +27,7 @@ class StokBarangController extends Controller
      */
     public function create()
     {
-        return view('/Gudang/tambahstok', [
+        return view('/Gudang/StokBarang/tambahstok', [
             "title" => "Tambah Stok Barang",
             "kategoris" => Kategori::all(),
             "suppliers" => Supplier::all(),
@@ -60,7 +61,7 @@ class StokBarangController extends Controller
      */
     public function show(StokBarang $stokbarang)
     {
-        return view('Gudang/showstokbarang', [
+        return view('Gudang/StokBarang/showstokbarang', [
             'stokbarang' => $stokbarang,
             'title' => 'View Stok',
 
@@ -72,7 +73,7 @@ class StokBarangController extends Controller
      */
     public function edit(StokBarang $stokbarang)
     {
-        return view('Gudang/editstokbarang', [
+        return view('Gudang/StokBarang/editstokbarang', [
             'stokbarang' => $stokbarang,
             'title' => 'Edit Stok',
             'kategoris' => Kategori::all(),
@@ -95,7 +96,7 @@ class StokBarangController extends Controller
         ]);
 
         $stokbarang->update($validatedData);
-        return redirect('/stokbarang/')->with('success', 'Berhasil Edit Customer!');
+        return redirect('stokbarang/')->with('success', 'Berhasil Edit Customer!');
 
     }
 
@@ -106,5 +107,22 @@ class StokBarangController extends Controller
     {
         $stokbarang->delete();
         return redirect('/stokbarang')->with('success', 'Berhasil Hapus Stok!');
+    }
+
+    public function generatestokPDF()
+    {
+        $stokbarangs = StokBarang::get();
+    
+        
+        $data = [
+            'title' => 'List Stok Barang',
+            'date' => date('d/m/Y'),
+            'stokbarangs' => $stokbarangs
+        ]; 
+              
+        $pdf = PDF::loadView('Gudang.StokBarang.printstokbarang', $data);
+       
+        return $pdf->stream("StokBarang.pdf", array("Attachment" => false));
+        //return $pdf->download('List StokBarang.pdf');
     }
 }

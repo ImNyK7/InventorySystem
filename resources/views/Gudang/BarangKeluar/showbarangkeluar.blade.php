@@ -40,18 +40,26 @@
                         <tr>
                             <td><label>Nomor Seri</label></td>
                             <td>
-                                @foreach ($recordbarangkeluar->noseribrgklr as $noseri)
-                                    <input type="text" name="noseribrgklr[]" value="{{ $noseri }}" readonly disabled>
+                                @php
+                                $noseribrgklr = json_decode($recordbarangkeluar->noseribrgklr);
+                                @endphp
+                                @foreach ($noseribrgklr as $noseri)
+                                    <input type="text" name="noseribrgklr[]" value="{{ $noseri }}" required disabled>
                                 @endforeach
-                            </td>
+                            </td>                            
                         </tr>
                     </table>
                 </form>
-
-                <a href="/barangkeluar/listbarangkeluar">
+                <a href="/barangkeluar/listbarangkeluar" style="text-decoration: none">
                     <button style="background-color: #1570EF; outline:none; border:none;margin-top: 10px"
                         class="btn btn-primary btn-sm">
                         <i class="fa-solid fa-arrow-left"></i> <span>Back to List Barang Keluar</span>
+                    </button>
+                </a>
+                <a href="{{ url('barangkeluar/'.$recordbarangkeluar->kodebrgklr.'/print') }}" target="_blank">
+                    <button style="background-color: #28a745; outline:none; border:none;margin-top: 10px"
+                        class="btn btn-success btn-sm">
+                        <i class="fa-solid fa-print"></i> <span>Cetak Laporan</span>
                     </button>
                 </a>
             </div>

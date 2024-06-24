@@ -12,7 +12,10 @@
     @endif
 
     <div class="container-fluid px-4">
-        <div class="btn-wrapper wrapper">
+        <div class="btn-wrapper wrapper" style="justify-content: flex-end; align-items: center">
+            <a href="{{ url('customer-pdf') }}" target="_blank">
+                @include('Partials.printbutton')
+            </a>
             <a href="/customer/mastercustomer/create">
                 <button type="submit" class="btn" style="font-size: 17px"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
@@ -31,6 +34,7 @@
                                 <th>Kontak</th>
                                 <th>Kota</th>
                                 <th>Alamat</th>
+                                <th>Alamat 2</th>
                                 <th>Telpon</th>
                                 <th>Term (Hari)</th>
                                 <th>Limit</th>
@@ -47,6 +51,7 @@
                                     <td>{{ $customer->kontakcust }}</td>
                                     <td>{{ $customer->kotacust }}</td>
                                     <td>{{ $customer->alamatcust }}</td>
+                                    <td>{{ $customer->alamat2cust }}</td>
                                     <td>{{ $customer->notelponcust }}</td>
                                     <td>{{ $customer->termcust }}</td>
                                     <td>{{ $customer->limitcust }}</td>

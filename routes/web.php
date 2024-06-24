@@ -26,26 +26,28 @@ Route::delete('/admin/{user:username}', [UserController::class, 'destroy'])->mid
 
 Route::resource('/customer/mastercustomer', CustomerController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/customer/mastercustomer/{customer:perusahaancust}', [CustomerController::class, 'destroy'])->middleware('auth');
-Route::get('customer-pdf', [CustomerController::class, 'generatecustPDF']);
+Route::get('customer-pdf', [CustomerController::class, 'generatecustPDF'])->middleware("auth");
 
 Route::resource('/supplier/mastersupplier', SupplierController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/supplier/mastersupplier/{supplier:perusahaansupp}', [SupplierController::class, 'destroy'])->middleware('auth');
-Route::get('supplier-pdf', [SupplierController::class, 'generatesuppPDF']);
+Route::get('supplier-pdf', [SupplierController::class, 'generatesuppPDF'])->middleware("auth");
 
 Route::resource('/kategori/masterkategori', KategoriController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/kategori/masterkategori/{kategori:namakat}', [KategoriController::class, 'destroy'])->middleware("auth");
 
 Route::resource('/barangmasuk/listbarangmasuk', BarangMasukController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/barangmasuk/listbarangmasuk/{recordbarangmasuk:kodebrgmsk}', [BarangMasukController::class, 'destroy'])->middleware("auth");
-Route::get('barangmasuk-pdf', [BarangMasukController::class, 'generatebrgmskPDF']);
+Route::get('barangmasuk-pdf', [BarangMasukController::class, 'generatebrgmskPDF'])->middleware("auth");
+Route::get('barangmasuk/{recordbarangmasuk}/print', [BarangMasukController::class, 'printSingleBarangMasukPDF'])->middleware("auth");
 
 Route::resource('/barangkeluar/listbarangkeluar', BarangKeluarController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/barangkeluar/listbarangkeluar/{recordbarangkeluar:kodebrgklr}', [BarangKeluarController::class, 'destroy'])->middleware("auth");
-Route::get('barangkeluar-pdf', [BarangKeluarController::class, 'generatebrgklrPDF']);
+Route::get('barangkeluar-pdf', [BarangKeluarController::class, 'generatebrgklrPDF'])->middleware("auth");
+Route::get('barangkeluar/{recordbarangkeluar}/print', [BarangKeluarController::class, 'printSingleBarangKeluarPDF'])->middleware("auth");
 
 Route::resource('/stokbarang', StokBarangController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/stokbarang/{stokbarang:namabrg}', [StokBarangController::class, 'destroy'])->middleware("auth");
-Route::get('stok-pdf', [StokBarangController::class, 'generatestokPDF']);
+Route::get('stok-pdf', [StokBarangController::class, 'generatestokPDF'])->middleware("auth");
 
 // Route::get('/coba', function () {
 //     return view('coba');

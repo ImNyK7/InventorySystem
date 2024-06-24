@@ -156,4 +156,16 @@ class BarangMasukController extends Controller
         return $pdf->stream("Barang Masuk List.pdf", array("Attachment" => false));
     }
 
+    public function printSingleBarangMasukPDF(RecordBarangMasuk $recordbarangmasuk)
+    {
+        $data = [
+            'recordbarangmasuk' => $recordbarangmasuk,
+            'title' => 'Detail Barang Masuk',
+            'date' => date('d/m/Y')
+        ];
+
+        $pdf = PDF::loadView('Gudang.BarangMasuk.printsinglebarangmasuk', $data);
+        return $pdf->stream("Detail_Barang_Masuk.pdf", array("Attachment" => false));
+    }
+
 }

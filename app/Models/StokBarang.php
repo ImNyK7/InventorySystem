@@ -11,6 +11,7 @@ class StokBarang extends Model
 {
     use HasFactory;
 
+    //protected $fillable = ['satuan_brg_id'];
     protected $guarded = ['id'];
 
     public function kategori(){

@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('kodebrgklr');
             $table->date('tanggalbrgklr');
             $table->integer('jmlhbrgklr');
-            $table->foreignId('satuanbrg_id');
-            $table->foreignId('stokbarang_id');
+            $table->foreignId('satuanbrg_id')->constrained('satuan_brgs');
+            $table->foreignId('stokbarang_id')->constrained('stok_barangs');
             //$table->string('namabrgklr');
             $table->decimal('hrgjual', 15, 2);
-            $table->foreignId('kategori_id');
-            $table->foreignId('customer_id');
+            $table->foreignId('kategori_id')->constrained('kategoris')->unsigned();
+            $table->foreignId('customer_id')->constrained('customers')->unsigned();
             $table->json('noseribrgklr');
             $table->timestamps();
         });

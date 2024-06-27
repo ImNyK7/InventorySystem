@@ -11,7 +11,7 @@
     <div class="wrapper-wrapper">
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper" style="margin-top: 20px">
-                <h1>Form Edit<br>Laporan Barang Masuk</h1>
+                <h1>Form Edit<br>Laporan Barang Keluar</h1>
                 <form action="{{ url('/barangkeluar/listbarangkeluar/' . $recordbarangkeluar->kodebrgklr) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -42,38 +42,39 @@
                                 @enderror
                             </td>
                         </tr>
-                        <td><label for="stokbarang_id">Nama Barang</label></td>
-                        <td>
-                            <select id="stokbarang_id" name="stokbarang_id" style="width: 190px; height: 30px" disabled>
-                                <option value="" selected></option>
-                                @foreach ($stokbarangs as $stokbarang)
-                                    <option value="{{ $stokbarang->id }}" data-jumlah="{{ $stokbarang->jmlhbrgklr }}"
-                                        data-kategori="{{ $stokbarang->kategori_id }}"
-                                        data-satuan="{{ $stokbarang->satuanbrg_id }}"
-                                        {{ old('stokbarang_id', $recordbarangkeluar->stokbarang_id) == $stokbarang->id ? 'selected' : '' }}>
-                                        {{ $stokbarang->namabrg }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('stokbarang_id')
-                                <div class="invalid-message">{{ $message }}</div>
-                            @enderror
-                        </td>
-                        <td><label for="tanggalbrgklr">Tanggal</label></td>
-                        <td>
-                            <input type="date" name="tanggalbrgklr" id="dateField"
-                                value="{{ old('tanggalbrgklr', $recordbarangkeluar->tanggalbrgklr) }}" min="2015-01-02"
-                                max="2030-12-31" required>
-                            @error('tanggalbrgklr')
-                                <div class="invalid-message">{{ $message }}</div>
-                            @enderror
-                        </td>
+                        <tr>
+                            <td><label for="stokbarang_id">Nama Barang</label></td>
+                            <td>
+                                <select id="stokbarang_id" name="stokbarang_id" style="width: 190px; height: 30px" disabled>
+                                    <option value="" selected></option>
+                                    @foreach ($stokbarangs as $stokbarang)
+                                        <option value="{{ $stokbarang->id }}" data-jumlah="{{ $stokbarang->jmlhbrgklr }}"
+                                            data-kategori="{{ $stokbarang->kategori_id }}"
+                                            data-satuan="{{ $stokbarang->satuanbrg_id }}"
+                                            {{ old('stokbarang_id', $recordbarangkeluar->stokbarang_id) == $stokbarang->id ? 'selected' : '' }}>
+                                            {{ $stokbarang->namabrg }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('stokbarang_id')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                            <td><label for="tanggalbrgklr">Tanggal</label></td>
+                            <td>
+                                <input type="date" name="tanggalbrgklr" id="dateField"
+                                    value="{{ old('tanggalbrgklr', $recordbarangkeluar->tanggalbrgklr) }}" min="2015-01-02"
+                                    max="2030-12-31" required>
+                                @error('tanggalbrgklr')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                        </tr>
                         <tr>
                             <td><label for="jmlhbrgklr">Jumlah Barang</label></td>
                             <td>
                                 <input type="number" name="jmlhbrgklr" id="jmlhbrgklr"
-                                    value="{{ old('jmlhbrgklr', $recordbarangkeluar->jmlhbrgklr) }}"
-                                    style="width: 50px">
+                                    value="{{ old('jmlhbrgklr', $recordbarangkeluar->jmlhbrgklr) }}" style="width: 50px">
                                 <select name="satuanbrg_display" id="satuanbrg_display" style="width: 100px" disabled>
                                     <option value="" selected></option>
                                     @foreach ($satuanbrgs as $satuanbrg)
@@ -125,14 +126,15 @@
                         </tr>
                         <tr>
                             <td><label>Nomor Seri</label></td>
-                            <td>
+                            <td id="noseri-container">
                                 @php
-                                $noseribrgklr = json_decode($recordbarangkeluar->noseribrgklr);
+                                    $noseribrgklr = json_decode($recordbarangkeluar->noseribrgklr);
                                 @endphp
-                                @foreach ($noseribrgklr as $noseri)
-                                    <input type="text" name="noseribrgklr[]" value="{{ $noseri }}">
-                                @endforeach
-                            </td>                            
+                                @for ($i = 0; $i < $recordbarangkeluar->jmlhbrgklr; $i++)
+                                    <input type="text" name="noseribrgklr[]"
+                                        value="{{ isset($noseribrgklr[$i]) ? $noseribrgklr[$i] : '' }}" required>
+                                @endfor
+                            </td>
                         </tr>
                     </table>
                     <a href="/barangkeluar/listbarangkeluar"><button type="button" class="btncancel">Cancel</button></a>
@@ -156,10 +158,8 @@
                 dateField.value = today;
             }
 
-
             $('#stokbarang_id').on('change', function() {
                 var selectedOption = $(this).find('option:selected');
-                stokJumlah = selectedOption.data('jumlah');
                 var kategori = selectedOption.data('kategori');
                 var satuan = selectedOption.data('satuan');
 
@@ -168,26 +168,22 @@
 
                 $('#satuanbrg_display').val(satuan).trigger('change');
                 $('#satuanbrg_id').val(satuan);
+            });
+            $(document).ready(function() {
+                $('#jmlhbrgklr').on('input', function() {
+                    var newQuantity = $(this).val();
+                    var currentQuantity = $('#noseri-container input').length;
 
-                $('#jmlhbrgklr-error').hide();
+                    if (newQuantity > currentQuantity) {
+                        for (var i = currentQuantity; i < newQuantity; i++) {
+                            $('#noseri-container').append('<input type="text" name="noseribrgklr[]" required>');
+                        }
+                    } else if (newQuantity < currentQuantity) {
+                        $('#noseri-container input').slice(newQuantity).remove();
+                    }
+                });
             });
 
-            // $('#jmlhbrgklr').on('input', function() {
-            //     var jumlahMasuk = $(this).val();
-            //     if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
-            //         $('#jmlhbrgklr-error').show();
-            //     } else {
-            //         $('#jmlhbrgklr-error').hide();
-            //     }
-            // });
-
-            // $('form').on('submit', function(event) {
-            //     var jumlahMasuk = $('#jmlhbrgklr').val();
-            //     if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
-            //         $('#jmlhbrgklr-error').show();
-            //         event.preventDefault();
-            //     }
-            // });
         });
     </script>
 @endsection

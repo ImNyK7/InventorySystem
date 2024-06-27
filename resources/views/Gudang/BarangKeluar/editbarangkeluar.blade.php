@@ -171,12 +171,24 @@
             });
             $(document).ready(function() {
                 $('#jmlhbrgklr').on('input', function() {
-                    var newQuantity = $(this).val();
+                    var newQuantity = parseInt($(this).val());
                     var currentQuantity = $('#noseri-container input').length;
+                    var availableStock = parseInt($('#stokJumlah').val());
 
+                    // Check if newQuantity exceeds available stock
+                    if (newQuantity > availableStock) {
+                        $('#jmlhbrgklr-error').show();
+                        $('#submitBtn').prop('disabled', true);
+                    } else {
+                        $('#jmlhbrgklr-error').hide();
+                        $('#submitBtn').prop('disabled', false);
+                    }
+
+                    // Update serial number inputs
                     if (newQuantity > currentQuantity) {
                         for (var i = currentQuantity; i < newQuantity; i++) {
-                            $('#noseri-container').append('<input type="text" name="noseribrgklr[]" required>');
+                            $('#noseri-container').append(
+                                '<input type="text" name="noseribrgklr[]" required>');
                         }
                     } else if (newQuantity < currentQuantity) {
                         $('#noseri-container input').slice(newQuantity).remove();

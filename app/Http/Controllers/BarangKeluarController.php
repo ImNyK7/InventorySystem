@@ -108,43 +108,44 @@ class BarangKeluarController extends Controller
      * Update the specified resource in storage.
      */
     /**
- * Update the specified resource in storage.
- */
-public function update(Request $request, RecordBarangKeluar $listbarangkeluar)
-{
-    $validatedData = $request->validate([
-        'kodebrgklr' => 'required|string|max:255|unique:record_barang_keluars,kodebrgklr,' . $listbarangkeluar->id,
-        'tanggalbrgklr' => 'required|date',
-        'jmlhbrgklr' => 'integer|min:1',
-        'satuanbrg_id' => 'required|exists:satuan_brgs,id',
-        'stokbarang_id' => 'exists:stok_barangs,id',
-        'hrgjual' => 'required|numeric|min:0.01|max:999999999999.99',
-        'kategori_id' => 'required|exists:kategoris,id',
-        'customer_id' => 'required|exists:customers,id',
-        'noseribrgklr' => 'required|array',
-    ]);
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, RecordBarangKeluar $listbarangkeluar)
+    {
+        $validatedData = $request->validate([
+            'kodebrgklr' => 'required|string|max:255|unique:record_barang_keluars,kodebrgklr,' . $listbarangkeluar->id,
+            'tanggalbrgklr' => 'required|date',
+            'jmlhbrgklr' => 'integer|min:1',
+            'satuanbrg_id' => 'required|exists:satuan_brgs,id',
+            'stokbarang_id' => 'exists:stok_barangs,id',
+            'hrgjual' => 'required|numeric|min:0.01|max:999999999999.99',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'customer_id' => 'required|exists:customers,id',
+            'noseribrgklr' => 'required|array',
+        ]);
 
-    $validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
+        $validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
 
-    $stokbarang = StokBarang::find($listbarangkeluar->stokbarang_id);
+        $selisihJmlhbrgklr = $validatedData['jmlhbrgklr'] - $listbarangkeluar->jmlhbrgklr;
 
-    $selisihJmlhbrgklr = $validatedData['jmlhbrgklr'] - $listbarangkeluar->jmlhbrgklr;
+        $stokbarang = StokBarang::find($listbarangkeluar->stokbarang_id);
 
-    if ($selisihJmlhbrgklr > 0) {
-        $stokbarang->jmlhbrg -= $selisihJmlhbrgklr;
-    } else {
-        $stokbarang->jmlhbrg += abs($selisihJmlhbrgklr);
+        if ($selisihJmlhbrgklr > 0) {
+            $stokbarang->jmlhbrg -= $selisihJmlhbrgklr;
+        } else {
+            $stokbarang->jmlhbrg += abs($selisihJmlhbrgklr);
+        }
+
+        if ($stokbarang->jmlhbrg < 0) {
+            return redirect()->back()->withErrors(['jmlhbrgklr' => 'Stok barang tidak mencukupi untuk pengurangan ini.'])->withInput();
+        }
+
+        $stokbarang->save();
+
+        $listbarangkeluar->update($validatedData);
+
+        return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Edit Laporan!');
     }
-
-    if ($stokbarang->jmlhbrg < 0) {
-        return redirect()->back()->withErrors(['jmlhbrgklr' => 'Stok barang tidak mencukupi untuk pengurangan ini.'])->withInput();
-    }
-
-    $stokbarang->save();
-
-    $listbarangkeluar->update($validatedData);
-    return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Edit Laporan!');
-}
 
 
     /**
@@ -152,7 +153,14 @@ public function update(Request $request, RecordBarangKeluar $listbarangkeluar)
      */
     public function destroy(RecordBarangKeluar $recordbarangkeluar)
     {
+        $jumlahKeluar = $recordbarangkeluar->jmlhbrgklr;
+
         $recordbarangkeluar->delete();
+
+        $stokbarang = StokBarang::find($recordbarangkeluar->stokbarang_id);
+        $stokbarang->jmlhbrg += $jumlahKeluar;
+        $stokbarang->save();
+
         return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Hapus Laporan!');
     }
 

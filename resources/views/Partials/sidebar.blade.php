@@ -26,15 +26,15 @@
             <a href="#" style="text-decoration: none; color: gray;" id="gudangLink">
                 <i class="fas fa-box me-2"></i>Gudang
             </a>
-            <ul class="list-group list-group-flush my-1" style="margin-left: 15px; display: none;" id="gudangSubMenu">
+            <ul class="list-group list-group-flush my-1" style="margin-left: 12px; display: none;" id="gudangSubMenu">
                 <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
                     <a href="/stokbarang" style="text-decoration: none; color: gray;">Stok Barang</a>
                 </li>
                 <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                    <a href="/barangmasuk/listbarangmasuk" style="text-decoration: none; color: gray;">List Barang Masuk</a>
+                    <a href="/barangmasuk/listbarangmasuk" style="text-decoration: none; color: gray;">Laporan Barang Masuk</a>
                 </li>
                 <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                    <a href="/barangkeluar/listbarangkeluar" style="text-decoration: none; color: gray;">List Barang Keluar</a>
+                    <a href="/barangkeluar/listbarangkeluar" style="text-decoration: none; color: gray;">Laporan Barang Keluar</a>
                 </li>
             </ul>
         </div>

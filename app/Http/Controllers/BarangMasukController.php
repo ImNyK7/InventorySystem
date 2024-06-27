@@ -56,9 +56,9 @@ class BarangMasukController extends Controller
             'supplier_id' => 'required|exists:suppliers,id',
         ]);
 
-        if (RecordBarangMasuk::where('kodebrgmsk', $validatedData['kodebrgmsk'])->exists()) {
-            return redirect()->back()->withErrors(['kodebrgmsk' => 'Kode barang masuk sudah ada, silahkan buat kode baru atau gunakan fitur Edit.'])->withInput();
-        }
+        // if (RecordBarangMasuk::where('kodebrgmsk', $validatedData['kodebrgmsk'])->exists()) {
+        //     return redirect()->back()->withErrors(['kodebrgmsk' => 'Kode barang masuk sudah ada, silahkan buat kode baru atau gunakan fitur Edit.'])->withInput();
+        // }
         RecordBarangMasuk::create($validatedData);
         //dd("aaaa");
         return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Tambah Laporan!');
@@ -103,7 +103,7 @@ class BarangMasukController extends Controller
     public function update(Request $request, RecordBarangMasuk $listbarangmasuk)
     {
         $validatedData = $request->validate([
-            'kodebrgmsk' => 'required|string|max:255',
+            'kodebrgmsk' => 'required|string|max:255|unique:record_barang_masuks,kodebrgmsk,' . $listbarangmasuk->id,
             'tanggalbrgmsk' => 'required|date',
             'jmlhbrgmsk' => 'integer|min:1',
             'satuanbrg_id' => 'required|exists:satuan_brgs,id',
@@ -112,6 +112,7 @@ class BarangMasukController extends Controller
             'kategori_id' => 'required|exists:kategoris,id',
             'supplier_id' => 'required|exists:suppliers,id',
         ]);
+        
 
         $listbarangmasuk->update($validatedData);
         return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Edit Laporan!');

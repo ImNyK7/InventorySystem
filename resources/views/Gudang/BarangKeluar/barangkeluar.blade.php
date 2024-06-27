@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex align-items-center">
-        <h1 class="fs-3 m-4 mb-0" style="color: #1570EF">List Barang Keluar</h1>
+        <h1 class="fs-3 m-4 mb-0" style="color: #1570EF">Laporan Barang Keluar</h1>
     </div>
 
     @if (session()->has('success'))
@@ -30,7 +30,7 @@
         </div>
         <div class="row mb-5 mt-2">
             <div class="col">
-                <div class="table-responsive bg-white p-3">
+                <div class="table-responsive bg-white p-3" style="border-radius: 10px">
                     <table id="brgklr-table" class="table rounded shadow-sm table-hover" style="min-width: max-content;">
                         <thead>
                             <tr>

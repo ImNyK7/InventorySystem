@@ -23,7 +23,7 @@
         </div>
         <div class="row mb-5 mt-2">
             <div class="col">
-                <div class="table-responsive bg-white p-3">
+                <div class="table-responsive bg-white p-3" style="border-radius: 10px">
                     <table id="stokbarang-table" class="table rounded shadow-sm table-hover">
                         <thead>
                             <tr>

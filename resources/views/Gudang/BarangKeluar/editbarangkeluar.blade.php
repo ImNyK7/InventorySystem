@@ -11,7 +11,7 @@
     <div class="wrapper-wrapper">
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper" style="margin-top: 20px">
-                <h1>Form<br>Edit Barang Masuk</h1>
+                <h1>Form Edit<br>Laporan Barang Masuk</h1>
                 <form action="{{ url('/barangkeluar/listbarangkeluar/' . $recordbarangkeluar->kodebrgklr) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -72,7 +72,7 @@
                             <td><label for="jmlhbrgklr">Jumlah Barang</label></td>
                             <td>
                                 <input type="number" name="jmlhbrgklr" id="jmlhbrgklr"
-                                    value="{{ old('jmlhbrgklr', $recordbarangkeluar->jmlhbrgklr) }}" disabled
+                                    value="{{ old('jmlhbrgklr', $recordbarangkeluar->jmlhbrgklr) }}"
                                     style="width: 50px">
                                 <select name="satuanbrg_display" id="satuanbrg_display" style="width: 100px" disabled>
                                     <option value="" selected></option>

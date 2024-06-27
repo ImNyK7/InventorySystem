@@ -79,7 +79,7 @@ class CustomerController extends Controller
     public function update(Request $request, Customer $mastercustomer)
     {
         $validatedData = $request->validate([
-            'kodecust' => 'required|string|max:15',
+            'kodecust' => 'required|string|max:15|unique:customers,kodecust,' . $mastercustomer->id,
             'perusahaancust' => 'required|string|max:255',
             'kontakcust' => 'required|string|max:100',
             'kotacust' => 'required|string|max:255',

@@ -4,7 +4,7 @@
     <div class="wrapper-wrapper">
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper" style="margin-top: 20px; left: 550px">
-                <h1>Detail Barang Keluar</h1>
+                <h1>Detail Laporan<br>Barang Keluar</h1>
                 <form>
                     <table>
                         <tr>

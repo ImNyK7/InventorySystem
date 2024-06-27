@@ -11,7 +11,7 @@
     <div class="wrapper-wrapper">
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper" style="margin-top: 20px">
-                <h1>Form<br>Barang Keluar</h1>
+                <h1>Form Laporan<br>Barang Keluar</h1>
                 <form action="{{ route('listbarangkeluar.store') }}" method="POST">
                     @csrf
                     <table>

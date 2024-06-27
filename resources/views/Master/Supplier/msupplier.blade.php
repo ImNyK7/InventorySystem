@@ -24,7 +24,7 @@
         </div>
         <div class="row mb-5 mt-2">
             <div class="col">
-                <div class="table-responsive bg-white p-3">
+                <div class="table-responsive bg-white p-3" style="border-radius: 10px">
                     <table id="supplier-table" class="table rounded shadow-sm table-hover nowrap" style="width: 100%">
                         <thead>
                             <tr>

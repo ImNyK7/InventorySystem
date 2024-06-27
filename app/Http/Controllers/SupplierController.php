@@ -81,7 +81,7 @@ class SupplierController extends Controller
     public function update(Request $request, Supplier $mastersupplier)
     {
         $validatedData = $request->validate([
-            'kodesupp' => 'required|string|max:15',
+            'kodesupp' => 'required|string|max:15|unique:suppliers,kodesupp,' . $mastersupplier->id,
             'perusahaansupp' => 'required|string|max:255',
             'kontaksupp' => 'required|string|max:100',
             'kotasupp' => 'required|string|max:255',

@@ -21,7 +21,7 @@
     </div>
     <div class="row mb-5 mt-2">
         <div class="col">
-            <div class="table-responsive bg-white p-3">
+            <div class="table-responsive bg-white p-3" style="border-radius: 10px">
                 <table table id="kategori-table" class="table rounded shadow-sm table-hover" style="max-width: 1200px;">
                     <thead style="text-align: left">
                         <tr>

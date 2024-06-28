@@ -15,17 +15,6 @@
 
 <body>
     <main class="form-login">
-        @if (session()->has('regsuccess'))
-            <div class="alert alert-success" style="margin-top: -100px" role="alert">
-                {{ session('regsuccess') }}
-            </div>
-        @endif
-        @if (session()->has('loginError'))
-            <div class="alert alert-danger" style="margin-top: -100px" role="alert">
-                {{ session('loginError') }}
-            </div>
-        @endif
-        <br>
         <div class="heading" style="margin-top: 20px">
             <h1>SELAMAT DATANG</h1>
             <br>

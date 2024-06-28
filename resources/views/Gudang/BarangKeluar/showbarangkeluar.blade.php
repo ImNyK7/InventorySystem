@@ -9,16 +9,16 @@
                     <table>
                         <tr>
                             <td><label>Kode</label></td>
-                            <td><input value="{{ $recordbarangkeluar->kodebrgklr }}" readonly disabled style="width: 90px">
+                            <td><input value="{{ $recordbarangkeluar->kodebrgklr }}" readonly disabled style="width: 200px">
                             </td>
                             <td><label>Tanggal Keluar</label></td>
                             <td><input value="{{ $recordbarangkeluar->tanggalbrgklr }}" readonly disabled
-                                    style="width: 100px"></td>
+                                    style="width: 200px"></td>
                         </tr>
                         <tr>
                             <td><label>Jumlah</label></td>
-                            <td><input value="{{ $recordbarangkeluar->jmlhbrgklr }}" readonly disabled style="width: 50px">
-                                <input value="{{ $recordbarangkeluar->satuanbrg->namasatuan }}" style="width: 50px" readonly
+                            <td><input value="{{ $recordbarangkeluar->jmlhbrgklr }}" readonly disabled style="width: 100px">
+                                <input value="{{ $recordbarangkeluar->satuanbrg->namasatuan }}" style="width: 95px" readonly
                                     disabled></td>
                             <td><label>Nama Barang</label></td>
                             <td><input value="{{ $recordbarangkeluar->stokbarang->namabrg }}" readonly disabled
@@ -26,16 +26,15 @@
                         </tr>
                         <tr>
                             <td><label>Harga Jual</label></td>
-                            <td><input value="{{ $recordbarangkeluar->hrgjual }}" readonly disabled style="width: 100px">
+                            <td><input value="{{ $recordbarangkeluar->hrgjual }}" readonly disabled style="width: 200px">
                             </td>
                             <td><label>Kategori</label></td>
                             <td><input value="{{ $recordbarangkeluar->kategori->namakat }}" readonly disabled
-                                    style="width: fit-content"></td>
+                                    style="width: 200px"></td>
                         </tr>
                         <tr>
                             <td><label>Customer</label></td>
-                            <td><input value="{{ $recordbarangkeluar->customer->perusahaancust }}" readonly disabled
-                                    style="width: 200px"></td>
+                            <td><textarea readonly disabled style="width: 200px">{{ $recordbarangkeluar->customer->perusahaancust ?? ''}}</textarea></td>
                         </tr>
                         <tr>
                             <td><label>Nomor Seri</label></td>
@@ -44,7 +43,7 @@
                                 $noseribrgklr = json_decode($recordbarangkeluar->noseribrgklr);
                                 @endphp
                                 @foreach ($noseribrgklr as $noseri)
-                                    <input type="text" name="noseribrgklr[]" value="{{ $noseri }}" required disabled>
+                                    <input type="text" name="noseribrgklr[]" value="{{ $noseri }}" required disabled style="width: 200px">
                                 @endforeach
                             </td>                            
                         </tr>

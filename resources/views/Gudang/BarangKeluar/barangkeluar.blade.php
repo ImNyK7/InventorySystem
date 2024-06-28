@@ -23,8 +23,7 @@
                 <form action="/barangkeluar/listbarangkeluar/create">
                     <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                             style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
-                            Barang
-                            Keluar</span></button>
+                            Barang Keluar</span></button>
                 </form>
             </div>
         </div>

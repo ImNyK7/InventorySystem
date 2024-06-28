@@ -5,7 +5,7 @@
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper">
                 <h1>Form<br>Edit User</h1>
-                <form method="POST" action="{{  url('/admin/'.$user->username)  }}">
+                <form method="POST" action="{{  url('admin/'.$user->username)  }}">
                     @csrf
                     @method('put')
                     <table>

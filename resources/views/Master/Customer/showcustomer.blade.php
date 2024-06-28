@@ -9,31 +9,34 @@
                 <table>
                     <tr>
                         <td><label>Kode</label></td>
-                        <td><input value="{{ $customer->kodecust }}" readonly disabled style="width: 50px"></td>
+                        <td><input value="{{ $customer->kodecust }}" readonly disabled style="width: 200px"></td>
                         <td><label>Kontak</label></td>
-                        <td><input value="{{ $customer->kontakcust }}" readonly disabled style="width: 100px"></td>
+                        <td><input value="{{ $customer->kontakcust }}" readonly disabled style="width: 200px"></td>
                     </tr>
                     <tr>
                         <td><label>Perusahaan</label></td>
-                        <td><input value="{{ $customer->perusahaancust }}" readonly disabled style="width: 200px"></td>
+                        <td><textarea readonly disabled style="width: 200px">{{ $customer->perusahaancust }}</textarea></td>
                         <td><label>Kota</label></td>
-                        <td><input value="{{ $customer->kotacust }}" readonly disabled style="width: 150px"></td>
+                        <td><input value="{{ $customer->kotacust }}" readonly disabled style="width: 200px"></td>
                     </tr>
                     <tr>
                         <td><label>Alamat</label></td>
-                        <td><input value="{{ $customer->alamatcust }}" readonly disabled style="width: 300px"></td>
+                        <td><textarea readonly disabled style="width: 200px">{{ $customer->alamatcust }}</textarea></td>
+                                                <td><label>Alamat 2</label></td>
+                        <td><textarea readonly disabled style="width: 200px">{{ $customer->alamat2cust ?? ' -' }}</textarea></td>
+                    
+                    </tr>
+                    <tr>
                         <td><label>No Tlp</label></td>
-                        <td><input value="{{ $customer->notelponcust }}" readonly disabled style="width: fit-content"></td>
-                    </tr>
-                    <tr>
-                        <td><label>Alamat 2</label></td>
-                        <td><input value="{{ $customer->alamat2cust ?? ' -' }}" readonly disabled style="width: 200px"></td>
+                        <td><input value="{{ $customer->notelponcust }}" readonly disabled style="width: 200px"></td>
                         <td><label>Term</label></td>
-                        <td><input value="{{ $customer->termcust }}" readonly disabled style="width: 50px"> Hari</td>
+                        <td><input value="{{ $customer->termcust }}" readonly disabled style="width: 165px"> Hari</td>
                     </tr>
                     <tr>
+                        <td><label>Keterangan</label></td>
+                        <td><textarea readonly disabled style="width: 200px">{{ $customer->descust }}</textarea></td>
                         <td><label>Limit</label></td>
-                        <td><input value="{{ $customer->limitcust }}" readonly disabled style="width: 150px"></td>
+                        <td><input value="{{ $customer->limitcust }}" readonly disabled style="width: 200px"></td>
                     </tr>
                 </table>
             </form>

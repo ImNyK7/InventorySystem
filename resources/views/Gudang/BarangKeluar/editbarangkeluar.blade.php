@@ -21,14 +21,14 @@
                             <td>
                                 <input type="text" name="kodebrgklr" id="kodebrgklr"
                                     value="{{ old('kodebrgklr', $recordbarangkeluar->kodebrgklr) }}" required
-                                    style="width: 100px">
+                                    style="height: 25px">
                                 @error('kodebrgklr')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
                             </td>
                             <td><label for="customer_id">Customer</label></td>
                             <td>
-                                <select id="customer_id" name="customer_id" required style="width: 190px; height: 30px">
+                                <select id="customer_id" name="customer_id" required style="width: 200px">
                                     <option value="" selected></option>
                                     @foreach ($customers as $customer)
                                         <option value="{{ $customer->id }}"
@@ -64,7 +64,7 @@
                             <td>
                                 <input type="date" name="tanggalbrgklr" id="dateField"
                                     value="{{ old('tanggalbrgklr', $recordbarangkeluar->tanggalbrgklr) }}" min="2015-01-02"
-                                    max="2030-12-31" required>
+                                    max="2030-12-31" required style="width: 200px">
                                 @error('tanggalbrgklr')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
@@ -73,19 +73,22 @@
                         <tr>
                             <td><label for="jmlhbrgklr">Jumlah Barang</label></td>
                             <td>
-                                <input type="number" name="jmlhbrgklr" id="jmlhbrgklr"
-                                    value="{{ old('jmlhbrgklr', $recordbarangkeluar->jmlhbrgklr) }}" style="width: 50px">
-                                <select name="satuanbrg_display" id="satuanbrg_display" style="width: 100px" disabled>
-                                    <option value="" selected></option>
-                                    @foreach ($satuanbrgs as $satuanbrg)
-                                        <option value="{{ $satuanbrg->id }}"
-                                            {{ old('satuanbrg_id', $recordbarangkeluar->satuanbrg_id) == $satuanbrg->id ? 'selected' : '' }}>
-                                            {{ $satuanbrg->namasatuan }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <input type="hidden" name="satuanbrg_id" id="satuanbrg_id"
-                                    value="{{ old('satuanbrg_id', $recordbarangkeluar->satuanbrg_id) }}">
+                                <div style="display: flex; align-items: center;">
+                                    <input type="number" name="jmlhbrgklr" id="jmlhbrgklr"
+                                        value="{{ old('jmlhbrgklr', $recordbarangkeluar->jmlhbrgklr) }}"
+                                        style="width: 85px; margin-right: 5px;">
+                                    <select name="satuanbrg_display" id="satuanbrg_display" style="width: 100px;" disabled>
+                                        <option value="" selected></option>
+                                        @foreach ($satuanbrgs as $satuanbrg)
+                                            <option value="{{ $satuanbrg->id }}"
+                                                {{ old('satuanbrg_id', $recordbarangkeluar->satuanbrg_id) == $satuanbrg->id ? 'selected' : '' }}>
+                                                {{ $satuanbrg->namasatuan }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <input type="hidden" name="satuanbrg_id" id="satuanbrg_id"
+                                        value="{{ old('satuanbrg_id', $recordbarangkeluar->satuanbrg_id) }}">
+                                </div>
                                 @error('jmlhbrgklr')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
@@ -94,11 +97,12 @@
                                 @enderror
                                 {{-- <div class="invalid-message" id="jmlhbrgklr-error" style="display:none;">Jumlah barang melebihi stok!</div> --}}
                             </td>
+
                             <td><label for="hrgjual">Harga Jual</label></td>
                             <td>
                                 <input type="text" name="hrgjual" id="hrgjual"
                                     value="{{ old('hrgjual', $recordbarangkeluar->hrgjual) }}" required
-                                    style="width: 100px">
+                                    style="width: 200px">
                                 @error('hrgjual')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
@@ -107,7 +111,7 @@
                         <tr>
                             <td><label for="kategori_id_display">Kategori</label></td>
                             <td>
-                                <select id="kategori_id_display" name="kategori_id_display" required style="width: 140px;"
+                                <select id="kategori_id_display" name="kategori_id_display" required style="width: 190px;"
                                     disabled>
                                     <option value="" selected></option>
                                     @foreach ($kategoris as $kategori)
@@ -151,7 +155,6 @@
                 placeholder: "",
             });
 
-            // Mengisi tanggal saat ini jika field kosong
             const dateField = document.getElementById('dateField');
             if (!dateField.value) {
                 const today = new Date().toISOString().split('T')[0];
@@ -175,7 +178,6 @@
                     var currentQuantity = $('#noseri-container input').length;
                     var availableStock = parseInt($('#stokJumlah').val());
 
-                    // Check if newQuantity exceeds available stock
                     if (newQuantity > availableStock) {
                         $('#jmlhbrgklr-error').show();
                         $('#submitBtn').prop('disabled', true);
@@ -184,7 +186,6 @@
                         $('#submitBtn').prop('disabled', false);
                     }
 
-                    // Update serial number inputs
                     if (newQuantity > currentQuantity) {
                         for (var i = currentQuantity; i < newQuantity; i++) {
                             $('#noseri-container').append(

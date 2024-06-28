@@ -15,7 +15,7 @@
                     </tr>
                     <tr>
                         <td><label>Kategori</label></td>
-                        <td><input value="{{ $stokbarang->kategori->namakat ?? '' }}" readonly disabled style="width: 150px"></td>
+                        <td><input value="{{ $stokbarang->kategori->namakat ?? '' }}" readonly disabled style="width: 200px"></td>
                     </tr>
                     <tr>
                 </table>
@@ -23,7 +23,7 @@
             
             <a href="/stokbarang">
                 <button style="background-color: #1570EF; outline:none; border:none;margin-top: 10px" class="btn btn-primary btn-sm">
-                    <i class="fa-solid fa-arrow-left"></i> <span>Back to List</span>
+                    <i class="fa-solid fa-arrow-left"></i><span> Back to List</span>
                 </button>
             </a>     
         </div>

@@ -15,12 +15,12 @@
                 <form action="{{ route('stokbarang.store') }}" method="POST">
                     @csrf
                     <table>
-    
+
                         <tr>
                             <td><label for="namabrg">Nama Barang</label></td>
                             <td>
-                                <input type="text" name="namabrg" id="namabrg" value="{{ old('namabrg') }}"
-                                    required style="width: 200px">
+                                <input type="text" name="namabrg" id="namabrg" value="{{ old('namabrg') }}" required
+                                    style="width: 200px">
                                 @error('namabrg')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
@@ -29,17 +29,19 @@
                         <tr>
                             <td><label for="jmlhbrg">Jumlah Barang</label></td>
                             <td>
-                                <input type="number" name="jmlhbrg" id="jmlhbrg" value="{{ old('jmlhbrg') }}"
-                                    required style="width: 50px">
-                                <select name="satuanbrg_id" id="satuanbrg_id" required style="width: 100px">
-                                    <option value="" selected></option>
-                                    @foreach ($satuanbrgs as $satuanbrg)
-                                        <option value="{{ $satuanbrg->id }}"
-                                            {{ old('satuanbrg_id') == $satuanbrg->id ? 'selected' : '' }}>
-                                            {{ $satuanbrg->namasatuan }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <div style="display: flex; align-items: center;">
+                                    <input type="number" name="jmlhbrg" id="jmlhbrg" value="{{ old('jmlhbrg') }}"
+                                        required style="width: 100px; margin-right: 5px;">
+                                    <select name="satuanbrg_id" id="satuanbrg_id" style="width: 100px;" required>
+                                        <option value="" selected></option>
+                                        @foreach ($satuanbrgs as $satuanbrg)
+                                            <option value="{{ $satuanbrg->id }}"
+                                                {{ old('satuanbrg_id') == $satuanbrg->id ? 'selected' : '' }}>
+                                                {{ $satuanbrg->namasatuan }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 @error('jmlhbrg')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
@@ -51,7 +53,7 @@
                         <tr>
                             <td><label for="kategori_id">Kategori</label></td>
                             <td>
-                                <select id="kategori_id" name="kategori_id" required style="width: 140px;">
+                                <select id="kategori_id" name="kategori_id" required style="width: 200px;">
                                     <option value="" selected></option>
                                     @foreach ($kategoris as $kategori)
                                         <option value="{{ $kategori->id }}"

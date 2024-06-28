@@ -12,12 +12,12 @@ use App\Http\Controllers\StokBarangController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
 
-Route::get('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/admin/register', [RegisterController::class, 'register'])->middleware('auth')->name('admin.register');
-Route::post('/admin/register', [RegisterController::class, 'store']);
+Route::post('/admin/register', [RegisterController::class, 'store'])->middleware('auth');
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(('auth'));
 

@@ -19,15 +19,16 @@
                         <tr>
                             <td><label for="kodebrgmsk">Kode Laporan</label></td>
                             <td>
-                                <input type="text" name="kodebrgmsk" id="kodebrgmsk" value="{{ old('kodebrgmsk', $recordbarangmasuk->kodebrgmsk) }}"
-                                    required style="width: 100px">
+                                <input type="text" name="kodebrgmsk" id="kodebrgmsk"
+                                    value="{{ old('kodebrgmsk', $recordbarangmasuk->kodebrgmsk) }}" required
+                                    style="width: 200px">
                                 @error('kodebrgmsk')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
                             </td>
                             <td><label for="supplier_id">Supplier</label></td>
                             <td>
-                                <select id="supplier_id" name="supplier_id" required style="width: 190px; height: 30px">
+                                <select id="supplier_id" name="supplier_id" required style="width: 200px; height: 30px">
                                     <option value="" selected></option>
                                     @foreach ($suppliers as $supplier)
                                         <option value="{{ $supplier->id }}"
@@ -42,58 +43,65 @@
                             </td>
                         </tr>
                         <td><label for="stokbarang_id">Nama Barang</label></td>
-                            <td>
-                                <select id="stokbarang_id" name="stokbarang_id" style="width: 190px; height: 30px" disabled>
-                                    <option value="" selected></option>
-                                    @foreach ($stokbarangs as $stokbarang)
-                                        <option value="{{ $stokbarang->id }}"
-                                            data-jumlah="{{ $stokbarang->jmlhbrgmsk }}"
-                                            data-kategori="{{ $stokbarang->kategori_id }}"
-                                            data-satuan="{{ $stokbarang->satuanbrg_id }}"
-                                            {{ old('stokbarang_id', $recordbarangmasuk->stokbarang_id) == $stokbarang->id ? 'selected' : '' }}>
-                                            {{ $stokbarang->namabrg }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('stokbarang_id')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                            <td><label for="tanggalbrgmsk">Tanggal</label></td>
-                            <td>
-                                <input type="date" name="tanggalbrgmsk" id="dateField"
-                                    value="{{ old('tanggalbrgmsk', $recordbarangmasuk->tanggalbrgmsk) }}" min="2015-01-02" max="2030-12-31" required>
-                                @error('tanggalbrgmsk')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
+                        <td>
+                            <select id="stokbarang_id" name="stokbarang_id" style="width: 200px" disabled>
+                                <option value="" selected></option>
+                                @foreach ($stokbarangs as $stokbarang)
+                                    <option value="{{ $stokbarang->id }}" data-jumlah="{{ $stokbarang->jmlhbrgmsk }}"
+                                        data-kategori="{{ $stokbarang->kategori_id }}"
+                                        data-satuan="{{ $stokbarang->satuanbrg_id }}"
+                                        {{ old('stokbarang_id', $recordbarangmasuk->stokbarang_id) == $stokbarang->id ? 'selected' : '' }}>
+                                        {{ $stokbarang->namabrg }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('stokbarang_id')
+                                <div class="invalid-message">{{ $message }}</div>
+                            @enderror
+                        </td>
+                        <td><label for="tanggalbrgmsk">Tanggal</label></td>
+                        <td>
+                            <input type="date" name="tanggalbrgmsk" id="dateField"
+                                value="{{ old('tanggalbrgmsk', $recordbarangmasuk->tanggalbrgmsk) }}" min="2015-01-02"
+                                max="2030-12-31" required style="width: 200px">
+                            @error('tanggalbrgmsk')
+                                <div class="invalid-message">{{ $message }}</div>
+                            @enderror
+                        </td>
                         <tr>
                             <td><label for="jmlhbrgmsk">Jumlah Barang</label></td>
                             <td>
-                                <input type="number" name="jmlhbrgmsk" id="jmlhbrgmsk" value="{{ old('jmlhbrgmsk', $recordbarangmasuk->jmlhbrgmsk) }}"
-                                    required style="width: 50px">
-                                <select name="satuanbrg_display" id="satuanbrg_display" style="width: 100px" disabled>
-                                    <option value="" selected></option>
-                                    @foreach ($satuanbrgs as $satuanbrg)
-                                        <option value="{{ $satuanbrg->id }}"
-                                            {{ old('satuanbrg_id', $recordbarangmasuk->satuanbrg_id) == $satuanbrg->id ? 'selected' : '' }}>
-                                            {{ $satuanbrg->namasatuan }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <input type="hidden" name="satuanbrg_id" id="satuanbrg_id" value="{{ old('satuanbrg_id', $recordbarangmasuk->satuanbrg_id) }}">
+                                <div style="display: flex; align-items: center;">
+                                    <input type="number" name="jmlhbrgmsk" id="jmlhbrgmsk"
+                                        value="{{ old('jmlhbrgmsk', $recordbarangmasuk->jmlhbrgmsk) }}" required
+                                        style="width: 100px; margin-right: 5px;">
+                                    <select name="satuanbrg_display" id="satuanbrg_display" style="width: 95px;" disabled>
+                                        <option value="" selected></option>
+                                        @foreach ($satuanbrgs as $satuanbrg)
+                                            <option value="{{ $satuanbrg->id }}"
+                                                {{ old('satuanbrg_id', $recordbarangmasuk->satuanbrg_id) == $satuanbrg->id ? 'selected' : '' }}>
+                                                {{ $satuanbrg->namasatuan }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <input type="hidden" name="satuanbrg_id" id="satuanbrg_id"
+                                        value="{{ old('satuanbrg_id', $recordbarangmasuk->satuanbrg_id) }}">
+                                </div>
                                 @error('jmlhbrgmsk')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
                                 @error('satuanbrg_id')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
-                                <div class="invalid-message" id="jmlhbrgmsk-error" style="display:none;">Jumlah barang melebihi stok!</div>
+                                <div class="invalid-message" id="jmlhbrgmsk-error" style="display:none;">Jumlah barang
+                                    melebihi stok!</div>
                             </td>
+
                             <td><label for="hrgbeli">Harga Beli</label></td>
                             <td>
-                                <input type="text" name="hrgbeli" id="hrgbeli" value="{{ old('hrgbeli', $recordbarangmasuk->hrgbeli) }}" required
-                                    style="width: 100px">
+                                <input type="text" name="hrgbeli" id="hrgbeli"
+                                    value="{{ old('hrgbeli', $recordbarangmasuk->hrgbeli) }}" required
+                                    style="width: 200px">
                                 @error('hrgbeli')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
@@ -102,7 +110,8 @@
                         <tr>
                             <td><label for="kategori_id_display">Kategori</label></td>
                             <td>
-                                <select id="kategori_id_display" name="kategori_id_display" required style="width: 140px;" disabled>
+                                <select id="kategori_id_display" name="kategori_id_display" required style="width: 140px;"
+                                    disabled>
                                     <option value="" selected></option>
                                     @foreach ($kategoris as $kategori)
                                         <option value="{{ $kategori->id }}"
@@ -111,7 +120,8 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                <input type="hidden" name="kategori_id" id="kategori_id" value="{{ old('kategori_id', $recordbarangmasuk->kategori_id) }}">
+                                <input type="hidden" name="kategori_id" id="kategori_id"
+                                    value="{{ old('kategori_id', $recordbarangmasuk->kategori_id) }}">
                                 @error('kategori_id')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror

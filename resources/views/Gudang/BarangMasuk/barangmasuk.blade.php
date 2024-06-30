@@ -118,7 +118,7 @@
                             var min = startDate ? new Date(startDate).getTime() : null;
                             var max = endDate ? new Date(endDate).getTime() : null;
                             var date = new Date(data[2])
-                        .getTime(); // Use data for the Tanggal Keluar column
+                        .getTime();
 
                             if ((min === null && max === null) ||
                                 (min === null && date <= max) ||

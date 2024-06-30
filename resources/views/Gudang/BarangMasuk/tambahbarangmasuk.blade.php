@@ -118,8 +118,9 @@
                             </td>
                         </tr>
                     </table>
+                    <a href="/stokbarang/create" style="font-size: 14px; text-decoration: none; margin-left: 5px">Klik Disini Jika Belum Membuat Nama Barang!</a>
                     <a href="/barangmasuk/listbarangmasuk"><button type="button" class="btncancel">Cancel</button></a>
-                    <button type="submit" class="btnsubmit">Submit</button>
+                    <button type="submit" class="btnsubmit">Submit</button><br>
                 </form>
             </div>
         </div>
@@ -149,14 +150,12 @@
                 $('#kategori_id_display').val(kategori).trigger('change');
                 $('#kategori_id').val(kategori);
 
-                // Isi nilai default tetapi biarkan dropdown tetap enabled
                 $('#satuanbrg_display').val(satuan).trigger('change');
                 $('#satuanbrg_id').val(satuan);
 
                 $('#jmlhbrgmsk-error').hide();
             });
 
-            // Hilangkan validasi yang menghalangi submit form karena stok barang masuk menambah stok barang
         });
     </script>
 @endsection

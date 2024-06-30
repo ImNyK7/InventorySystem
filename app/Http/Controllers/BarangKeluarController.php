@@ -62,10 +62,6 @@ class BarangKeluarController extends Controller
 
         $validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
 
-        // if (RecordBarangKeluar::where('kodebrgklr', $validatedData['kodebrgklr'])->exists()) {
-        //     return redirect()->back()->withErrors(['kodebrgklr' => 'Kode barang sudah ada, silahkan buat kode baru atau gunakan fitur Edit.'])->withInput();
-        // }
-
         $stokbarang = StokBarang::find($request->stokbarang_id);
         $stokbarang->jmlhbrg -= $request->jmlhbrgklr;
         $stokbarang->save();

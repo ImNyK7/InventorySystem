@@ -12,9 +12,6 @@ use App\Models\RecordBarangMasuk;
 
 class BarangMasukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('Gudang/BarangMasuk/barangmasuk', [
@@ -26,9 +23,6 @@ class BarangMasukController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('Gudang/BarangMasuk/tambahbarangmasuk', [
@@ -40,9 +34,6 @@ class BarangMasukController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -56,18 +47,17 @@ class BarangMasukController extends Controller
             'supplier_id' => 'required|exists:suppliers,id',
         ]);
 
-        // if (RecordBarangMasuk::where('kodebrgmsk', $validatedData['kodebrgmsk'])->exists()) {
-        //     return redirect()->back()->withErrors(['kodebrgmsk' => 'Kode barang masuk sudah ada, silahkan buat kode baru atau gunakan fitur Edit.'])->withInput();
-        // }
-        RecordBarangMasuk::create($validatedData);
-        //dd("aaaa");
+        $recordBarangMasuk = RecordBarangMasuk::create($validatedData);
+
+        // Update jmlhbrg di tabel stok_barangs
+        $stokBarang = StokBarang::findOrFail($validatedData['stokbarang_id']);
+        $stokBarang->jmlhbrg += $validatedData['jmlhbrgmsk'];
+        $stokBarang->satuanbrg_id = $validatedData['satuanbrg_id'];
+        $stokBarang->save();
+
         return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Tambah Laporan!');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
     public function show(RecordBarangMasuk $listbarangmasuk)
     {
         return view('Gudang/BarangMasuk/showbarangmasuk', [
@@ -80,12 +70,8 @@ class BarangMasukController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(RecordBarangMasuk $listbarangmasuk)
     {
-
         return view('Gudang/BarangMasuk/editbarangmasuk', [
             'recordbarangmasuk' => $listbarangmasuk,
             'title' => 'Edit Laporan Barang Masuk',
@@ -94,12 +80,8 @@ class BarangMasukController extends Controller
             "satuanbrgs" => SatuanBrg::all(),
             "stokbarangs" => StokBarang::all(),
         ]);
-
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, RecordBarangMasuk $listbarangmasuk)
     {
         $validatedData = $request->validate([
@@ -112,17 +94,23 @@ class BarangMasukController extends Controller
             'kategori_id' => 'required|exists:kategoris,id',
             'supplier_id' => 'required|exists:suppliers,id',
         ]);
-        
+
+        // Kurangi stok
+        $stokBarangLama = StokBarang::findOrFail($listbarangmasuk->stokbarang_id);
+        $stokBarangLama->jmlhbrg -= $listbarangmasuk->jmlhbrgmsk;
+        $stokBarangLama->save();
+
+        // Tambah stok
+        $stokBarangBaru = StokBarang::findOrFail($validatedData['stokbarang_id']);
+        $stokBarangBaru->jmlhbrg += $validatedData['jmlhbrgmsk'];
+        $stokBarangBaru->satuanbrg_id = $validatedData['satuanbrg_id'];
+        $stokBarangBaru->save();
 
         $listbarangmasuk->update($validatedData);
+
         return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Edit Laporan!');
-
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(RecordBarangMasuk $recordbarangmasuk)
     {
         $recordbarangmasuk->delete();
@@ -168,5 +156,4 @@ class BarangMasukController extends Controller
         $pdf = PDF::loadView('Gudang.BarangMasuk.printsinglebarangmasuk', $data);
         return $pdf->stream("Detail_Barang_Masuk.pdf", array("Attachment" => false));
     }
-
 }

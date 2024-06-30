@@ -41,16 +41,19 @@ class StokBarangController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            
-            'jmlhbrg' => 'required|integer|min:1',
-            'satuanbrg_id' => 'required|exists:satuan_brgs,id',
             'namabrg' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategoris,id',
+            // 'satuanbrg_id' => 'required|exists:satuan_brgs,id',
+            // 'jmlhbrg' => 'required|integer|min:1',
         ]);
 
         if (StokBarang::where('namabrg', $validatedData['namabrg'])->exists()) {
             return redirect()->back()->withErrors(['namabrg' => 'Nama barang sudah ada, silahkan gunakan fitur Edit.'])->withInput();
         }
+
+        // Set jmlhbrg dan satuanbrg_id ke nilai default jika diperlukan
+        $validatedData['jmlhbrg'] = 0; // Nilai default
+        $validatedData['satuanbrg_id'] = 1;  // Atur ke null atau ID default dari tabel satuan_brgs
 
         StokBarang::create($validatedData);
         return redirect('/stokbarang')->with('success', 'Berhasil Tambah Barang!');
@@ -64,7 +67,6 @@ class StokBarangController extends Controller
         return view('Gudang/StokBarang/showstokbarang', [
             'stokbarang' => $stokbarang,
             'title' => 'View Stok',
-
         ]);
     }
 
@@ -78,7 +80,6 @@ class StokBarangController extends Controller
             'title' => 'Edit Stok',
             'kategoris' => Kategori::all(),
             'satuanbrgs' => SatuanBrg::all(),
-            
         ]);
     }
 
@@ -88,16 +89,14 @@ class StokBarangController extends Controller
     public function update(Request $request, StokBarang $stokbarang)
     {
         $validatedData = $request->validate([
-            
-            'jmlhbrg' => 'required|integer|min:1',
-            'satuanbrg_id' => 'exists:satuan_brgs,id',
             'namabrg' => 'required|string|max:255',
             'kategori_id' => 'exists:kategoris,id',
+            // 'satuanbrg_id' => 'exists:satuan_brgs,id', // Dihapus
+            // 'jmlhbrg' => 'required|integer|min:1', // Dihapus
         ]);
 
         $stokbarang->update($validatedData);
         return redirect('stokbarang/')->with('success', 'Berhasil Edit Customer!');
-
     }
 
     /**
@@ -112,17 +111,15 @@ class StokBarangController extends Controller
     public function generatestokPDF()
     {
         $stokbarangs = StokBarang::get();
-    
-        
+
         $data = [
             'title' => 'List Stok Barang',
             'date' => date('d/m/Y'),
             'stokbarangs' => $stokbarangs
-        ]; 
-              
+        ];
+
         $pdf = PDF::loadView('Gudang.StokBarang.printstokbarang', $data);
-       
+
         return $pdf->stream("StokBarang.pdf", array("Attachment" => false));
-        //return $pdf->download('List StokBarang.pdf');
     }
 }

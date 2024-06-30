@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('tanggalbrgmsk');
             $table->integer('jmlhbrgmsk');
             $table->foreignId('satuanbrg_id')->constrained('satuan_brgs')->unsigned();
-            $table->foreignId('stokbarang_id')->constrained('stok_barangs')->unsigned();
+            $table->foreignId('stokbarang_id')->constrained('stok_barangs')->onDelete('cascade');
             $table->decimal('hrgbeli', 15, 2);;
             $table->foreignId('kategori_id')->constrained('kategoris')->unsigned();
             $table->foreignId('supplier_id')->constrained('suppliers')->unsigned();

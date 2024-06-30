@@ -137,7 +137,7 @@ class BarangKeluarController extends Controller
         }
 
         if ($stokbarang->jmlhbrg < 0) {
-            return redirect()->back()->withErrors(['jmlhbrgklr' => 'Stok barang tidak mencukupi untuk pengurangan ini.'])->withInput();
+            return redirect()->back()->withErrors(['jmlhbrgklr' => 'Jumlah Barang Melebihi Stok!'])->withInput();
         }
 
         $stokbarang->save();

@@ -22,6 +22,10 @@ class StokBarang extends Model
         return $this->belongsTo(SatuanBrg::class);
     }
 
+    public function recordbarangmasuk(){
+        return $this->hasMany(RecordBarangMasuk::class, 'stokbarang_id');
+    }
+
     public function getRouteKeyName(){
         return 'namabrg';
     }

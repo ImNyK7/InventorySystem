@@ -28,31 +28,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="jmlhbrg">Jumlah Barang</label></td>
-                            <td>
-                                <div style="display: flex; align-items: center;">
-                                    <input type="number" name="jmlhbrg" id="jmlhbrg"
-                                        value="{{ old('jmlhbrg', $stokbarang->jmlhbrg) }}"
-                                        style="width: 100px; margin-right: 5px;">
-                                    <select name="satuanbrg_id" id="satuanbrg_id" style="width: 95px;">
-                                        <option value="" selected></option>
-                                        @foreach ($satuanbrgs as $satuanbrg)
-                                            <option value="{{ $satuanbrg->id }}"
-                                                {{ old('satuanbrg_id', $stokbarang->satuanbrg_id) == $satuanbrg->id ? 'selected' : '' }}>
-                                                {{ $satuanbrg->namasatuan }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @error('jmlhbrg')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                                @error('satuanbrg_id')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                        </tr>
-                        <tr>
                             <td><label for="kategori_id">Kategori</label></td>
                             <td>
                                 <select id="kategori_id" name="kategori_id" style="width: 200px;">

@@ -26,30 +26,7 @@
                                 @enderror
                             </td>
                         </tr>
-                        <tr>
-                            <td><label for="jmlhbrg">Jumlah Barang</label></td>
-                            <td>
-                                <div style="display: flex; align-items: center;">
-                                    <input type="number" name="jmlhbrg" id="jmlhbrg" value="{{ old('jmlhbrg') }}"
-                                        required style="width: 100px; margin-right: 5px;">
-                                    <select name="satuanbrg_id" id="satuanbrg_id" style="width: 100px;" required>
-                                        <option value="" selected></option>
-                                        @foreach ($satuanbrgs as $satuanbrg)
-                                            <option value="{{ $satuanbrg->id }}"
-                                                {{ old('satuanbrg_id') == $satuanbrg->id ? 'selected' : '' }}>
-                                                {{ $satuanbrg->namasatuan }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @error('jmlhbrg')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                                @error('satuanbrg_id')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                        </tr>
+                        <!-- Hapus field jmlhbrg dan satuanbrg_id -->
                         <tr>
                             <td><label for="kategori_id">Kategori</label></td>
                             <td>

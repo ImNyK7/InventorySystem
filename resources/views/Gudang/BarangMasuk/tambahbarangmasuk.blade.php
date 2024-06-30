@@ -72,8 +72,8 @@
                                 <div style="display: flex; align-items: center;">
                                     <input type="number" name="jmlhbrgmsk" id="jmlhbrgmsk" 
                                            value="{{ old('jmlhbrgmsk') }}" required style="width: 100px; margin-right: 5px;">
-                                    <select name="satuanbrg_display" id="satuanbrg_display" required 
-                                            style="width: 100px;" disabled>
+                                    <select name="satuanbrg_id" id="satuanbrg_display" required 
+                                            style="width: 100px;">
                                         <option value="" selected></option>
                                         @foreach ($satuanbrgs as $satuanbrg)
                                             <option value="{{ $satuanbrg->id }}" 
@@ -82,8 +82,6 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    <input type="hidden" name="satuanbrg_id" id="satuanbrg_id" 
-                                           value="{{ old('satuanbrg_id') }}">
                                 </div>
                                 @error('jmlhbrgmsk')
                                     <div class="invalid-message">{{ $message }}</div>
@@ -91,7 +89,6 @@
                                 @error('satuanbrg_id')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
-                                <div class="invalid-message" id="jmlhbrgmsk-error" style="display:none;">Jumlah barang melebihi stok!</div>
                             </td>
                             <td><label for="hrgbeli">Harga Beli</label></td>
                             <td>
@@ -152,28 +149,14 @@
                 $('#kategori_id_display').val(kategori).trigger('change');
                 $('#kategori_id').val(kategori);
 
+                // Isi nilai default tetapi biarkan dropdown tetap enabled
                 $('#satuanbrg_display').val(satuan).trigger('change');
                 $('#satuanbrg_id').val(satuan);
 
                 $('#jmlhbrgmsk-error').hide();
             });
 
-            $('#jmlhbrgmsk').on('input', function() {
-                var jumlahMasuk = $(this).val();
-                if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
-                    $('#jmlhbrgmsk-error').show();
-                } else {
-                    $('#jmlhbrgmsk-error').hide();
-                }
-            });
-
-            $('form').on('submit', function(event) {
-                var jumlahMasuk = $('#jmlhbrgmsk').val();
-                if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
-                    $('#jmlhbrgmsk-error').show();
-                    event.preventDefault();
-                }
-            });
+            // Hilangkan validasi yang menghalangi submit form karena stok barang masuk menambah stok barang
         });
     </script>
 @endsection

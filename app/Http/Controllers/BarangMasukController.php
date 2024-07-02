@@ -47,7 +47,7 @@ class BarangMasukController extends Controller
             'supplier_id' => 'required|exists:suppliers,id',
         ]);
 
-        $recordBarangMasuk = RecordBarangMasuk::create($validatedData);
+        RecordBarangMasuk::create($validatedData);
 
         // Update jmlhbrg di tabel stok_barangs
         $stokBarang = StokBarang::findOrFail($validatedData['stokbarang_id']);
@@ -91,7 +91,7 @@ class BarangMasukController extends Controller
             'satuanbrg_id' => 'required|exists:satuan_brgs,id',
             'stokbarang_id' => 'exists:stok_barangs,id',
             'hrgbeli' => 'required|numeric|min:0.01|max:999999999999.99',
-            'kategori_id' => 'required|exists:kategoris,id',
+            // 'kategori_id' => 'required|exists:kategoris,id',
             'supplier_id' => 'required|exists:suppliers,id',
         ]);
 

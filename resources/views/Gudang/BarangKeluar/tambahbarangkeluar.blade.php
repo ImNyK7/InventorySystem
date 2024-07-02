@@ -61,7 +61,7 @@
                             <td><label for="tanggalbrgklr">Tanggal</label></td>
                             <td>
                                 <input type="date" name="tanggalbrgklr" id="dateField"
-                                    value="{{ old('tanggalbrgklr') }}" min="2015-01-02" max="2030-12-31" required disabled
+                                    value="{{ old('tanggalbrgklr') }}" min="2015-01-02" max="2030-12-31" required readonly
                                     style="width: 200px">
                                 @error('tanggalbrgklr')
                                     <div class="invalid-message">{{ $message }}</div>

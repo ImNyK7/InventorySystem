@@ -50,6 +50,14 @@
     color: #1570EF !important;
 }
 
+h1 {
+    font-size: 30px;
+    text-align: center;
+    color: #1570EF;
+    font-weight: 650;
+    padding-bottom: 20px;
+    margin-top: -10px;
+  }  
 
 #page-content-wrapper {
     min-width: 100vw;

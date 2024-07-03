@@ -59,7 +59,7 @@
                             </td>
                             <td><label for="alamat2cust">Alamat 2</label></td>
                             <td>
-                                <textarea type="text" name="alamat2cust" id="alamat2cust" required style="width: 200px"
+                                <textarea type="text" name="alamat2cust" id="alamat2cust" style="width: 200px"
                                     @error('alamat2cust') class="is-invalid" @enderror>{{ old('alamat2cust', $customer->alamat2cust) }}</textarea>
                                 @error('alamat2cust')
                                     <div class="invalid-feedback">{{ $message }}</div>

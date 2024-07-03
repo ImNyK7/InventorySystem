@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('stok_barangs', function (Blueprint $table) {
             $table->id();
             $table->string('namabrg');
-            $table->foreignId('kategori_id')->constrained('kategoris');
-            $table->foreignId('satuanbrg_id')->constrained('satuan_brgs');
+            $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade');
+            $table->foreignId('satuanbrg_id')->constrained('satuan_brgs')->onDelete('cascade');;
             $table->integer('jmlhbrg');
             $table->timestamps();
         });

@@ -41,19 +41,15 @@ class StokBarangController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'namabrg' => 'required|string|max:255',
+            'namabrg' => 'required|string|max:255|unique:stok_barangs,namabrg',
             'kategori_id' => 'required|exists:kategoris,id',
             // 'satuanbrg_id' => 'required|exists:satuan_brgs,id',
             // 'jmlhbrg' => 'required|integer|min:1',
         ]);
 
-        if (StokBarang::where('namabrg', $validatedData['namabrg'])->exists()) {
-            return redirect()->back()->withErrors(['namabrg' => 'Nama barang sudah ada, silahkan gunakan fitur Edit.'])->withInput();
-        }
 
-        // Set jmlhbrg dan satuanbrg_id ke nilai default jika diperlukan
-        $validatedData['jmlhbrg'] = 0; // Nilai default
-        $validatedData['satuanbrg_id'] = 1;  // Atur ke null atau ID default dari tabel satuan_brgs
+        $validatedData['jmlhbrg'] = 0;
+        $validatedData['satuanbrg_id'] = 1;
 
         StokBarang::create($validatedData);
         return redirect('/stokbarang')->with('success', 'Berhasil Tambah Barang!');
@@ -89,10 +85,10 @@ class StokBarangController extends Controller
     public function update(Request $request, StokBarang $stokbarang)
     {
         $validatedData = $request->validate([
-            'namabrg' => 'required|string|max:255',
+            'namabrg' => 'required|string|max:255|unique:stok_barangs,namabrg,'. $stokbarang->id,
             'kategori_id' => 'exists:kategoris,id',
-            // 'satuanbrg_id' => 'exists:satuan_brgs,id', // Dihapus
-            // 'jmlhbrg' => 'required|integer|min:1', // Dihapus
+            // 'satuanbrg_id' => 'exists:satuan_brgs,id',
+            // 'jmlhbrg' => 'required|integer|min:1',
         ]);
 
         $stokbarang->update($validatedData);

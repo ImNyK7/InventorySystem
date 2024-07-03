@@ -96,6 +96,7 @@
                 </div>
             </div>
         </div>
+        @include('Partials.backontop')
     </div>
     <script>
         $(document).ready(function() {

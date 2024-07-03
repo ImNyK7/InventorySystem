@@ -56,6 +56,7 @@
                 </table>
             </div>
         </div>
+        @include('Partials.backontop')
     </div>
 
 </div>

@@ -116,9 +116,20 @@ h1 {
     border: none;
 }
 
-/* .active-button {
-    color: blue !important;
-} */
+#backontopBtn {
+    display: none;
+    position: fixed;
+    bottom: 2px; 
+    right: 2px; 
+    z-index: 99; 
+    color: black; 
+    background-color: transparent;
+    cursor: pointer; 
+    padding: 10px;
+    border: none;
+    font-size: 32px;
+}
+
 
 .clickable-summary {
     display: block;

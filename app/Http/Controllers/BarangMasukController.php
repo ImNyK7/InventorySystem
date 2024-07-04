@@ -113,6 +113,7 @@ class BarangMasukController extends Controller
 
     public function destroy(RecordBarangMasuk $recordbarangmasuk)
     {
+        
         $recordbarangmasuk->delete();
         return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Hapus Laporan!');
     }

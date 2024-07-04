@@ -9,17 +9,17 @@ class Supplier extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'kodesupp',
-        'perusahaansupp',
-        'kontaksupp',
-        'kotasupp',
-        'alamatsupp',
-        'alamat2supp',
-        'notelponsupp',
-        'termsupp',
-        'descsupp',
-    ];
+    // protected $fillable = [
+    //     'kodesupp',
+    //     'perusahaansupp',
+    //     'kontaksupp',
+    //     'kotasupp',
+    //     'alamatsupp',
+    //     'alamat2supp',
+    //     'notelponsupp',
+    //     'termsupp',
+    //     'descsupp',
+    // ];
 
     protected $guarded =['id'];
 

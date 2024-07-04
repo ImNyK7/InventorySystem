@@ -61,11 +61,16 @@
                                         <a href="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}/edit" class="btn btn-success btn-sm" style="background-color: #48EE59; border:none; outline:none;">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <form action="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}" method="POST" class="d-inline">
+                                        <form action="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}" method="POST" class="delete-form d-inline">
                                             @method('delete')
                                             @csrf
-                                            <button class="btn btn-danger btn-sm" style="background-color: #E70404; border:none; outline:none;" onclick="return confirm('Yakin Akan Menghapus Data Ini?')"><i class="fa-solid fa-trash-can"></i></button>
-                                        </form>    
+                                            <button type="button" class="btn btn-danger btn-sm delete-button"
+                                                    data-id="{{ $supplier->id }}"
+                                                    data-url="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}"
+                                                    style="background-color: #E70404; border:none; outline:none;">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </form>   
                                     </td>                                    
                                 </tr>
                             @endforeach
@@ -86,6 +91,37 @@
                     rightColumns: 1
                 }
             });
+        });
+
+        $(document).on('click', '.delete-button', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var url = $(this).data('url');
+            var form = $(this).closest('form');
+
+            swal({
+                    title: "Yakin Hapus Data Ini?",
+                    text: "Data yang dihapus tidak bisa dikembalikan!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yakin!",
+                    closeOnConfirm: false
+                },
+                function() {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: form.serialize(),
+                        success: function(data) {
+                            swal("Deleted!", "Your record has been deleted.", "success");
+                            form.closest('tr').remove();
+                        },
+                        error: function(data) {
+                            swal("Error!", "There was an error deleting the record.", "error");
+                        }
+                    });
+                });
         });
     </script>
 @endsection

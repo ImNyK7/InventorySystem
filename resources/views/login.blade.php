@@ -25,17 +25,46 @@
                 @csrf
                 <table>
                     <tr>
-                        <td><label for="username" class="form-label" @error('username')
-                            is-invalid @enderror>Username/ID</label></td>
-                        <td><input type="text" name="username" class="form-control" required autofocus value="{{ old('username') }}"></td>
+                        <td><label for="username" class="form-label">Username/ID</label></td>
+                        <td><input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
+                                required autofocus value="{{ old('username') }}"></td>
                         <td><i class="fas fa-user me-2"></i></td>
                     </tr>
+                    @error('username')
+                    <tr>
+                        <td></td>
+                        <td><span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span></td>
+                        <td></td>
+                    </tr>
+                    @enderror
                     <tr>
                         <td><label for="password" class="form-label">Password</label></td>
-                        <td><input type="password" name="password" class="form-control" required></td>
+                        <td><input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                                required></td>
                         <td><i class="fa-solid fa-lock me-2"></i></td>
                     </tr>
+                    @error('password')
+                    <tr>
+                        <td></td>
+                        <td><span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span></td>
+                        <td></td>
+                    </tr>
+                    @enderror
                 </table>
+                @if ($errors->any())
+                <div class="alert alert-danger mt-3">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                @if(session('loginError'))
+                <div class="alert alert-danger mt-3">
+                    {{ session('loginError') }}
+                </div>
+                @endif
                 <button type="submit" class="btn">Login</button>
             </form>
         </div>

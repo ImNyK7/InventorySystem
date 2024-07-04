@@ -36,6 +36,7 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validatedData = $request->validate([
             'kodesupp' => 'required|string|max:15|unique:suppliers,kodesupp',
             'perusahaansupp' => 'required|string|max:255',

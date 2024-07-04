@@ -59,7 +59,7 @@ class UserController extends Controller
     public function update(Request $request, User $admin)
     {
         $validatedData = $request->validate([
-            'username'=> 'required|min:3|max:255',
+            'username'=> 'required|min:3|max:255|unique:users,username,',
             'is_admin' => 'required|boolean'
        ]);
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -116,7 +116,7 @@ class CustomerController extends Controller
             'customers' => $customers
         ]; 
               
-        $pdf = PDF::loadView('Master.Customer.printcustomer', $data);
+        $pdf = Pdf::loadView('Master.Customer.printcustomer', $data);
        
         return $pdf->stream("Customer List.pdf", array("Attachment" => false));
     }

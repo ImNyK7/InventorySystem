@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Supplier;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\SatuanBrg;
 use App\Models\StokBarang;
 use Illuminate\Http\Request;
@@ -150,7 +150,7 @@ class BarangMasukController extends Controller
             'recordbarangmasuks' => $recordbarangmasuks
         ];
 
-        $pdf = PDF::loadView('Gudang.BarangMasuk.printbarangmasuk', $data);
+        $pdf = Pdf::loadView('Gudang.BarangMasuk.printbarangmasuk', $data);
 
         return $pdf->stream("Barang Masuk List.pdf", array("Attachment" => false));
     }
@@ -163,7 +163,7 @@ class BarangMasukController extends Controller
             'date' => date('d/m/Y')
         ];
 
-        $pdf = PDF::loadView('Gudang.BarangMasuk.printsinglebarangmasuk', $data);
+        $pdf = Pdf::loadView('Gudang.BarangMasuk.printsinglebarangmasuk', $data);
         return $pdf->stream("Detail_Barang_Masuk.pdf", array("Attachment" => false));
     }
 }

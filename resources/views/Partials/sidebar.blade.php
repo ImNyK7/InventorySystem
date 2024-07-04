@@ -38,7 +38,7 @@
                 </li>
             </ul>
         </div>
-        <a href="/admin" class="list-group-item list-group-item-action bg-transparent second-text dashboard-button fw-bold" style="text-decoration: none; color: gray;">
+        <a href="/admin" class="list-group-item list-group-item-action bg-transparent second-text dashboard-button fw-bold" style="text-decoration: none; color: gray;" id="adminButton">
             <i class="fa-solid fa-clipboard-user fa-lg me-2"></i>Admin
         </a>
     </div>
@@ -46,12 +46,21 @@
         style="color: red">Logout</button>
     </form>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var masterLink = document.getElementById('masterLink');
         var masterSubMenu = document.getElementById('masterSubMenu');
         var gudangLink = document.getElementById('gudangLink');
         var gudangSubMenu = document.getElementById('gudangSubMenu');
+        var adminButton = document.getElementById('adminButton');
+
+        // Check the user's admin status (assuming you have a variable `isAdmin` from your backend)
+        var isAdmin = {{ auth()->user()->is_admin ? 'true' : 'false' }};
+        
+        if (!isAdmin) {
+            adminButton.style.display = 'none';
+        }
 
         masterLink.addEventListener('click', function(event) {
             event.preventDefault();

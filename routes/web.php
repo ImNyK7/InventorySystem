@@ -11,18 +11,25 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StokBarangController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
+use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/admin/register', [RegisterController::class, 'register'])->middleware('auth')->name('admin.register');
-Route::post('/admin/register', [RegisterController::class, 'store'])->middleware('auth');
+// Route::get('/admin/register', [RegisterController::class, 'register'])->middleware('auth')->name('admin.register');
+// Route::post('/admin/register', [RegisterController::class, 'store'])->middleware('auth');
+// Route::resource('/admin', UserController::class)->except(['destroy'])->middleware("auth");
+// Route::delete('/admin/{user:username}', [UserController::class, 'destroy'])->middleware(('auth'));
+
+Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(function () {
+    Route::get('/register', [RegisterController::class, 'register'])->name('admin.register');
+    Route::post('/register', [RegisterController::class, 'store']);
+    Route::resource('/', UserController::class)->except(['destroy']);
+    Route::delete('/{user:username}', [UserController::class, 'destroy']);
+});
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware(('auth'));
-
-Route::resource('/admin', UserController::class)->except(['destroy'])->middleware("auth");
-Route::delete('/admin/{user:username}', [UserController::class, 'destroy'])->middleware(('auth'));
 
 Route::resource('/customer/mastercustomer', CustomerController::class)->except(['destroy'])->middleware("auth");
 Route::delete('/customer/mastercustomer/{customer:perusahaancust}', [CustomerController::class, 'destroy'])->middleware('auth');

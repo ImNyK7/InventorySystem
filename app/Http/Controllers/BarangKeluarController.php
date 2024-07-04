@@ -49,7 +49,7 @@ class BarangKeluarController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'kodebrgklr' => 'required|string|max:255',
+            'kodebrgklr' => 'required|string|max:255|unique:record_barang_keluars,kodebrgklr,',
             'tanggalbrgklr' => 'required|date',
             'jmlhbrgklr' => 'required|integer|min:1',
             'satuanbrg_id' => 'required|exists:satuan_brgs,id',
@@ -60,14 +60,7 @@ class BarangKeluarController extends Controller
             'noseribrgklr' => 'required|array',
         ]);
 
-        // Convert 'noseribrgklr' array to a JSON string
-        //$validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
-
         $validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
-
-        if (RecordBarangKeluar::where('kodebrgklr', $validatedData['kodebrgklr'])->exists()) {
-            return redirect()->back()->withErrors(['kodebrgklr' => 'Kode barang sudah ada, silahkan buat kode baru atau gunakan fitur Edit.'])->withInput();
-        }
 
         $stokbarang = StokBarang::find($request->stokbarang_id);
         $stokbarang->jmlhbrg -= $request->jmlhbrgklr;
@@ -110,10 +103,13 @@ class BarangKeluarController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, RecordBarangKeluar $listbarangkeluar)
     {
         $validatedData = $request->validate([
-            'kodebrgklr' => 'required|string|max:255',
+            'kodebrgklr' => 'required|string|max:255|unique:record_barang_keluars,kodebrgklr,' . $listbarangkeluar->id,
             'tanggalbrgklr' => 'required|date',
             'jmlhbrgklr' => 'integer|min:1',
             'satuanbrg_id' => 'required|exists:satuan_brgs,id',
@@ -126,16 +122,41 @@ class BarangKeluarController extends Controller
 
         $validatedData['noseribrgklr'] = json_encode($validatedData['noseribrgklr']);
 
+        $selisihJmlhbrgklr = $validatedData['jmlhbrgklr'] - $listbarangkeluar->jmlhbrgklr;
+
+        $stokbarang = StokBarang::find($listbarangkeluar->stokbarang_id);
+
+        if ($selisihJmlhbrgklr > 0) {
+            $stokbarang->jmlhbrg -= $selisihJmlhbrgklr;
+        } else {
+            $stokbarang->jmlhbrg += abs($selisihJmlhbrgklr);
+        }
+
+        if ($stokbarang->jmlhbrg < 0) {
+            return redirect()->back()->withErrors(['jmlhbrgklr' => 'Jumlah Barang Melebihi Stok!'])->withInput();
+        }
+
+        $stokbarang->save();
+
         $listbarangkeluar->update($validatedData);
+
         return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Edit Laporan!');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(RecordBarangKeluar $recordbarangkeluar)
     {
+        $jumlahKeluar = $recordbarangkeluar->jmlhbrgklr;
+
         $recordbarangkeluar->delete();
+
+        $stokbarang = StokBarang::find($recordbarangkeluar->stokbarang_id);
+        $stokbarang->jmlhbrg += $jumlahKeluar;
+        $stokbarang->save();
+
         return redirect('/barangkeluar/listbarangkeluar')->with('success', 'Berhasil Hapus Laporan!');
     }
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex align-items-center">
-        <h1 class="fs-3 m-4 mb-0" style="color: #1570EF">List Barang Keluar</h1>
+        <h1 class="fs-3 m-4 mb-0" style="color: #1570EF">Laporan Barang Keluar</h1>
     </div>
 
     @if (session()->has('success'))
@@ -23,14 +23,13 @@
                 <form action="/barangkeluar/listbarangkeluar/create">
                     <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                             style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
-                            Barang
-                            Keluar</span></button>
+                            Barang Keluar</span></button>
                 </form>
             </div>
         </div>
         <div class="row mb-5 mt-2">
             <div class="col">
-                <div class="table-responsive bg-white p-3">
+                <div class="table-responsive bg-white p-3" style="border-radius: 10px">
                     <table id="brgklr-table" class="table rounded shadow-sm table-hover" style="min-width: max-content;">
                         <thead>
                             <tr>
@@ -80,15 +79,16 @@
                                             style="background-color: #48EE59; border:none; outline:none;">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <form action="/barangkeluar/listbarangkeluar/{{ $recordbarangkeluar->kodebrgklr }}"
-                                            method="POST" class="d-inline">
+                                        <form action="/barangkeluar/listbarangkeluar/{{ $recordbarangkeluar->kodebrgklr }}" method="POST" class="delete-form d-inline">
                                             @method('delete')
                                             @csrf
-                                            <button class="btn btn-danger btn-sm"
-                                                style="background-color: #E70404; border:none; outline:none;"
-                                                onclick="return confirm('Yakin Akan Menghapus Data Ini?')"><i
-                                                    class="fa-solid fa-trash-can"></i></button>
-                                        </form>
+                                            <button type="button" class="btn btn-danger btn-sm delete-button"
+                                                    data-id="{{ $recordbarangkeluar->id }}"
+                                                    data-url="/barangkeluar/listbarangkeluar/{{ $recordbarangkeluar->kodebrgklr }}"
+                                                    style="background-color: #E70404; border:none; outline:none;">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </form> 
                                     </td>
                                 </tr>
                             @endforeach
@@ -97,6 +97,7 @@
                 </div>
             </div>
         </div>
+        @include('Partials.backontop')
     </div>
     <script>
         $(document).ready(function() {
@@ -115,7 +116,7 @@
                     function(settings, data, dataIndex) {
                         var min = startDate ? new Date(startDate).getTime() : null;
                         var max = endDate ? new Date(endDate).getTime() : null;
-                        var date = new Date(data[2]).getTime(); // Use data for the Tanggal Keluar column
+                        var date = new Date(data[2]).getTime();
 
                         if ((min === null && max === null) ||
                             (min === null && date <= max) ||
@@ -143,6 +144,36 @@
                     var endDate = $('#end_date').val();
                     var url = "{{ url('barangkeluar-pdf') }}?start_date=" + startDate + "&end_date=" + endDate;
                     window.open(url, '_blank');
+                });
+        });
+        $(document).on('click', '.delete-button', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var url = $(this).data('url');
+            var form = $(this).closest('form');
+
+            swal({
+                    title: "Yakin Hapus Data Ini?",
+                    text: "Data yang dihapus tidak bisa dikembalikan!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yakin!",
+                    closeOnConfirm: false
+                },
+                function() {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: form.serialize(),
+                        success: function(data) {
+                            swal("Deleted!", "Your record has been deleted.", "success");
+                            form.closest('tr').remove();
+                        },
+                        error: function(data) {
+                            swal("Error!", "There was an error deleting the record.", "error");
+                        }
+                    });
                 });
         });
     </script>

@@ -1,11 +1,11 @@
-@extends('Layouts.adminmain')
+@extends('Layouts.main')
 
 @section('content')
     <div class="wrapper-wrapper">
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper">
                 <h1>Form<br>Edit User</h1>
-                <form method="POST" action="{{  url('/admin/'.$user->username)  }}">
+                <form method="POST" action="{{ url('admin/'.$user->username) }}">
                     @csrf
                     @method('put')
                     <table>
@@ -21,19 +21,15 @@
                         </tr>
                         <tr>
                             <td><label for="is_admin">Role</label></td>
-                                <td><select name="is_admin" class="form-control @error('is_admin') is-invalid @enderror">
-                                        <option value="0">Gudang</option>
-                                        <option value="1">Admin</option>
-                                    </select>
-                                    @error('is_admin')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </td>
+                            <td>
+                                <select name="is_admin" class="form-control @error('is_admin') is-invalid @enderror">
+                                    <option value="0" {{ old('is_admin', $user->is_admin) == 0 ? 'selected' : '' }}>Gudang</option>
+                                    <option value="1" {{ old('is_admin', $user->is_admin) == 1 ? 'selected' : '' }}>Admin</option>
+                                </select>
+                                @error('is_admin')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </td>
-                        
-                            
                         </tr>
                     </table>
                     <a href="{{ url('/admin') }}"><button type="button" class="btncancel">Cancel</button></a>

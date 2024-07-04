@@ -11,7 +11,7 @@
                     <tr>
                         <td><label for="kodekat">Kode</label></td>
                         <td>
-                            <input type="text" name="kodekat" id="kodekat" required style="width: 50px"
+                            <input type="text" name="kodekat" id="kodekat" value="{{ old('kodekat') }}" required style="width: 50px"
                                     @error('kodekat') class="is-invalid" @enderror>
                                 @error('kodekat')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -21,7 +21,7 @@
                     <tr>
                         <td><label for="namakat">Nama Kategori</label></td>
                         <td>
-                            <input type="text" name="namakat" id="namakat" required style="width: 150px"
+                            <input type="text" name="namakat" id="namakat" value="{{ old('namakat') }}" required style="width: 150px"
                             @error('namakat') class="is-invalid" @enderror>
                         @error('namakat')
                             <div class="invalid-feedback">{{ $message }}</div>

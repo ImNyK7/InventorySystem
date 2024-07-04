@@ -50,6 +50,14 @@
     color: #1570EF !important;
 }
 
+h1 {
+    font-size: 30px;
+    text-align: center;
+    color: #1570EF;
+    font-weight: 650;
+    padding-bottom: 20px;
+    margin-top: -10px;
+  }  
 
 #page-content-wrapper {
     min-width: 100vw;
@@ -108,9 +116,20 @@
     border: none;
 }
 
-/* .active-button {
-    color: blue !important;
-} */
+#backontopBtn {
+    display: none;
+    position: fixed;
+    bottom: 2px; 
+    right: 2px; 
+    z-index: 99; 
+    color: black; 
+    background-color: transparent;
+    cursor: pointer; 
+    padding: 10px;
+    border: none;
+    font-size: 32px;
+}
+
 
 .clickable-summary {
     display: block;

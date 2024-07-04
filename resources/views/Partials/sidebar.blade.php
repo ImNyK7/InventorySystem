@@ -1,8 +1,8 @@
-<div class="bg-white" id="sidebar-wrapper">
+<div class="bg-white d-flex flex-column" id="sidebar-wrapper">
     <div class="sidebar-heading text-center py-4 primary-text fs-2 fw-bold text-uppercase border-bottom">
         SI SUPRAS 
     </div>
-    <div class="list-group list-group-flush">
+    <div class="list-group list-group-flush flex-grow-1">
         <a href="/" class="list-group-item list-group-item-action bg-transparent second-text dashboard-button fw-bold" style="text-decoration: none; color: gray;">
             <i class="fas fa-tachometer-alt me-2"></i>Dashboard
         </a>
@@ -26,39 +26,57 @@
             <a href="#" style="text-decoration: none; color: gray;" id="gudangLink">
                 <i class="fas fa-box me-2"></i>Gudang
             </a>
-            <ul class="list-group list-group-flush my-1" style="margin-left: 15px; display: none;" id="gudangSubMenu">
+            <ul class="list-group list-group-flush my-1" style="margin-left: 12px; display: none;" id="gudangSubMenu">
                 <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
                     <a href="/stokbarang" style="text-decoration: none; color: gray;">Stok Barang</a>
                 </li>
                 <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                    <a href="/barangmasuk/listbarangmasuk" style="text-decoration: none; color: gray;">List Barang Masuk</a>
+                    <a href="/barangmasuk/listbarangmasuk" style="text-decoration: none; color: gray;">Laporan Barang Masuk</a>
                 </li>
                 <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                    <a href="/barangkeluar/listbarangkeluar" style="text-decoration: none; color: gray;">List Barang Keluar</a>
+                    <a href="/barangkeluar/listbarangkeluar" style="text-decoration: none; color: gray;">Laporan Barang Keluar</a>
                 </li>
             </ul>
         </div>
+        <a href="/admin" class="list-group-item list-group-item-action bg-transparent second-text dashboard-button fw-bold" style="text-decoration: none; color: gray;" id="adminButton">
+            <i class="fa-solid fa-clipboard-user fa-lg me-2"></i>Admin
+        </a>
     </div>
+    <form action="/logout" method="POST">@csrf <button type="submit" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center mt-auto" style="text-decoration: none; color: red;"
+        style="color: red">Logout</button>
+    </form>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var masterLink = document.getElementById('masterLink');
         var masterSubMenu = document.getElementById('masterSubMenu');
+        var gudangLink = document.getElementById('gudangLink');
+        var gudangSubMenu = document.getElementById('gudangSubMenu');
+        var adminButton = document.getElementById('adminButton');
+
+        // Check the user's admin status (assuming you have a variable `isAdmin` from your backend)
+        var isAdmin = {{ auth()->user()->is_admin ? 'true' : 'false' }};
+        
+        if (!isAdmin) {
+            adminButton.style.display = 'none';
+        }
+
         masterLink.addEventListener('click', function(event) {
             event.preventDefault();
             if (masterSubMenu.style.display === 'none') {
                 masterSubMenu.style.display = 'block';
+                gudangSubMenu.style.display = 'none'; // hide gudang submenu
             } else {
                 masterSubMenu.style.display = 'none';
             }
         });
 
-        var gudangLink = document.getElementById('gudangLink');
-        var gudangSubMenu = document.getElementById('gudangSubMenu');
         gudangLink.addEventListener('click', function(event) {
             event.preventDefault();
             if (gudangSubMenu.style.display === 'none') {
                 gudangSubMenu.style.display = 'block';
+                masterSubMenu.style.display = 'none'; // hide master submenu
             } else {
                 gudangSubMenu.style.display = 'none';
             }

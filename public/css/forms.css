@@ -1,11 +1,12 @@
 .form-wrapper {
   width: fit-content;
-  min-height: 200px;
-  max-height: 80vh;
+  min-height: auto;
+  max-height: min-content;
   background: whitesmoke;
-  color: fff;
+  color: ffff;
+  overflow: hidden;
   border-radius: 20px;
-  padding: 35px 20px;
+  padding: 25px 20px;
   overflow-y: auto;
   margin: 20px;
 }
@@ -15,15 +16,6 @@
   width: 80%;
   height: 15%;
 }
-
-h1 {
-    font-size: 30px;
-    text-align: center;
-    color: #1570EF;
-    font-weight: 650;
-    padding-bottom: 20px;
-    margin-top: -10px;
-  }  
 
 .form-wrapper table {
   width: 100%;

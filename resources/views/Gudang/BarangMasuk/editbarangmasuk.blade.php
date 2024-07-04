@@ -11,7 +11,7 @@
     <div class="wrapper-wrapper">
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper" style="margin-top: 20px">
-                <h1>Form<br>Edit Barang Masuk</h1>
+                <h1>Form Edit<br>Laporan Barang Masuk</h1>
                 <form action="{{ url('/barangmasuk/listbarangmasuk/' . $recordbarangmasuk->kodebrgmsk) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -19,15 +19,16 @@
                         <tr>
                             <td><label for="kodebrgmsk">Kode Laporan</label></td>
                             <td>
-                                <input type="text" name="kodebrgmsk" id="kodebrgmsk" value="{{ old('kodebrgmsk', $recordbarangmasuk->kodebrgmsk) }}"
-                                    required style="width: 100px">
+                                <input type="text" name="kodebrgmsk" id="kodebrgmsk"
+                                    value="{{ old('kodebrgmsk', $recordbarangmasuk->kodebrgmsk) }}" required
+                                    style="width: 200px">
                                 @error('kodebrgmsk')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
                             </td>
                             <td><label for="supplier_id">Supplier</label></td>
                             <td>
-                                <select id="supplier_id" name="supplier_id" required style="width: 190px; height: 30px">
+                                <select id="supplier_id" name="supplier_id" required style="width: 200px; height: 30px">
                                     <option value="" selected></option>
                                     @foreach ($suppliers as $supplier)
                                         <option value="{{ $supplier->id }}"
@@ -43,11 +44,11 @@
                         </tr>
                         <td><label for="stokbarang_id">Nama Barang</label></td>
                             <td>
-                                <select id="stokbarang_id" name="stokbarang_id" style="width: 190px; height: 30px" disabled>
+                                <select id="stokbarang_id" name="stokbarang_id" required style="width: 200px">
                                     <option value="" selected></option>
                                     @foreach ($stokbarangs as $stokbarang)
                                         <option value="{{ $stokbarang->id }}"
-                                            data-jumlah="{{ $stokbarang->jmlhbrgmsk }}"
+                                            data-jumlah="{{ $stokbarang->jmlhbrg }}"
                                             data-kategori="{{ $stokbarang->kategori_id }}"
                                             data-satuan="{{ $stokbarang->satuanbrg_id }}"
                                             {{ old('stokbarang_id', $recordbarangmasuk->stokbarang_id) == $stokbarang->id ? 'selected' : '' }}>
@@ -59,41 +60,45 @@
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
                             </td>
-                            <td><label for="tanggalbrgmsk">Tanggal</label></td>
-                            <td>
-                                <input type="date" name="tanggalbrgmsk" id="dateField"
-                                    value="{{ old('tanggalbrgmsk', $recordbarangmasuk->tanggalbrgmsk) }}" min="2015-01-02" max="2030-12-31" required>
-                                @error('tanggalbrgmsk')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
+                        <td><label for="tanggalbrgmsk">Tanggal</label></td>
+                        <td>
+                            <input type="date" name="tanggalbrgmsk" id="dateField"
+                                value="{{ old('tanggalbrgmsk', $recordbarangmasuk->tanggalbrgmsk) }}" min="2015-01-02"
+                                max="2030-12-31" required style="width: 200px">
+                            @error('tanggalbrgmsk')
+                                <div class="invalid-message">{{ $message }}</div>
+                            @enderror
+                        </td>
                         <tr>
                             <td><label for="jmlhbrgmsk">Jumlah Barang</label></td>
                             <td>
-                                <input type="number" name="jmlhbrgmsk" id="jmlhbrgmsk" value="{{ old('jmlhbrgmsk', $recordbarangmasuk->jmlhbrgmsk) }}"
-                                    required style="width: 50px">
-                                <select name="satuanbrg_display" id="satuanbrg_display" style="width: 100px" disabled>
-                                    <option value="" selected></option>
-                                    @foreach ($satuanbrgs as $satuanbrg)
-                                        <option value="{{ $satuanbrg->id }}"
-                                            {{ old('satuanbrg_id', $recordbarangmasuk->satuanbrg_id) == $satuanbrg->id ? 'selected' : '' }}>
-                                            {{ $satuanbrg->namasatuan }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <input type="hidden" name="satuanbrg_id" id="satuanbrg_id" value="{{ old('satuanbrg_id', $recordbarangmasuk->satuanbrg_id) }}">
+                                <div style="display: flex; align-items: center;">
+                                    <input type="number" name="jmlhbrgmsk" id="jmlhbrgmsk" 
+                                           value="{{ old('jmlhbrgmsk', $recordbarangmasuk->jmlhbrgmsk) }}" required style="width: 100px; margin-right: 5px;">
+                                    <select name="satuanbrg_id" id="satuanbrg_display" required 
+                                            style="width: 100px;">
+                                        <option value="" selected></option>
+                                        @foreach ($satuanbrgs as $satuanbrg)
+                                            <option value="{{ $satuanbrg->id }}" 
+                                                    {{ old('satuanbrg_id', $recordbarangmasuk->satuanbrg_id) == $satuanbrg->id ? 'selected' : '' }}>
+                                                {{ $satuanbrg->namasatuan }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 @error('jmlhbrgmsk')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
                                 @error('satuanbrg_id')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
-                                <div class="invalid-message" id="jmlhbrgmsk-error" style="display:none;">Jumlah barang melebihi stok!</div>
                             </td>
+
                             <td><label for="hrgbeli">Harga Beli</label></td>
                             <td>
-                                <input type="text" name="hrgbeli" id="hrgbeli" value="{{ old('hrgbeli', $recordbarangmasuk->hrgbeli) }}" required
-                                    style="width: 100px">
+                                <input type="text" name="hrgbeli" id="hrgbeli"
+                                    value="{{ old('hrgbeli', $recordbarangmasuk->hrgbeli) }}" required
+                                    style="width: 200px">
                                 @error('hrgbeli')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
@@ -102,7 +107,8 @@
                         <tr>
                             <td><label for="kategori_id_display">Kategori</label></td>
                             <td>
-                                <select id="kategori_id_display" name="kategori_id_display" required style="width: 140px;" disabled>
+                                <select id="kategori_id_display" name="kategori_id_display" required style="width: 140px;"
+                                    disabled>
                                     <option value="" selected></option>
                                     @foreach ($kategoris as $kategori)
                                         <option value="{{ $kategori->id }}"
@@ -111,7 +117,8 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                <input type="hidden" name="kategori_id" id="kategori_id" value="{{ old('kategori_id', $recordbarangmasuk->kategori_id) }}">
+                                <input type="hidden" name="kategori_id" id="kategori_id"
+                                    value="{{ old('kategori_id', $recordbarangmasuk->kategori_id) }}">
                                 @error('kategori_id')
                                     <div class="invalid-message">{{ $message }}</div>
                                 @enderror
@@ -139,15 +146,10 @@
                 dateField.value = today;
             }
 
-            //let stokJumlah = 0;
-
             $('#stokbarang_id').on('change', function() {
                 var selectedOption = $(this).find('option:selected');
-                stokJumlah = selectedOption.data('jumlah');
                 var kategori = selectedOption.data('kategori');
                 var satuan = selectedOption.data('satuan');
-
-                //$('#jmlhbrgmsk').val('');
 
                 $('#kategori_id_display').val(kategori).trigger('change');
                 $('#kategori_id').val(kategori);
@@ -157,32 +159,6 @@
 
                 $('#jmlhbrgmsk-error').hide();
             });
-
-            $('#jmlhbrgmsk').on('input', function() {
-                var jumlahMasuk = $(this).val();
-                if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
-                    $('#jmlhbrgmsk-error').show();
-                } else {
-                    $('#jmlhbrgmsk-error').hide();
-                }
-            });
-
-            // $('#jmlhbrgmsk').on('input', function() {
-            //     var jumlahMasuk = $(this).val();
-            //     if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
-            //         $('#jmlhbrgmsk-error').show();
-            //     } else {
-            //         $('#jmlhbrgmsk-error').hide();
-            //     }
-            // });
-
-            // $('form').on('submit', function(event) {
-            //     var jumlahMasuk = $('#jmlhbrgmsk').val();
-            //     if (parseInt(jumlahMasuk) > parseInt(stokJumlah)) {
-            //         $('#jmlhbrgmsk-error').show();
-            //         event.preventDefault();
-            //     }
-            // });
         });
     </script>
 @endsection

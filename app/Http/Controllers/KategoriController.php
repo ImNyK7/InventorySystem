@@ -35,7 +35,7 @@ class KategoriController extends Controller
     {
         $validatedData = $request->validate([
             'kodekat' => 'required|string|max:20|unique:kategoris,kodekat',
-            'namakat' => 'required|string|max:255',
+            'namakat' => 'required|string|max:255|unique:kategoris,namakat',
         ]);
         
         Kategori::create($validatedData);
@@ -71,8 +71,8 @@ class KategoriController extends Controller
     public function update(Request $request, Kategori $masterkategori)
     {
         $validatedData = $request->validate([
-            'kodekat' => 'required|string|max:20|unique:kategoris,kodekat',
-            'namakat' => 'required|string|max:255',
+            'kodekat' => 'required|string|max:20|unique:kategoris,kodekat,' . $masterkategori->id,
+            'namakat' => 'required|string|max:255|unique:kategoris,kodekat,' . $masterkategori->id,
         ]);
 
         $masterkategori->update($validatedData);

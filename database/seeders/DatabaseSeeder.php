@@ -62,28 +62,28 @@ class DatabaseSeeder extends Seeder
         //     'satuanbrg_id' => '1',
         //     'kategori_id' => '1'
         // ]);
-        Customer::factory(5)->create();
-        // Customer::create([
-        //     'kodecust' => 'C01',
-        //     'perusahaancust' => 'PT Customer Setia',
-        //     'kontakcust' => 'Pak Jayadi',
-        //     'kotacust' => 'Surabaya',
-        //     'alamatcust' => 'Jl. Bersamamu No 60',
-        //     'notelponcust' => '083618365917',
-        //     'termcust' => '14',
-        //     'limitcust' => '12'
-        // ]);
+        //Customer::factory(5)->create();
+        Customer::create([
+            'kodecust' => 'C01',
+            'perusahaancust' => 'PT Customer Setia',
+            'kontakcust' => 'Bu Madison',
+            'kotacust' => 'Surabaya',
+            'alamatcust' => 'Jl. Bersamamu No 60',
+            'notelponcust' => '083618365917',
+            'termcust' => '14',
+            'limitcust' => '12'
+        ]);
 
-        Supplier::factory(5)->create();
-        // Supplier::create([
-        //     'kodesupp' => 'S01',
-        //     'perusahaansupp' => 'PT Supplier Setia',
-        //     'kontaksupp' => 'Bu Yanto',
-        //     'kotasupp' => 'Gresik',
-        //     'alamatsupp' => 'Jl. Ditempat N0. 1',
-        //     'notelponsupp' => '084926572044',
-        //     'termsupp' => '7',
-        // ]);
+        //Supplier::factory(5)->create();
+        Supplier::create([
+            'kodesupp' => 'S01',
+            'perusahaansupp' => 'PT Supplier Setia',
+            'kontaksupp' => 'Bu Sabrina',
+            'kotasupp' => 'Gresik',
+            'alamatsupp' => 'Jl. Ditempat N0. 1',
+            'notelponsupp' => '084926572044',
+            'termsupp' => '7',
+        ]);
 
         //RecordBarangMasuk::factory(15)->create();
         // RecordBarangMasuk::create([

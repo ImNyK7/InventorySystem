@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -117,7 +117,7 @@ class SupplierController extends Controller
             'suppliers' => $suppliers
         ]; 
               
-        $pdf = PDF::loadView('Master.Supplier.printsupplier', $data);
+        $pdf = Pdf::loadView('Master.Supplier.printsupplier', $data);
        
         return $pdf->stream("Supplier List", array("Attachment" => false));
     }

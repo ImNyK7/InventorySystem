@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Supplier;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\SatuanBrg;
 use App\Models\StokBarang;
 use Illuminate\Http\Request;
@@ -114,7 +114,7 @@ class StokBarangController extends Controller
             'stokbarangs' => $stokbarangs
         ];
 
-        $pdf = PDF::loadView('Gudang.StokBarang.printstokbarang', $data);
+        $pdf = Pdf::loadView('Gudang.StokBarang.printstokbarang', $data);
 
         return $pdf->stream("StokBarang.pdf", array("Attachment" => false));
     }

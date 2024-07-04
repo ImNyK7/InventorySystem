@@ -17,7 +17,7 @@
             </form>
             <a href="/kategori/masterkategori">
                 <button style="background-color: #1570EF; outline:none; border:none;margin-top: 10px" class="btn btn-primary btn-sm">
-                    <i class="fa-solid fa-arrow-left"></i> <span>Back to All Kategori</span>
+                    <i class="fa-solid fa-arrow-left"></i> <span>Kembali</span>
                 </button>
             </a>     
         </div>

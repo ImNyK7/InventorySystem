@@ -113,10 +113,19 @@ class BarangMasukController extends Controller
 
     public function destroy(RecordBarangMasuk $recordbarangmasuk)
     {
-        
+        $stokbarang = StokBarang::find($recordbarangmasuk->stokbarang_id);
+        $stokbarang->jmlhbrg -= $recordbarangmasuk->jmlhbrgmsk;
+
+        if ($stokbarang->jmlhbrg < 0) {
+            return redirect()->back()->withErrors(['jmlhbrgmsk' => 'Stok barang tidak mencukupi untuk pengurangan ini.'])->withInput();
+        }
+
+        $stokbarang->save();
         $recordbarangmasuk->delete();
+
         return redirect('/barangmasuk/listbarangmasuk')->with('success', 'Berhasil Hapus Laporan!');
     }
+
 
     public function generatebrgmskPDF(Request $request)
     {

@@ -44,7 +44,8 @@
                                     <td>
                                         <a href="/stokbarang/{{ $stokbarang->namabrg }}" class="btn btn-primary btn-sm" style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
-                                        </a>                                        
+                                        </a>   
+                                        @if(!auth()->user()->isPurchasing() && !auth()->user()->isSales())                                    
                                         <a href="/stokbarang/{{ $stokbarang->namabrg }}/edit" class="btn btn-success btn-sm" style="background-color: #48EE59; border:none; outline:none;">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
@@ -58,6 +59,7 @@
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
                                         </form> 
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

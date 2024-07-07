@@ -14,6 +14,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect('/');
+        return redirect('/'); // Redirect to the homepage or an error page
     }
 }

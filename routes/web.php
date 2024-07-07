@@ -25,7 +25,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(function () {
     Route::get('/register', [RegisterController::class, 'register'])->name('admin.register');
     Route::post('/register', [RegisterController::class, 'store']);
-    Route::resource('/', UserController::class)->except(['destroy']);
+    Route::get('/', [UserController::class, 'index']);
+    Route::get('/{user:username}/edit', [UserController::class, 'edit']);
+    Route::put('/{user:username}', [UserController::class, 'update']);
     Route::delete('/{user:username}', [UserController::class, 'destroy']);
 });
 

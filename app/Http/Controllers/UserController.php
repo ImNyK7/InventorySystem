@@ -7,70 +7,49 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('Admin/adminpage', [
+        return view('admin.adminpage', [
             'users' => User::all(),
             'title' => 'Admin Page'
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(User $user)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $admin)
+    public function edit(User $user)
     {
-        return view('Admin/edituser', [
-            'user' => $admin,
+        return view('admin.edituser', [
+            'user' => $user,
             'title' => 'Edit User'
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $admin)
+    public function update(Request $request, User $user)
     {
         $validatedData = $request->validate([
-            'username'=> 'required|min:3|max:255|unique:users,username,',
-            'is_admin' => 'required|boolean'
-       ]);
+            'username' => 'required|min:3|max:255|unique:users,username,' . $user->id,
+            'role' => 'required|string|in:admin,gudang,purchasing,sales'
+        ]);
 
-        $admin->update($validatedData);
+        $user->update($validatedData);
 
         return redirect('/admin')->with('success', 'Berhasil Edit User!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(User $user)
     {
         $user->delete();

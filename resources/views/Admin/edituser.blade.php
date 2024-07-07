@@ -1,4 +1,4 @@
-@extends('Layouts.main')
+@extends('layouts.main')
 
 @section('content')
     <div class="wrapper-wrapper">
@@ -20,13 +20,15 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="is_admin">Role</label></td>
+                            <td><label for="role">Role</label></td>
                             <td>
-                                <select name="is_admin" class="form-control @error('is_admin') is-invalid @enderror">
-                                    <option value="0" {{ old('is_admin', $user->is_admin) == 0 ? 'selected' : '' }}>Gudang</option>
-                                    <option value="1" {{ old('is_admin', $user->is_admin) == 1 ? 'selected' : '' }}>Admin</option>
+                                <select name="role" class="form-control @error('role') is-invalid @enderror">
+                                    <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
+                                    <option value="gudang" {{ old('role', $user->role) == 'gudang' ? 'selected' : '' }}>Gudang</option>
+                                    <option value="purchasing" {{ old('role', $user->role) == 'purchasing' ? 'selected' : '' }}>Purchasing</option>
+                                    <option value="sales" {{ old('role', $user->role) == 'sales' ? 'selected' : '' }}>Sales</option>
                                 </select>
-                                @error('is_admin')
+                                @error('role')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </td>

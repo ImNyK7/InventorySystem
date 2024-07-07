@@ -11,15 +11,21 @@
                 <i class="fas fa-user-circle me-2"></i>Master
             </a>
             <ul class="list-group list-group-flush my-1" style="margin-left: 15px; display: none;" id="masterSubMenu">
-                <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                    <a href="/customer/mastercustomer" style="text-decoration: none; color: gray;">Master Customer</a>
-                </li>
-                <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                    <a href="/supplier/mastersupplier" style="text-decoration: none; color: gray;">Master Supplier</a>
-                </li>
-                <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                    <a href="/kategori/masterkategori" style="text-decoration: none; color: gray;">Master Kategori</a>
-                </li>
+                @if(!auth()->user()->isPurchasing())
+                    <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
+                        <a href="/customer/mastercustomer" style="text-decoration: none; color: gray;">Master Customer</a>
+                    </li>
+                @endif
+                @if(!auth()->user()->isSales())
+                    <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
+                        <a href="/supplier/mastersupplier" style="text-decoration: none; color: gray;">Master Supplier</a>
+                    </li>
+                @endif
+                @if(!auth()->user()->isPurchasing() && !auth()->user()->isSales())
+                    <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
+                        <a href="/kategori/masterkategori" style="text-decoration: none; color: gray;">Master Kategori</a>
+                    </li>
+                @endif
             </ul>
         </div>
         <div class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
@@ -30,17 +36,23 @@
                 <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
                     <a href="/stokbarang" style="text-decoration: none; color: gray;">Stok Barang</a>
                 </li>
-                <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                    <a href="/barangmasuk/listbarangmasuk" style="text-decoration: none; color: gray;">Laporan Barang Masuk</a>
-                </li>
-                <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                    <a href="/barangkeluar/listbarangkeluar" style="text-decoration: none; color: gray;">Laporan Barang Keluar</a>
-                </li>
+                @if(!auth()->user()->isSales())
+                    <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
+                        <a href="/barangmasuk/listbarangmasuk" style="text-decoration: none; color: gray;">Laporan Barang Masuk</a>
+                    </li>
+                @endif
+                @if(!auth()->user()->isPurchasing())
+                    <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
+                        <a href="/barangkeluar/listbarangkeluar" style="text-decoration: none; color: gray;">Laporan Barang Keluar</a>
+                    </li>
+                @endif
             </ul>
         </div>
-        <a href="/admin" class="list-group-item list-group-item-action bg-transparent second-text dashboard-button fw-bold" style="text-decoration: none; color: gray;" id="adminButton">
-            <i class="fa-solid fa-clipboard-user fa-lg me-2"></i>Admin
-        </a>
+        @if(auth()->user()->isAdmin())
+            <a href="/admin" class="list-group-item list-group-item-action bg-transparent second-text dashboard-button fw-bold" style="text-decoration: none; color: gray;" id="adminButton">
+                <i class="fa-solid fa-clipboard-user fa-lg me-2"></i>Admin
+            </a>
+        @endif
     </div>
     <form action="/logout" method="POST">@csrf <button type="submit" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center mt-auto" style="text-decoration: none; color: red;"
         style="color: red">Logout</button>
@@ -53,20 +65,12 @@
         var masterSubMenu = document.getElementById('masterSubMenu');
         var gudangLink = document.getElementById('gudangLink');
         var gudangSubMenu = document.getElementById('gudangSubMenu');
-        var adminButton = document.getElementById('adminButton');
-
-        // Check the user's admin status (assuming you have a variable `isAdmin` from your backend)
-        var isAdmin = {{ auth()->user()->is_admin ? 'true' : 'false' }};
-        
-        if (!isAdmin) {
-            adminButton.style.display = 'none';
-        }
 
         masterLink.addEventListener('click', function(event) {
             event.preventDefault();
             if (masterSubMenu.style.display === 'none') {
                 masterSubMenu.style.display = 'block';
-                gudangSubMenu.style.display = 'none'; // hide gudang submenu
+                gudangSubMenu.style.display = 'none';
             } else {
                 masterSubMenu.style.display = 'none';
             }
@@ -76,7 +80,7 @@
             event.preventDefault();
             if (gudangSubMenu.style.display === 'none') {
                 gudangSubMenu.style.display = 'block';
-                masterSubMenu.style.display = 'none'; // hide master submenu
+                masterSubMenu.style.display = 'none'; 
             } else {
                 gudangSubMenu.style.display = 'none';
             }

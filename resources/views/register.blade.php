@@ -25,7 +25,7 @@
                         <td><input type="text" name="username"
                                 class="form-control @error('username') is-invalid @enderror" required
                                 value="{{ old('username') }}">
-                            @error('name')
+                            @error('username')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -59,11 +59,13 @@
                     </tr>
                     <tr>
                         <td><label for="role" class="form-label">Role</label></td>
-                        <td><select name="is_admin" class="form-control @error('is_admin') is-invalid @enderror">
-                                <option value="0">Gudang</option>
-                                <option value="1">Admin</option>
+                        <td><select name="role" class="form-control @error('role') is-invalid @enderror">
+                                <option value="admin">Admin</option>
+                                <option value="gudang">Gudang</option>
+                                <option value="purchasing">Purchasing</option>
+                                <option value="sales">Sales</option>
                             </select>
-                            @error('is_admin')
+                            @error('role')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

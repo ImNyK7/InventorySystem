@@ -87,7 +87,6 @@
         </div>
         @include('Partials.backontop')
     </div>
-
     <script>
         $(document).ready(function() {
             var table = $('#customer-table').DataTable({
@@ -97,35 +96,37 @@
                 }
             });
         });
-        $(document).on('click', '.delete-button', function(e) {
-            e.preventDefault();
-            var id = $(this).data('id');
-            var url = $(this).data('url');
-            var form = $(this).closest('form');
 
-            swal({
-                    title: "Yakin Hapus Data Ini?",
-                    text: "Data yang dihapus tidak bisa dikembalikan!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonClass: "btn-danger",
-                    confirmButtonText: "Yakin!",
-                    closeOnConfirm: false
-                },
-                function() {
-                    $.ajax({
-                        type: "POST",
-                        url: url,
-                        data: form.serialize(),
-                        success: function(data) {
-                            swal("Deleted!", "Your record has been deleted.", "success");
-                            form.closest('tr').remove();
-                        },
-                        error: function(data) {
-                            swal("Error!", "There was an error deleting the record.", "error");
-                        }
+        $(document).on('click', '.delete-button', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var url = $(this).data('url');
+                var form = $(this).closest('form');
+
+                swal({
+                        title: "Yakin Hapus Data Ini?",
+                        text: "Data yang dihapus tidak bisa dikembalikan!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yakin!",
+                        closeOnConfirm: false
+                    },
+                    function() {
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: form.serialize(),
+                            success: function(data) {
+                                swal("Deleted!", "Your record has been deleted.", "success");
+                                form.closest('tr').remove();
+                            },
+                            error: function(data) {
+                                swal("Error!", "There was an error deleting the record.", "error");
+                            }
+                        });
                     });
-                });
-        });
+            });
     </script>
+    
 @endsection

@@ -10,10 +10,8 @@ class SalesMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        $user = $request->user();
-
-        if ($user && $user->role === 'sales' && in_array($request->route()->getName(), ['customer.create', 'customer.edit', 'customer.update', 'customer.destroy'])) {
-            return redirect()->route('customer.index'); // Redirect or abort(403) as needed
+        if ($request->user() && $request->user()->role === 'sales') {
+            return redirect('/'); // or abort(403) or any other action
         }
 
         return $next($request);

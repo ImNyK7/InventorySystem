@@ -62,7 +62,6 @@
                                             style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
-                                        @if(!auth()->user()->isSales())
                                         <a href="/customer/mastercustomer/{{ $customer->perusahaancust }}/edit" class="btn btn-success btn-sm"
                                             style="background-color: #48EE59; border:none; outline:none;">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -76,8 +75,7 @@
                                                     style="background-color: #E70404; border:none; outline:none;">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
-                                        </form>
-                                        @endif                                  
+                                        </form>                           
                                     </td>
                                 </tr>
                             @endforeach

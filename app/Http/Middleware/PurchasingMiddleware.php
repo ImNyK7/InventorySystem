@@ -11,7 +11,7 @@ class PurchasingMiddleware
     public function handle(Request $request, Closure $next)
     {
         if ($request->user() && $request->user()->role === 'purchasing') {
-            return redirect('/');
+            return redirect('/'); // or abort(403) or any other action
         }
 
         return $next($request);

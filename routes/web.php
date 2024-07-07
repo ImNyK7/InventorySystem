@@ -58,7 +58,12 @@ Route::get('barangkeluar/{recordbarangkeluar}/print', [BarangKeluarController::c
 Route::resource('/stokbarang', StokBarangController::class)
     ->except(['destroy'])
     ->middleware(['auth', SalesPurchasingMiddleware::class]);
-
 Route::delete('/stokbarang/{stokbarang:namabrg}', [StokBarangController::class, 'destroy'])
     ->middleware(['auth', SalesPurchasingMiddleware::class]);
 Route::get('stok-pdf', [StokBarangController::class, 'generatestokPDF'])->middleware("auth");
+
+Route::resource('/barangmasuk/listbarangmasuk', BarangMasukController::class)
+    ->middleware(['auth', SalesMiddleware::class, 'purchasing.readonly']);
+
+Route::resource('/barangkeluar/listbarangkeluar', BarangKeluarController::class)
+    ->middleware(['auth', PurchasingMiddleware::class, 'sales.readonly']);

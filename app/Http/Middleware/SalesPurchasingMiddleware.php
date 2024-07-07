@@ -20,4 +20,3 @@ class SalesPurchasingMiddleware
         return $next($request);
     }
 }
-

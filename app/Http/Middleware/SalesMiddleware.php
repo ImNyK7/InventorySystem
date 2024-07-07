@@ -11,7 +11,7 @@ class SalesMiddleware
     public function handle(Request $request, Closure $next)
     {
         if ($request->user() && $request->user()->role === 'sales') {
-            return redirect('/'); // or abort(403) or any other action
+            return redirect('/');
         }
 
         return $next($request);

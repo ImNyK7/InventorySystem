@@ -13,7 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'sales' => SalesMiddleware::class,
+            'sales.readonly' => \App\Http\Middleware\SalesViewOnlyMiddleware::class,
+        'purchasing.readonly' => \App\Http\Middleware\PurchasingViewOnlyMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

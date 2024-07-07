@@ -20,12 +20,14 @@
                 <a href="{{ url('barangmasuk-pdf') }}" id="print-pdf" target="_blank">
                     @include('Partials.printbutton')
                 </a>
+                @if(!auth()->user()->isPurchasing())
                 <form action="/barangmasuk/listbarangmasuk/create">
                     <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                             style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
                             Barang
                             Masuk</span></button>
                 </form>
+                @endif
             </div>
         </div>
         <div class="row mb-5 mt-2">

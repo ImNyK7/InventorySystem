@@ -119,11 +119,11 @@
                             url: url,
                             data: form.serialize(),
                             success: function(data) {
-                                swal("Deleted!", "Your record has been deleted.", "success");
+                                swal("Berhasil!", "Data anda berhasil di hapus", "success");
                                 form.closest('tr').remove();
                             },
                             error: function(data) {
-                                swal("Error!", "There was an error deleting the record.", "error");
+                                swal("Error!", "Terjadi error saat penghapusan data.", "error");
                             }
                         });
                     });

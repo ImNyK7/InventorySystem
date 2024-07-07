@@ -16,10 +16,12 @@
             <a href="{{ url('stok-pdf') }}" target="_blank">
                 @include('Partials.printbutton')
             </a>
+            @if(!auth()->user()->isPurchasing() && !auth()->user()->isSales())                                    
             <form action="/stokbarang/create">
                 <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Stok Barang</span></button>
             </form>
+            @endif
         </div>
         <div class="row mb-5 mt-2">
             <div class="col">

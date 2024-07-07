@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\PurchasingMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
@@ -11,9 +10,11 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Middleware\PurchasingMiddleware;
 use App\Http\Controllers\StokBarangController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
+use App\Http\Middleware\SalesPurchasingMiddleware;
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);
@@ -54,6 +55,10 @@ Route::delete('/barangkeluar/listbarangkeluar/{recordbarangkeluar:kodebrgklr}', 
 Route::get('barangkeluar-pdf', [BarangKeluarController::class, 'generatebrgklrPDF'])->middleware(['auth', PurchasingMiddleware::class]);
 Route::get('barangkeluar/{recordbarangkeluar}/print', [BarangKeluarController::class, 'printSingleBarangKeluarPDF'])->middleware(['auth', PurchasingMiddleware::class]);
 
-Route::resource('/stokbarang', StokBarangController::class)->except(['destroy'])->middleware("auth");
-Route::delete('/stokbarang/{stokbarang:namabrg}', [StokBarangController::class, 'destroy'])->middleware("auth");
+Route::resource('/stokbarang', StokBarangController::class)
+    ->except(['destroy'])
+    ->middleware(['auth', SalesPurchasingMiddleware::class]);
+
+Route::delete('/stokbarang/{stokbarang:namabrg}', [StokBarangController::class, 'destroy'])
+    ->middleware(['auth', SalesPurchasingMiddleware::class]);
 Route::get('stok-pdf', [StokBarangController::class, 'generatestokPDF'])->middleware("auth");

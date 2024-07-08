@@ -82,6 +82,7 @@
                 {{ $noseri }}<br>
             @endforeach
         </span></div>
+        <div><span class="detail-label">Detal Pembayaran:</span><span class="detail-value">LUNAS</span></div>
     </div>
 </body>
 

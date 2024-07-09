@@ -76,7 +76,7 @@
                                     </td>
                                     <td>
                                         <a href="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}"
-                                            class="btn btn-primary btn-sm"
+                                            class="btn btn-primary btn-sm {{ auth()->user()->isPurchasing() ? 'centered-button' : '' }}"
                                             style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
@@ -85,7 +85,7 @@
                                             class="btn btn-success btn-sm"
                                             style="background-color: #48EE59; border:none; outline:none;">
                                             <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
+                                     </a>
                                         <form action="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}" method="POST" class="delete-form d-inline">
                                             @method('delete')
                                             @csrf
@@ -98,6 +98,7 @@
                                         </form> 
                                         @endif
                                     </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>

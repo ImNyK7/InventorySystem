@@ -44,7 +44,7 @@
                                     <td>{{ $stokbarang->kategori->namakat ?? '' }}</td>
                                     <td>{{ $stokbarang->jmlhbrg }} {{ $stokbarang->satuanbrg->namasatuan ?? '' }}</td>
                                     <td>
-                                        <a href="/stokbarang/{{ $stokbarang->namabrg }}" class="btn btn-primary btn-sm" style="background-color: #1570EF; border:none; outline:none;">
+                                        <a href="/stokbarang/{{ $stokbarang->namabrg }}" class="btn btn-primary btn-sm {{ auth()->user()->isPurchasing() || auth()->user()->isSales() ? 'centered-button' : '' }}" style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>   
                                         @if(!auth()->user()->isPurchasing() && !auth()->user()->isSales())                                    

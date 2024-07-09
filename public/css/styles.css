@@ -130,7 +130,6 @@ h1 {
     font-size: 32px;
 }
 
-
 .clickable-summary {
     display: block;
     text-decoration: none;
@@ -148,6 +147,10 @@ h1 {
 }
 .clickable-summary:hover > div {
     text-decoration: none;
+}
+
+.centered-button {
+    margin-left: 30%;
 }
 
 @media (min-width: 768px) {

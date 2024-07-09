@@ -72,7 +72,7 @@
                                     <td>Rp{{ number_format($recordbarangkeluar->hrgjual * $recordbarangkeluar->jmlhbrgklr, 2) }}</td>
                                     <td>
                                         <a href="/barangkeluar/listbarangkeluar/{{ $recordbarangkeluar->kodebrgklr }}"
-                                            class="btn btn-primary btn-sm"
+                                            class="btn btn-primary btn-sm {{ auth()->user()->isSales() ? 'centered-button' : '' }}"
                                             style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>

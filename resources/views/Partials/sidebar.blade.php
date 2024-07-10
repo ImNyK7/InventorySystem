@@ -23,7 +23,7 @@
                 @endif
                 @if(!auth()->user()->isPurchasing() && !auth()->user()->isSales())
                     <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                        <a href="/kategori/masterkategori" style="text-decoration: none; color: gray;">Master Kategori</a>
+                        <a href="/kategori/masterkategori" style="text-decoration: none; color: gray;">Kategori</a>
                     </li>
                 @endif
             </ul>

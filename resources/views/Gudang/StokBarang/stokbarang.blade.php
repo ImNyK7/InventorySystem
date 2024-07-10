@@ -69,8 +69,9 @@
                     </table>
                 </div>
             </div>
-            @include('Partials.backontop')
         </div>
+        @include('Partials.backontop')
+    </div>
        
         <script>
             let table = new DataTable('#stokbarang-table');

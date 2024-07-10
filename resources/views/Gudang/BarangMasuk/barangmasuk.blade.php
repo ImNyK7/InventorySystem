@@ -98,15 +98,15 @@
                                         </form> 
                                         @endif
                                     </td>
-                                    
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-            @include('Partials.backontop')
         </div>
+        @include('Partials.backontop')
+    </div>
         <script>
             $(document).ready(function() {
                 var table = $('#brgmsk-table').DataTable({

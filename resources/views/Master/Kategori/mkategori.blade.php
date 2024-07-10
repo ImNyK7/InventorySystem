@@ -65,9 +65,8 @@
                     </table>
                 </div>
             </div>
-            @include('Partials.backontop')
         </div>
-
+        @include('Partials.backontop')
     </div>
     <script>
         let table = new DataTable('#kategori-table');

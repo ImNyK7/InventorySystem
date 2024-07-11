@@ -37,7 +37,6 @@
                                 <th>Alamat 2</th>
                                 <th>Telpon</th>
                                 <th>Term (Hari)</th>
-                                <th>Description</th>
                                 <th width="125px" style="background-color: whitesmoke">Action</th>
                             </tr>
                         </thead>
@@ -53,7 +52,6 @@
                                     <td>{{ $supplier->alamat2supp }}</td>
                                     <td>{{ $supplier->notelponsupp }}</td>
                                     <td>{{ $supplier->termsupp }}</td>
-                                    <td>{{ $supplier->descsupp }}</td>
                                     <td>
                                         <a href="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}"
                                             class="btn btn-primary btn-sm"

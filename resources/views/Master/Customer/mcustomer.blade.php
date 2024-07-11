@@ -38,7 +38,6 @@
                                 <th>Telpon</th>
                                 <th>Term (Hari)</th>
                                 <th>Limit</th>
-                                <th>Description</th>
                                 <th width="120px" style="background-color: whitesmoke">Action</th>
                             </tr>
                         </thead>
@@ -55,7 +54,6 @@
                                     <td>{{ $customer->notelponcust }}</td>
                                     <td>{{ $customer->termcust }}</td>
                                     <td>{{ $customer->limitcust }}</td>
-                                    <td>{{ $customer->desccust }}</td>
                                     <td>
                                         <a href="/customer/mastercustomer/{{ $customer->perusahaancust }}"
                                             class="btn btn-primary btn-sm"
@@ -127,5 +125,4 @@
                     });
             });
     </script>
-    
 @endsection

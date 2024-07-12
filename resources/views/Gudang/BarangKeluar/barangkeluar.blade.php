@@ -20,11 +20,13 @@
                 <a href="{{ url('barangkeluar-pdf') }}" id="print-pdf" target="_blank">
                     @include('Partials.printbutton')
                 </a>
+                @if(!auth()->user()->isSales())
                 <form action="/barangkeluar/listbarangkeluar/create">
                     <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                             style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
                             Barang Keluar</span></button>
                 </form>
+                @endif
             </div>
         </div>
         <div class="row mb-5 mt-2">
@@ -70,10 +72,11 @@
                                     <td>Rp{{ number_format($recordbarangkeluar->hrgjual * $recordbarangkeluar->jmlhbrgklr, 2) }}</td>
                                     <td>
                                         <a href="/barangkeluar/listbarangkeluar/{{ $recordbarangkeluar->kodebrgklr }}"
-                                            class="btn btn-primary btn-sm"
+                                            class="btn btn-primary btn-sm {{ auth()->user()->isSales() ? 'centered-button' : '' }}"
                                             style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
+                                        @if(!auth()->user()->isSales())
                                         <a href="/barangkeluar/listbarangkeluar/{{ $recordbarangkeluar->kodebrgklr }}/edit"
                                             class="btn btn-success btn-sm"
                                             style="background-color: #48EE59; border:none; outline:none;">
@@ -89,6 +92,7 @@
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
                                         </form> 
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -167,7 +171,7 @@
                         url: url,
                         data: form.serialize(),
                         success: function(data) {
-                            swal("Deleted!", "Your record has been deleted.", "success");
+                            swal("Berhasil!", "Data anda berhasil di hapus", "success");
                             form.closest('tr').remove();
                         },
                         error: function(data) {

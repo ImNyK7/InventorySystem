@@ -6,9 +6,9 @@
     </div>
 
     @if (session()->has('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-      </div>
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
     @endif
 
     <div class="container-fluid px-4">
@@ -37,7 +37,6 @@
                                 <th>Alamat 2</th>
                                 <th>Telpon</th>
                                 <th>Term (Hari)</th>
-                                <th>Description</th>
                                 <th width="125px" style="background-color: whitesmoke">Action</th>
                             </tr>
                         </thead>
@@ -53,25 +52,29 @@
                                     <td>{{ $supplier->alamat2supp }}</td>
                                     <td>{{ $supplier->notelponsupp }}</td>
                                     <td>{{ $supplier->termsupp }}</td>
-                                    <td>{{ $supplier->descsupp }}</td>
                                     <td>
-                                        <a href="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}" class="btn btn-primary btn-sm" style="background-color: #1570EF; border:none; outline:none;">
+                                        <a href="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}"
+                                            class="btn btn-primary btn-sm"
+                                            style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
-                                        </a>                                        
-                                        <a href="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}/edit" class="btn btn-success btn-sm" style="background-color: #48EE59; border:none; outline:none;">
+                                        </a>
+                                        <a href="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}/edit"
+                                            class="btn btn-success btn-sm"
+                                            style="background-color: #48EE59; border:none; outline:none;">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <form action="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}" method="POST" class="delete-form d-inline">
+                                        <form action="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}"
+                                            method="POST" class="delete-form d-inline">
                                             @method('delete')
                                             @csrf
                                             <button type="button" class="btn btn-danger btn-sm delete-button"
-                                                    data-id="{{ $supplier->id }}"
-                                                    data-url="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}"
-                                                    style="background-color: #E70404; border:none; outline:none;">
+                                                data-id="{{ $supplier->id }}"
+                                                data-url="/supplier/mastersupplier/{{ $supplier->perusahaansupp }}"
+                                                style="background-color: #E70404; border:none; outline:none;">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
-                                        </form>   
-                                    </td>                                    
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -94,34 +97,35 @@
         });
 
         $(document).on('click', '.delete-button', function(e) {
-            e.preventDefault();
-            var id = $(this).data('id');
-            var url = $(this).data('url');
-            var form = $(this).closest('form');
+                e.preventDefault();
+                var id = $(this).data('id');
+                var url = $(this).data('url');
+                var form = $(this).closest('form');
 
-            swal({
-                    title: "Yakin Hapus Data Ini?",
-                    text: "Data yang dihapus tidak bisa dikembalikan!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonClass: "btn-danger",
-                    confirmButtonText: "Yakin!",
-                    closeOnConfirm: false
-                },
-                function() {
-                    $.ajax({
-                        type: "POST",
-                        url: url,
-                        data: form.serialize(),
-                        success: function(data) {
-                            swal("Deleted!", "Your record has been deleted.", "success");
-                            form.closest('tr').remove();
-                        },
-                        error: function(data) {
-                            swal("Error!", "There was an error deleting the record.", "error");
-                        }
+                swal({
+                        title: "Yakin Hapus Data Ini?",
+                        text: "Data yang dihapus tidak bisa dikembalikan!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yakin!",
+                        closeOnConfirm: false
+                    },
+                    function() {
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: form.serialize(),
+                            success: function(data) {
+                                swal("Berhasil!", "Data anda berhasil di hapus", "success");
+                                form.closest('tr').remove();
+                            },
+                            error: function(data) {
+                                swal("Error!", "Terjadi error saat penghapusan data.", "error");
+                            }
+                        });
                     });
-                });
-        });
+            });
+
     </script>
 @endsection

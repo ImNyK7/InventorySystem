@@ -20,12 +20,14 @@
                 <a href="{{ url('barangmasuk-pdf') }}" id="print-pdf" target="_blank">
                     @include('Partials.printbutton')
                 </a>
+                @if(!auth()->user()->isPurchasing())
                 <form action="/barangmasuk/listbarangmasuk/create">
                     <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                             style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah
                             Barang
                             Masuk</span></button>
                 </form>
+                @endif
             </div>
         </div>
         <div class="row mb-5 mt-2">
@@ -74,15 +76,16 @@
                                     </td>
                                     <td>
                                         <a href="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}"
-                                            class="btn btn-primary btn-sm"
+                                            class="btn btn-primary btn-sm {{ auth()->user()->isPurchasing() ? 'centered-button' : '' }}"
                                             style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
+                                        @if(!auth()->user()->isPurchasing())
                                         <a href="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}/edit"
                                             class="btn btn-success btn-sm"
                                             style="background-color: #48EE59; border:none; outline:none;">
                                             <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
+                                     </a>
                                         <form action="/barangmasuk/listbarangmasuk/{{ $recordbarangmasuk->kodebrgmsk }}" method="POST" class="delete-form d-inline">
                                             @method('delete')
                                             @csrf
@@ -93,6 +96,7 @@
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
                                         </form> 
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -100,8 +104,9 @@
                     </table>
                 </div>
             </div>
-            @include('Partials.backontop')
         </div>
+        @include('Partials.backontop')
+    </div>
         <script>
             $(document).ready(function() {
                 var table = $('#brgmsk-table').DataTable({
@@ -172,7 +177,7 @@
                         url: url,
                         data: form.serialize(),
                         success: function(data) {
-                            swal("Deleted!", "Your record has been deleted.", "success");
+                            swal("Berhasil!", "Data anda berhasil di hapus", "success");
                             form.closest('tr').remove();
                         },
                         error: function(data) {

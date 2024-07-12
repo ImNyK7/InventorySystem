@@ -16,10 +16,12 @@
             <a href="{{ url('stok-pdf') }}" target="_blank">
                 @include('Partials.printbutton')
             </a>
+            @if(!auth()->user()->isPurchasing() && !auth()->user()->isSales())                                    
             <form action="/stokbarang/create">
                 <button type="submit" class="btn"><i class="fa-solid fa-circle-plus"
                         style="font-size: x-large; vertical-align: -3px"></i> <span style="padding-left: 2px">Tambah Stok Barang</span></button>
             </form>
+            @endif
         </div>
         <div class="row mb-5 mt-2">
             <div class="col">
@@ -42,9 +44,10 @@
                                     <td>{{ $stokbarang->kategori->namakat ?? '' }}</td>
                                     <td>{{ $stokbarang->jmlhbrg }} {{ $stokbarang->satuanbrg->namasatuan ?? '' }}</td>
                                     <td>
-                                        <a href="/stokbarang/{{ $stokbarang->namabrg }}" class="btn btn-primary btn-sm" style="background-color: #1570EF; border:none; outline:none;">
+                                        <a href="/stokbarang/{{ $stokbarang->namabrg }}" class="btn btn-primary btn-sm {{ auth()->user()->isPurchasing() || auth()->user()->isSales() ? 'centered-button' : '' }}" style="background-color: #1570EF; border:none; outline:none;">
                                             <i class="fa-solid fa-eye"></i>
-                                        </a>                                        
+                                        </a>   
+                                        @if(!auth()->user()->isPurchasing() && !auth()->user()->isSales())                                    
                                         <a href="/stokbarang/{{ $stokbarang->namabrg }}/edit" class="btn btn-success btn-sm" style="background-color: #48EE59; border:none; outline:none;">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
@@ -58,6 +61,7 @@
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
                                         </form> 
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -65,8 +69,9 @@
                     </table>
                 </div>
             </div>
-            @include('Partials.backontop')
         </div>
+        @include('Partials.backontop')
+    </div>
        
         <script>
             let table = new DataTable('#stokbarang-table');
@@ -91,7 +96,7 @@
                         url: url,
                         data: form.serialize(),
                         success: function(data) {
-                            swal("Deleted!", "Your record has been deleted.", "success");
+                            swal("Berhasil!", "Data anda berhasil di hapus", "success");
                             form.closest('tr').remove();
                         },
                         error: function(data) {

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Customer;
 use App\Models\Kategori;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Supplier;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\SatuanBrg;
@@ -26,7 +27,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'username' => 'NyK',
             'password' => bcrypt('12345'),
-            'is_admin' => true
+            'role' => User::ROLE_ADMIN,
         ]);
         
         Kategori::create([

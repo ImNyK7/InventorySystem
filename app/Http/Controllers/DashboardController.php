@@ -18,10 +18,8 @@ class DashboardController extends Controller
         $customers = Customer::count();
         $suppliers = Supplier::count();
         $kategoris = Kategori::count();
-        //$stokbarangs = StokBarang::count();
         $totalJumlahBarang = StokBarang::sum('jmlhbrg');
         $title = "Home";
-        $role = "Admin";
-        return view("home",compact('totalJumlahBarang','recordbarangmasuks', 'recordbarangkeluars' , 'customers', 'suppliers', 'kategoris', 'title','role', ));
+        return view("home",compact('totalJumlahBarang','recordbarangmasuks', 'recordbarangkeluars' , 'customers', 'suppliers', 'kategoris', 'title', ));
     }
 }

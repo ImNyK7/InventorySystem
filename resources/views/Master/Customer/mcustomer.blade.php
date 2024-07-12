@@ -38,7 +38,6 @@
                                 <th>Telpon</th>
                                 <th>Term (Hari)</th>
                                 <th>Limit</th>
-                                <th>Description</th>
                                 <th width="120px" style="background-color: whitesmoke">Action</th>
                             </tr>
                         </thead>
@@ -55,7 +54,6 @@
                                     <td>{{ $customer->notelponcust }}</td>
                                     <td>{{ $customer->termcust }}</td>
                                     <td>{{ $customer->limitcust }}</td>
-                                    <td>{{ $customer->desccust }}</td>
                                     <td>
                                         <a href="/customer/mastercustomer/{{ $customer->perusahaancust }}"
                                             class="btn btn-primary btn-sm"
@@ -75,8 +73,7 @@
                                                     style="background-color: #E70404; border:none; outline:none;">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
-                                        </form>
-                                                                               
+                                        </form>                           
                                     </td>
                                 </tr>
                             @endforeach
@@ -87,7 +84,6 @@
         </div>
         @include('Partials.backontop')
     </div>
-
     <script>
         $(document).ready(function() {
             var table = $('#customer-table').DataTable({
@@ -97,35 +93,36 @@
                 }
             });
         });
-        $(document).on('click', '.delete-button', function(e) {
-            e.preventDefault();
-            var id = $(this).data('id');
-            var url = $(this).data('url');
-            var form = $(this).closest('form');
 
-            swal({
-                    title: "Yakin Hapus Data Ini?",
-                    text: "Data yang dihapus tidak bisa dikembalikan!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonClass: "btn-danger",
-                    confirmButtonText: "Yakin!",
-                    closeOnConfirm: false
-                },
-                function() {
-                    $.ajax({
-                        type: "POST",
-                        url: url,
-                        data: form.serialize(),
-                        success: function(data) {
-                            swal("Deleted!", "Your record has been deleted.", "success");
-                            form.closest('tr').remove();
-                        },
-                        error: function(data) {
-                            swal("Error!", "There was an error deleting the record.", "error");
-                        }
+        $(document).on('click', '.delete-button', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var url = $(this).data('url');
+                var form = $(this).closest('form');
+
+                swal({
+                        title: "Yakin Hapus Data Ini?",
+                        text: "Data yang dihapus tidak bisa dikembalikan!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yakin!",
+                        closeOnConfirm: false
+                    },
+                    function() {
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: form.serialize(),
+                            success: function(data) {
+                                swal("Berhasil!", "Data anda berhasil di hapus", "success");
+                                form.closest('tr').remove();
+                            },
+                            error: function(data) {
+                                swal("Error!", "There was an error deleting the record.", "error");
+                            }
+                        });
                     });
-                });
-        });
+            });
     </script>
 @endsection

@@ -40,7 +40,7 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $user->username }}</td>
-                                    <td>{{ $user->is_admin ? 'Admin' : 'Gudang' }}</td>
+                                    <td>{{ ucfirst($user->role) }}</td>
                                     <td>
                                         <a href="/admin/{{ $user->username }}/edit" class="btn btn-success btn-sm"
                                             style="background-color: #48EE59; border:none; outline:none;">

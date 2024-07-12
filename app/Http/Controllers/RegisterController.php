@@ -7,22 +7,25 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
-    public function register (){
+    public function register()
+    {
         return view('register', [
             'title' => 'Register'
         ]);
     }
 
-    public function store(Request $request){
-       $validatedData = $request->validate([
-            'username'=> 'required|min:3|max:255|unique:users',
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'username' => 'required|min:3|max:255|unique:users',
             'password' => 'required|min:5|max:255|confirmed',
-            'is_admin' => 'required|boolean'
-       ]);
+            'role' => 'required|string|in:admin,gudang,purchasing,sales'
+        ]);
 
-       $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData['password'] = bcrypt($validatedData['password']);
 
-       User::create($validatedData);
-       return redirect('/admin')->with('regsuccess', 'Registrasi Berhasil, Silahkan Login!');
+        User::create($validatedData);
+
+        return redirect('/admin')->with('regsuccess', 'Registrasi Berhasil, Silahkan Login!');
     }
 }

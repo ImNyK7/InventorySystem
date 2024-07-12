@@ -13,6 +13,14 @@
 
     <div class="container-fluid px-4">
         <div class="btn-wrapper wrapper" style="justify-content: flex-end; align-items: center">
+            @if(!auth()->user()->isPurchasing() && !auth()->user()->isSales()) 
+            <div class="btn-wrapper wrapper" style="display: flex; justify-content: flex-start; flex-grow: 1;">
+                <form action="/stokopname">
+                    <button type="submit" class="btn btn-primary align-self-end mb-0"
+                    style="background-color:cornflowerblue; height: 45px; width: fit-content">Stok Opname</button>
+                </form>
+            </div>
+            @endif
             <a href="{{ url('stok-pdf') }}" target="_blank">
                 @include('Partials.printbutton')
             </a>

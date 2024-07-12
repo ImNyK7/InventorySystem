@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                         <td><label>Keterangan</label></td>
-                        <td><textarea readonly disabled style="width: 200px">{{ $customer->descust }}</textarea></td>
+                        <td><textarea readonly disabled style="width: 200px">{{ $customer->desccust }}</textarea></td>
                         <td><label>Limit</label></td>
                         <td><input value="{{ $customer->limitcust }}" readonly disabled style="width: 200px"></td>
                     </tr>

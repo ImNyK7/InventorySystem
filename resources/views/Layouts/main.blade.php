@@ -15,7 +15,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/forms.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/core.css') }}">
+
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <!-- DataTables CSS -->

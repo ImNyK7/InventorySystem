@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StokOpnameController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
@@ -61,6 +62,8 @@ Route::resource('/stokbarang', StokBarangController::class)
 Route::delete('/stokbarang/{stokbarang:namabrg}', [StokBarangController::class, 'destroy'])
     ->middleware(['auth', SalesPurchasingMiddleware::class]);
 Route::get('stok-pdf', [StokBarangController::class, 'generatestokPDF'])->middleware("auth");
+
+Route::resource('/stokopname', StokOpnameController::class)->middleware(['auth', SalesPurchasingMiddleware::class]);
 
 Route::resource('/barangmasuk/listbarangmasuk', BarangMasukController::class)
     ->middleware(['auth', SalesMiddleware::class, 'purchasing.readonly']);

@@ -1,89 +1,69 @@
-<div class="bg-white d-flex flex-column" id="sidebar-wrapper">
-    <div class="sidebar-heading text-center py-4 primary-text fs-2 fw-bold text-uppercase border-bottom">
-        SI SUPRAS 
-    </div>
-    <div class="list-group list-group-flush flex-grow-1">
-        <a href="/" class="list-group-item list-group-item-action bg-transparent second-text dashboard-button fw-bold" style="text-decoration: none; color: gray;">
-            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-text mx-3" style="font-size: 24px">SI SUPRAS</div>
+    </a>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item active">
+        <a class="nav-link" href="/">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-heading">Menu</div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+            aria-expanded="f" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-circle-exclamation"></i>
+            <span>Master</span> <i class="fas fa-fw fa-caret-down"></i>
         </a>
-        <div class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-            <a href="#" style="text-decoration: none; color: gray;" id="masterLink">
-                <i class="fas fa-user-circle me-2"></i>Master
-            </a>
-            <ul class="list-group list-group-flush my-1" style="margin-left: 15px; display: none;" id="masterSubMenu">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
                 @if(!auth()->user()->isPurchasing())
-                    <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                        <a href="/customer/mastercustomer" style="text-decoration: none; color: gray;">Master Customer</a>
-                    </li>
+                <a class="collapse-item" href="/customer/mastercustomer">Master Customer</a>
                 @endif
                 @if(!auth()->user()->isSales())
-                    <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                        <a href="/supplier/mastersupplier" style="text-decoration: none; color: gray;">Master Supplier</a>
-                    </li>
+                <a class="collapse-item" href="/supplier/mastersupplier">Master Supplier</a>
                 @endif
                 @if(!auth()->user()->isPurchasing() && !auth()->user()->isSales())
-                    <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                        <a href="/kategori/masterkategori" style="text-decoration: none; color: gray;">Kategori</a>
-                    </li>
+                <a class="collapse-item" href="/kategori/masterkategori">Kategori</a>
                 @endif
-            </ul>
+            </div>
         </div>
-        <div class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-            <a href="#" style="text-decoration: none; color: gray;" id="gudangLink">
-                <i class="fas fa-box me-2"></i>Gudang
-            </a>
-            <ul class="list-group list-group-flush my-1" style="margin-left: 12px; display: none;" id="gudangSubMenu">
-                <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                    <a href="/stokbarang" style="text-decoration: none; color: gray;">Stok Barang</a>
-                </li>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUtilities"
+            aria-expanded="false" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-boxes-stacked"></i>
+            <span>Gudang</span> <i class="fas fa-fw fa-caret-down"></i>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-bs-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/stokbarang">Stok Barang</a>
                 @if(!auth()->user()->isSales())
-                    <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                        <a href="/barangmasuk/listbarangmasuk" style="text-decoration: none; color: gray;">Laporan Barang Masuk</a>
-                    </li>
+                <a class="collapse-item" href="/barangmasuk/listbarangmasuk">Laporan Barang Masuk</a>
                 @endif
                 @if(!auth()->user()->isPurchasing())
-                    <li class="list-group-item list-group-item-action bg-transparent second-text fw-bold" style="padding: 9px">
-                        <a href="/barangkeluar/listbarangkeluar" style="text-decoration: none; color: gray;">Laporan Barang Keluar</a>
-                    </li>
+                <a class="collapse-item" href="/barangkeluar/listbarangkeluar">Laporan Barang Keluar</a>
                 @endif
-            </ul>
+                @if(!auth()->user()->isPurchasing() && !auth()->user()->isSales())
+                <a class="collapse-item" href="/stokopname">Stok Opname</a>
+                @endif
+            </div>
         </div>
-        @if(auth()->user()->isAdmin())
-            <a href="/admin" class="list-group-item list-group-item-action bg-transparent second-text dashboard-button fw-bold" style="text-decoration: none; color: gray;" id="adminButton">
-                <i class="fa-solid fa-clipboard-user fa-lg me-2"></i>Admin
-            </a>
-        @endif
-    </div>
-    <form action="/logout" method="POST">@csrf <button type="submit" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-center mt-auto" style="text-decoration: none; color: red;"
-        style="color: red">Logout</button>
-    </form>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var masterLink = document.getElementById('masterLink');
-        var masterSubMenu = document.getElementById('masterSubMenu');
-        var gudangLink = document.getElementById('gudangLink');
-        var gudangSubMenu = document.getElementById('gudangSubMenu');
-
-        masterLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            if (masterSubMenu.style.display === 'none') {
-                masterSubMenu.style.display = 'block';
-                gudangSubMenu.style.display = 'none';
-            } else {
-                masterSubMenu.style.display = 'none';
-            }
-        });
-
-        gudangLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            if (gudangSubMenu.style.display === 'none') {
-                gudangSubMenu.style.display = 'block';
-                masterSubMenu.style.display = 'none'; 
-            } else {
-                gudangSubMenu.style.display = 'none';
-            }
-        });
-    });
-</script>
+    </li>
+    @if(auth()->user()->isAdmin())
+    <li class="nav-item">
+        <a class="nav-link" href="/admin">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Admin</span></a>
+    </li>
+    @endif
+</ul>

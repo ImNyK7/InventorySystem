@@ -9,74 +9,88 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sb-admin-2.css') }}">
     <title>SI SUPRAS | Register</title>
 </head>
 
-<body>
-    <main class="form-registration">
-        <h1>REGISTER AKUN</h1>
-        <div class="wrapper">
-            <form action="/admin/register" method="POST">
-                @csrf
-                <table>
-                    <tr>
-                        <td><label for="username" class="form-label">Username/ID</label></td>
-                        <td><input type="text" name="username"
-                                class="form-control @error('username') is-invalid @enderror" required
-                                value="{{ old('username') }}">
-                            @error('username')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 style="color: #1570EF; font-weight: 600">REGISTER AKUN</h1>
+                            </div>
+                            <br>
+                            <form action="/admin/register" method="POST">
+                                @csrf
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3">
+                                        <input type="text" class="form-control form-control-user" name="username"
+                                            placeholder="Username/ID" value="{{ old('username') }}" required>
+                                        @error('username')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-6 mb-3">
+                                        <select name="role" class="form-control form-control-user" required>
+                                            <option value="">Select Role</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="gudang">Gudang</option>
+                                            <option value="purchasing">Purchasing</option>
+                                            <option value="sales">Sales</option>
+                                        </select>
+                                        @error('role')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
                                 </div>
-                            @enderror
-                        </td>
-                        <td><i class="fas fa-user me-2"></i></td>
-                    </tr>
-                    <tr>
-                        <td><label for="password" class="form-label">Password</label></td>
-                        <td><input type="password" name="password"
-                                class="form-control @error('password') is-invalid @enderror" required>
-                            @error('password')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3">
+                                        <input type="password" class="form-control form-control-user" name="password"
+                                            placeholder="Password" required>
+                                        @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-6 mb-3">
+                                        <input type="password" class="form-control form-control-user"
+                                            name="password_confirmation" placeholder="Confirm Password" required>
+                                    </div>
                                 </div>
-                            @enderror
-                        </td>
-                        <td><i class="fa-solid fa-lock me-2"></i></td>
-                    </tr>
-                    <tr>
-                        <td><label for="password_confirmation" class="form-label">Confirm Password</label></td>
-                        <td><input type="password" name="password_confirmation"
-                                class="form-control @error('password_confirmation') is-invalid @enderror" required>
-                            @error('password_confirmation')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </td>
-                        <td><i class="fa-solid fa-circle-check me-2"></i></td>
-                    </tr>
-                    <tr>
-                        <td><label for="role" class="form-label">Role</label></td>
-                        <td><select name="role" class="form-control @error('role') is-invalid @enderror">
-                                <option value="admin">Admin</option>
-                                <option value="gudang">Gudang</option>
-                                <option value="purchasing">Purchasing</option>
-                                <option value="sales">Sales</option>
-                            </select>
-                            @error('role')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </td>
-                    </tr>
-                </table>
-                <button type="submit" class="btn">Register</button>
-            </form>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Register
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
 </body>
 
 </html>

@@ -15,6 +15,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/forms.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sb-admin-2.min.css') }}">
 
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
@@ -35,6 +36,7 @@
         src="https://cdn.datatables.net/fixedcolumns/4.0.1/js/dataTables.fixedColumns.min.js"></script>
     <!-- SweetAlert JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    
 </head>
 
 <body>

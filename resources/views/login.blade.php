@@ -2,73 +2,98 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>SI SUPRAS | Login</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
 
-<body>
-    <main class="form-login">
-        <div class="heading" style="margin-top: 20px">
-            <h1>SELAMAT DATANG</h1>
-            <br>
-            <h1>SILAHKAN LOGIN</h1>
-        </div>
-        <div class="wrapper">
-            <form action="/login" method="POST">
-                @csrf
-                <table>
-                    <tr>
-                        <td><label for="username" class="form-label">Username/ID</label></td>
-                        <td><input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
-                                required autofocus value="{{ old('username') }}"></td>
-                        <td><i class="fas fa-user me-2"></i></td>
-                    </tr>
-                    @error('username')
-                    <tr>
-                        <td></td>
-                        <td><span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span></td>
-                        <td></td>
-                    </tr>
-                    @enderror
-                    <tr>
-                        <td><label for="password" class="form-label">Password</label></td>
-                        <td><input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                                required></td>
-                        <td><i class="fa-solid fa-lock me-2"></i></td>
-                    </tr>
-                    @error('password')
-                    <tr>
-                        <td></td>
-                        <td><span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span></td>
-                        <td></td>
-                    </tr>
-                    @enderror
-                </table>
-                @if ($errors->any())
-                <div class="alert alert-danger mt-3">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <!-- No image column -->
+                            <div class="col-lg-12">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang, Silahkan Login</h1>
+                                    </div>
+                                    <form action="/login" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <input type="text" name="username"
+                                                class="form-control @error('username') is-invalid @enderror" required
+                                                autofocus value="{{ old('username') }}" placeholder="Username/ID">
+                                            @error('username')
+                                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password"
+                                                class="form-control @error('password') is-invalid @enderror" required
+                                                placeholder="Password">
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger mt-3">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        @if (session('loginError'))
+                                            <div class="alert alert-danger mt-3">
+                                                {{ session('loginError') }}
+                                            </div>
+                                        @endif
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Login
+                                        </button>
+                                    </form>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                @endif
-                @if(session('loginError'))
-                <div class="alert alert-danger mt-3">
-                    {{ session('loginError') }}
-                </div>
-                @endif
-                <button type="submit" class="btn">Login</button>
-            </form>
+            </div>
         </div>
-    </main>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
 </body>
 
 </html>

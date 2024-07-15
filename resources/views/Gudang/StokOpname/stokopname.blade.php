@@ -27,6 +27,7 @@
                         <thead>
                             <tr>
                                 <th width="25px">#</th>
+                                <th>Penulis</th>
                                 <th>Tanggal Cek</th>
                                 <th>Deskripsi</th>
                                 <th width="125px">Action</th>
@@ -36,6 +37,7 @@
                             @foreach ($stokopnames as $index => $stokopname)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
+                                    <td>{{ $stokopname->namapenulis }}</td>
                                     <td>{{ $stokopname->tanggalopname }}</td>
                                     <td>{{ $stokopname->descopname }}</td>
                                     <td>

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('stok_opnames', function (Blueprint $table) {
             $table->id();
+            $table->string('namapenulis');
             $table->date('tanggalopname');
             $table->string('descopname');
             $table->timestamps();

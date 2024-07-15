@@ -15,7 +15,16 @@
                 <form action="{{ route('stokopname.store') }}" method="POST">
                     @csrf
                     <table>
-
+                        <tr>
+                            <td><label for="namapenulis">Nama Penulis</label></td>
+                            <td>
+                                <input type="text" name="namapenulis"
+                                    value="{{ old('namapenulis') }}" required style="width: 200px">
+                                @error('namapenulis')
+                                    <div class="invalid-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                        </tr>
                         <tr>
                             <td><label for="tanggalopname">Tanggal</label></td>
                             <td>

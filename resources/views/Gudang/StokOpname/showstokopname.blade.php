@@ -8,6 +8,10 @@
             <form>
                 <table>
                     <tr>
+                        <td><label>Nama Penulis</label></td>
+                        <td><input value="{{ $stokopname->namapenulis }}" readonly disabled style="width: 200px"></td>
+                    </tr>
+                    <tr>
                         <td><label>Tanggal</label></td>
                         <td><input value="{{ $stokopname->tanggalopname }}" readonly disabled style="width: 200px"></td>
                     </tr>

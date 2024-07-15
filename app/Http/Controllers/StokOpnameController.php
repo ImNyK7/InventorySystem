@@ -34,6 +34,7 @@ class StokOpnameController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'namapenulis' => 'required|max:255',
             'tanggalopname' => 'required|date',
             'descopname' => 'required|max:255',
         ]);

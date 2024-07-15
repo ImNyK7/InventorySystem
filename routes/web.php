@@ -63,7 +63,7 @@ Route::delete('/stokbarang/{stokbarang:namabrg}', [StokBarangController::class, 
     ->middleware(['auth', SalesPurchasingMiddleware::class]);
 Route::get('stok-pdf', [StokBarangController::class, 'generatestokPDF'])->middleware("auth");
 
-Route::resource('/stokopname', StokOpnameController::class)->middleware(['auth', SalesPurchasingMiddleware::class]);
+Route::resource('/stokopname', StokOpnameController::class)->middleware(['auth', PurchasingMiddleware::class, SalesMiddleware::class]);
 
 Route::resource('/barangmasuk/listbarangmasuk', BarangMasukController::class)
     ->middleware(['auth', SalesMiddleware::class, 'purchasing.readonly']);

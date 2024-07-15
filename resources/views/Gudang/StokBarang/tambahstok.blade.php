@@ -11,43 +11,36 @@
     <div class="wrapper-wrapper">
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper" style="margin-top: 20px">
-                <h1>Form<br>Stok Barang</h1>
+                <h1>Form Stok Barang</h1>
                 <form action="{{ route('stokbarang.store') }}" method="POST">
                     @csrf
-                    <table>
-
-                        <tr>
-                            <td><label for="namabrg">Nama Barang</label></td>
-                            <td>
-                                <input type="text" name="namabrg" id="namabrg" value="{{ old('namabrg') }}" required
-                                    style="width: 200px">
-                                @error('namabrg')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                        </tr>
-                        <!-- Hapus field jmlhbrg dan satuanbrg_id -->
-                        <tr>
-                            <td><label for="kategori_id">Kategori</label></td>
-                            <td>
-                                <select id="kategori_id" name="kategori_id" required style="width: 200px;">
-                                    <option value="" selected></option>
-                                    @foreach ($kategoris as $kategori)
-                                        <option value="{{ $kategori->id }}"
-                                            {{ old('kategori_id') == $kategori->id ? 'selected' : '' }}>
-                                            {{ $kategori->namakat }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('kategori_id')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                        </tr>
-                    </table>
-                    <a href="/stokbarang"><button type="button" class="btncancel">Cancel</button></a>
-                    <button type="submit" class="btnsubmit">Submit</button>
-                </form>
+                    <div class="mb-3">
+                        <label for="namabrg" class="form-label">Nama Barang</label>
+                        <input type="text" name="namabrg" id="namabrg" value="{{ old('namabrg') }}" required class="form-control" style="width: 400px;">
+                        @error('namabrg')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="kategori_id" class="form-label">Kategori</label>
+                        <br>
+                        <select id="kategori_id" name="kategori_id" required class="form-select" style="max-width: 400px;">
+                            <option value="" selected></option>
+                            @foreach ($kategoris as $kategori)
+                            <option value="{{ $kategori->id }}" {{ old('kategori_id') == $kategori->id ? 'selected' : '' }}>
+                                {{ $kategori->namakat }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @error('kategori_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <a href="/stokbarang" class="btn btn-secondary me-2">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>              
             </div>
         </div>
     </div>

@@ -11,117 +11,119 @@
     <div class="wrapper-wrapper">
         <div id="page-content-wrapper" class="d-flex justify-content-center align-items-center">
             <div class="form-wrapper" style="margin-top: 20px">
-                <h1>Form<br>Barang Masuk</h1>
+                <h1>Form Barang Masuk</h1>
                 <form action="{{ route('listbarangmasuk.store') }}" method="POST">
                     @csrf
-                    <table>
-                        <tr>
-                            <td><label for="kodebrgmsk">Kode Laporan</label></td>
-                            <td>
-                                <input type="text" name="kodebrgmsk" id="kodebrgmsk" value="{{ old('kodebrgmsk') }}"
-                                    required style="width: 200px">
-                                @error('kodebrgmsk')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                            <td><label for="supplier_id">Supplier</label></td>
-                            <td>
-                                <select id="supplier_id" name="supplier_id" required style="width: 200px">
-                                    <option value="" selected></option>
-                                    @foreach ($suppliers as $supplier)
-                                        <option value="{{ $supplier->id }}"
-                                            {{ old('supplier_id') == $supplier->id ? 'selected' : '' }}>
-                                            {{ $supplier->perusahaansupp }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('supplier_id')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                        </tr>
-                        <td><label for="stokbarang_id">Nama Barang</label></td>
-                            <td>
-                                <select id="stokbarang_id" name="stokbarang_id" required style="width: 200px">
-                                    <option value="" selected></option>
-                                    @foreach ($stokbarangs as $stokbarang)
-                                        <option value="{{ $stokbarang->id }}"
-                                            data-jumlah="{{ $stokbarang->jmlhbrg }}"
-                                            data-kategori="{{ $stokbarang->kategori_id }}"
-                                            data-satuan="{{ $stokbarang->satuanbrg_id }}"
-                                            {{ old('stokbarang_id') == $stokbarang->id ? 'selected' : '' }}>
-                                            {{ $stokbarang->namabrg }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('stokbarang_id')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                            <td><label for="tanggalbrgmsk">Tanggal</label></td>
-                            <td>
-                                <input type="date" name="tanggalbrgmsk" id="dateField"
-                                    value="{{ old('tanggalbrgmsk') }}" min="2015-01-02" max="2030-12-31" required style="width: 200px">
-                                @error('tanggalbrgmsk')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                        <tr>
-                            <td><label for="jmlhbrgmsk">Jumlah Barang</label></td>
-                            <td>
-                                <div style="display: flex; align-items: center;">
-                                    <input type="number" name="jmlhbrgmsk" id="jmlhbrgmsk" 
-                                           value="{{ old('jmlhbrgmsk') }}" required style="width: 100px; margin-right: 5px;">
-                                    <select name="satuanbrg_id" id="satuanbrg_display" required 
-                                            style="width: 100px;">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <label for="kodebrgmsk" class="col-sm-4 col-form-label text-nowrap">Kode Laporan</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="kodebrgmsk" id="kodebrgmsk" value="{{ old('kodebrgmsk') }}" required class="form-control">
+                                    @error('kodebrgmsk')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="stokbarang_id" class="col-sm-4 col-form-label text-nowrap">Nama Barang</label>
+                                <div class="col-sm-8">
+                                    <select id="stokbarang_id" name="stokbarang_id" required class="form-select">
                                         <option value="" selected></option>
-                                        @foreach ($satuanbrgs as $satuanbrg)
-                                            <option value="{{ $satuanbrg->id }}" 
-                                                    {{ old('satuanbrg_id') == $satuanbrg->id ? 'selected' : '' }}>
-                                                {{ $satuanbrg->namasatuan }}
+                                        @foreach ($stokbarangs as $stokbarang)
+                                            <option value="{{ $stokbarang->id }}" data-jumlah="{{ $stokbarang->jmlhbrg }}" data-kategori="{{ $stokbarang->kategori_id }}" data-satuan="{{ $stokbarang->satuanbrg_id }}" {{ old('stokbarang_id') == $stokbarang->id ? 'selected' : '' }}>
+                                                {{ $stokbarang->namabrg }}
                                             </option>
                                         @endforeach
                                     </select>
+                                    @error('stokbarang_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('jmlhbrgmsk')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                                @error('satuanbrg_id')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                            <td><label for="hrgbeli">Harga Beli</label></td>
-                            <td>
-                                <input type="text" name="hrgbeli" id="hrgbeli" value="{{ old('hrgbeli') }}" required
-                                    style="width: 200px">
-                                @error('hrgbeli')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="kategori_id_display">Kategori</label></td>
-                            <td>
-                                <select id="kategori_id_display" name="kategori_id_display" required style="width: 200px;" disabled>
-                                    <option value="" selected></option>
-                                    @foreach ($kategoris as $kategori)
-                                        <option value="{{ $kategori->id }}"
-                                            {{ old('kategori_id') == $kategori->id ? 'selected' : '' }}>
-                                            {{ $kategori->namakat }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <input type="hidden" name="kategori_id" id="kategori_id" value="{{ old('kategori_id') }}">
-                                @error('kategori_id')
-                                    <div class="invalid-message">{{ $message }}</div>
-                                @enderror
-                            </td>
-                        </tr>
-                    </table>
-                    <a href="/stokbarang/create" style="font-size: 14px; text-decoration: none; margin-left: 5px">Klik Disini Jika Belum Membuat Nama Barang!</a>
-                    <a href="/barangmasuk/listbarangmasuk"><button type="button" class="btncancel">Cancel</button></a>
-                    <button type="submit" class="btnsubmit">Submit</button><br>
-                </form>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="jmlhbrgmsk" class="col-sm-4 col-form-label text-nowrap">Jumlah Barang</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <input type="number" name="jmlhbrgmsk" id="jmlhbrgmsk" value="{{ old('jmlhbrgmsk') }}" required class="form-control" style="width: 60px; margin-right: 5px;">
+                                        <select name="satuanbrg_id" id="satuanbrg_display" required class="form-select" style="width: 80px;">
+                                            <option value="" selected></option>
+                                            @foreach ($satuanbrgs as $satuanbrg)
+                                                <option value="{{ $satuanbrg->id }}" {{ old('satuanbrg_id') == $satuanbrg->id ? 'selected' : '' }}>
+                                                    {{ $satuanbrg->namasatuan }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @error('jmlhbrgmsk')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    @error('satuanbrg_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="kategori_id_display" class="col-sm-4 col-form-label text-nowrap">Kategori</label>
+                                <div class="col-sm-8">
+                                    <select id="kategori_id_display" name="kategori_id_display" required class="form-select" disabled>
+                                        <option value="" selected></option>
+                                        @foreach ($kategoris as $kategori)
+                                            <option value="{{ $kategori->id }}" {{ old('kategori_id') == $kategori->id ? 'selected' : '' }}>
+                                                {{ $kategori->namakat }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <input type="hidden" name="kategori_id" id="kategori_id" value="{{ old('kategori_id') }}">
+                                    @error('kategori_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <label for="supplier_id" class="col-sm-3 col-form-label text-nowrap">Supplier</label>
+                                <div class="col-sm-8">
+                                    <select id="supplier_id" name="supplier_id" required class="form-select">
+                                        <option value="" selected></option>
+                                        @foreach ($suppliers as $supplier)
+                                            <option value="{{ $supplier->id }}" {{ old('supplier_id') == $supplier->id ? 'selected' : '' }}>
+                                                {{ $supplier->perusahaansupp }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('supplier_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="tanggalbrgmsk" class="col-sm-3 col-form-label text-nowrap">Tanggal</label>
+                                <div class="col-sm-8">
+                                    <input type="date" name="tanggalbrgmsk" id="dateField" value="{{ old('tanggalbrgmsk') }}" min="2015-01-02" max="2030-12-31" required class="form-control">
+                                    @error('tanggalbrgmsk')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="hrgbeli" class="col-sm-3 col-form-label text-nowrap">Harga Beli</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="hrgbeli" id="hrgbeli" value="{{ old('hrgbeli') }}" required class="form-control">
+                                    @error('hrgbeli')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/stokbarang/create" class="d-block mt-1" style="font-size: 14px; text-decoration: none; margin-top: 0%">Klik Disini Jika Belum Membuat Nama Barang!</a>
+                    <div class="d-flex justify-content-end">
+                        <a href="/barangmasuk/listbarangmasuk" class="btn btn-secondary me-2">Cancel</a>
+                        <button type="submit" class="btn btn-primary me-4">Submit</button>
+                    </div>
+                </form>       
             </div>
         </div>
     </div>

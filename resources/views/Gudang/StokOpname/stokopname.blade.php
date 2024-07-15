@@ -41,7 +41,7 @@
                                     <td>{{ $stokopname->tanggalopname }}</td>
                                     <td>{{ $stokopname->descopname }}</td>
                                     <td>
-                                        <a href="/stokopname/{{ $stokopname->tanggalopname }}" class="btn btn-primary btn-sm" style="background-color: #1570EF; border:none; outline:none;">
+                                        <a href="/stokopname/{{ $stokopname->tanggalopname }}" class="btn btn-primary btn-sm" style="background-color: #1570EF; border:none; outline:none; margin-left: 30%">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>   
                                     </td>

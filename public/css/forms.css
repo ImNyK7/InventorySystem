@@ -1,5 +1,5 @@
 .form-wrapper {
-  width: fit-content;
+  width: max-content;
   min-height: auto;
   max-height: min-content;
   background: whitesmoke;
@@ -10,7 +10,6 @@
   overflow-y: auto;
   margin: 20px;
 }
-
 
 .limitedNumbSelect2{
   width: 80%;

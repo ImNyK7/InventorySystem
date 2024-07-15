@@ -9806,6 +9806,28 @@ a:focus {
   flex: 1 0 auto;
 }
 
+.select-with-arrow {
+  position: relative;
+}
+
+.select-with-arrow select {
+  padding-right: 2.5rem;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.select-with-arrow::after {
+  content: '\f107';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
 .container,
 .container-fluid,
 .container-sm,

@@ -17,62 +17,68 @@
 
     <div class="container">
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 style="color: #1570EF; font-weight: 600">REGISTER AKUN</h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-10 mx-auto">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 style="color: #1570EF; font-weight: 600">REGISTER AKUN</h1>
+                                    </div>
+                                    <br>
+                                    <form action="/admin/register" method="POST">
+                                        @csrf
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3">
+                                                <input type="text" class="form-control form-control-user" name="username"
+                                                    placeholder="Username/ID" value="{{ old('username') }}" required>
+                                                @error('username')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-sm-6 mb-3">
+                                                <div class="select-with-arrow">
+                                                    <select name="role" class="form-control form-control-user" required>
+                                                        <option value="" style="font-weight: bold">Select Role</option>
+                                                        <option value="admin">Admin</option>
+                                                        <option value="gudang">Gudang</option>
+                                                        <option value="purchasing">Purchasing</option>
+                                                        <option value="sales">Sales</option>
+                                                    </select>
+                                                </div>
+                                                @error('role')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3">
+                                                <input type="password" class="form-control form-control-user"
+                                                    name="password" placeholder="Password" required>
+                                                @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-sm-6 mb-3">
+                                                <input type="password" class="form-control form-control-user"
+                                                    name="password_confirmation" placeholder="Confirm Password" required>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Register
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                            <br>
-                            <form action="/admin/register" method="POST">
-                                @csrf
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3">
-                                        <input type="text" class="form-control form-control-user" name="username"
-                                            placeholder="Username/ID" value="{{ old('username') }}" required>
-                                        @error('username')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-sm-6 mb-3">
-                                        <select name="role" class="form-control form-control-user" required>
-                                            <option value="">Select Role</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="gudang">Gudang</option>
-                                            <option value="purchasing">Purchasing</option>
-                                            <option value="sales">Sales</option>
-                                        </select>
-                                        @error('role')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3">
-                                        <input type="password" class="form-control form-control-user" name="password"
-                                            placeholder="Password" required>
-                                        @error('password')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-sm-6 mb-3">
-                                        <input type="password" class="form-control form-control-user"
-                                            name="password_confirmation" placeholder="Confirm Password" required>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    Register
-                                </button>
-                            </form>
                         </div>
                     </div>
                 </div>

@@ -124,8 +124,6 @@
                             </div>
                         </div>
                     </div>
-                
-                    <a href="/stokbarang/create" class="d-block mt-1" style="font-size: 14px; text-decoration: none; margin-top: 0%">Klik Disini Jika Belum Membuat Nama Barang!</a>
                     <div class="d-flex justify-content-end">
                         <a href="/barangmasuk/listbarangmasuk" class="btn btn-secondary me-2">Cancel</a>
                         <button type="submit" class="btn btn-primary me-4">Submit</button>

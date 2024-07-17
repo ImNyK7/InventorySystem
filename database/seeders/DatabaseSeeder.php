@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
         //     'satuanbrg_id' => '1',
         //     'kategori_id' => '1'
         // ]);
-        //Customer::factory(5)->create();
+        Customer::factory(5)->create();
         Customer::create([
             'kodecust' => 'C01',
             'perusahaancust' => 'PT Customer Setia',
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
             'limitcust' => '12'
         ]);
 
-        //Supplier::factory(5)->create();
+        Supplier::factory(5)->create();
         Supplier::create([
             'kodesupp' => 'S01',
             'perusahaansupp' => 'PT Supplier Setia',
